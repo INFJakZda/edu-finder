@@ -15,7 +15,18 @@ export default {
   data: function() {
     return {
       title: 'Pages',
-      items: [{ link: '/', name: 'index', description: 'index page' }]
+      items: [
+        {
+          link: '/',
+          name: 'index',
+          description: 'index page'
+        },
+        {
+          link: '/basic-request',
+          name: 'basic-request',
+          description: 'basic backend request test (with proxy module)'
+        }
+      ]
     }
   }
 }
