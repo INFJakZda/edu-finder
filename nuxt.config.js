@@ -46,11 +46,7 @@ module.exports = {
     // See https://github.com/nuxt-community/axios-module#options
     https: true,
     credentials: true,
-    proxy: true
-  },
-
-  proxy: {
-    '/api/': { target: 'https://loli-server.azurewebsites.net' }
+    baseURL: 'https://loli-server.azurewebsites.net'
   },
 
   /*
