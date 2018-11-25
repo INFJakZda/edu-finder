@@ -58,12 +58,6 @@ export default {
   },
   methods: {
     login: function() {
-      console.log(
-        JSON.stringify({
-          email: this.email,
-          password: this.password
-        })
-      )
       this.$axios
         .$post('/api/account/signin', {
           email: this.email,

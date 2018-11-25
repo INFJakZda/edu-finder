@@ -25,9 +25,7 @@ export default {
   },
   methods: {
     async fetchValues() {
-      const values = await this.$axios.$get(this.api_endpoint)
-      console.log(values)
-      this.values = values
+      this.values = await this.$axios.$get(this.api_endpoint)
     }
   }
 }
