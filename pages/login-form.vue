@@ -81,8 +81,6 @@ export default {
 
           this.error = true
         })
-
-      console.log('Login action triggered!')
     }
   }
 }
