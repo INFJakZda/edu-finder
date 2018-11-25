@@ -24,7 +24,17 @@ export default {
         {
           link: '/basic-request',
           name: 'basic-request',
-          description: 'basic backend request test (with proxy module)'
+          description: 'basic api request'
+        },
+        {
+          link: '/login-form',
+          name: 'login-form',
+          description: 'login form page'
+        },
+        {
+          link: '/register-form',
+          name: 'register-form',
+          description: 'register form page'
         }
       ]
     }
