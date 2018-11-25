@@ -31,6 +31,7 @@
             </div>
             <button
               class="fluid ui button primary"
+              @submit.prevent
               @click.prevent="login()">Login</button>
           </form>
         </div>
@@ -73,15 +74,18 @@ export default {
           this.response = response
         })
         .catch(error => {
+          this.error_message = 'Unknown error'
+
           if (error.response) {
             if (error.response.data) {
-              this.error = true
               this.error_message =
                 'errorMessage' in error.response.data
                   ? error.response.data.errorMessage
                   : 'Unknown error'
             }
           }
+
+          this.error = true
         })
 
       console.log('Login action triggered!')
