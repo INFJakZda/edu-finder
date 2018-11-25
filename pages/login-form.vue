@@ -63,23 +63,22 @@ export default {
           email: this.email,
           password: this.password
         })
-        .then(response => response.json())
-        .then(response => {
-          this.response = response
+        .then(token => {
+          this.response = token
         })
         .catch(error => {
-          this.error_message = 'Unknown error'
-
           if (error.response) {
+            this.error_message = 'Unknown error'
+
             if (error.response.data) {
               this.error_message =
                 'errorMessage' in error.response.data
                   ? error.response.data.errorMessage
                   : 'Unknown error'
             }
-          }
 
-          this.error = true
+            this.error = true
+          }
         })
     }
   }
