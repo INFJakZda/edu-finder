@@ -1,7 +1,7 @@
 <template>
   <div :class="['ui', visibleClass, ...attachedClasses, iconClassMessage, type, 'message']">
     <i
-      v-if="closable"
+      v-if="closeable"
       class="close icon"
       @click.prevent="close()" />
     <i
@@ -55,7 +55,7 @@ export default {
       default: () => '',
       required: false
     },
-    closable: {
+    closeable: {
       type: Boolean,
       default: () => false,
       required: false

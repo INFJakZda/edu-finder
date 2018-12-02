@@ -1,27 +1,38 @@
 <template>
   <section>
     <Message
+      v-if="errorStatus !== 404"
       :list="errorMessages"
-      :visible="errorsOccured"
+      :visible="errorApiResponse"
       header="Errors occured!"
       type="error"
       icon="exclamation"
-      closable />
+      closeable />
+
+    <Message
+      v-if="errorStatus === 404"
+      header="User not found"
+      message="Please check your email and password and try again."
+      type="error"
+      icon="exclamation"
+      closeable />
 
     <h2 class="ui top attached header">Login</h2>
     <div class="ui attached segment">
       <form class="ui form">
-        <TextField
-          :model.sync="email"
-          :error="isFieldEmailIncorrect"
+        <FormInput
+          :model.sync="input.email"
+          :error="isPropertyInErrorState('Email')"
+          :change="() => setPropertyDirty('Email')"
           label="Email"
           name="Email"
           type="text"
           placeholder="Email" />
 
-        <TextField
-          :model.sync="password"
-          :error="isFieldPasswordIncorrect"
+        <FormInput
+          :model.sync="input.password"
+          :error="isPropertyInErrorState('Password')"
+          :change="() => setPropertyDirty('Password')"
           label="Password"
           name="Password"
           type="password"
@@ -38,61 +49,31 @@
 
 <script>
 import Message from '~/components/Message.vue'
-import TextField from '~/components/form-elements/TextField.vue'
-import {
-  formErrorHandler,
-  isFieldIncorrect
-} from '~/helpers/form-error-handler.js'
+import FormInput from '~/components/FormInput.vue'
+import { FormErrorHandlerMixin } from '~/mixins/FormErrorHandler.js'
 
 export default {
   components: {
     Message,
-    TextField
+    FormInput
   },
+  mixins: [FormErrorHandlerMixin(['Email', 'Password'])],
   data: function() {
     return {
-      email: '',
-      password: '',
-      errors: []
-    }
-  },
-  computed: {
-    errorMessages: function() {
-      return this.errors.map(error => error.message)
-    },
-    errorsOccured: function() {
-      return this.errors.length !== 0
-    },
-    isFieldEmailIncorrect: function() {
-      const errors = this.errors
-      return isFieldIncorrect(errors, 'Email')
-    },
-    isFieldPasswordIncorrect: function() {
-      const errors = this.errors
-      return isFieldIncorrect(errors, 'Password')
+      input: {
+        email: '',
+        password: ''
+      }
     }
   },
   methods: {
     login: function() {
       this.$axios
-        .$post('/api/account/signin', {
-          email: this.email,
-          password: this.password
-        })
+        .$post('/api/account/signin', this.input)
         .then(token => {
-          this.response = token
+          console.log(token)
         })
-        .catch(error =>
-          formErrorHandler(
-            error,
-            'User does not exist, check your email and password.',
-            error => {
-              this.errors.push(error)
-              console.log(error)
-            },
-            () => (this.errors = [])
-          )
-        )
+        .catch(this.errorHandler)
     }
   }
 }

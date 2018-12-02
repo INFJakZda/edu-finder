@@ -7,7 +7,8 @@
       :name="name"
       :placeholder="placeholder"
       @focus.prevent="onFocus()"
-      @blur.prevent="onBlur()">
+      @blur.prevent="onBlur()"
+      @change.prevent="onChange()">
     <aside v-if="displayErrors">
       <small class="helper">
         <div class="ui list">
@@ -84,6 +85,11 @@ export default {
       default: () => null,
       required: false
     },
+    change: {
+      type: Function,
+      default: () => null,
+      required: false
+    },
     errorList: {
       type: Array,
       default: () => [],
@@ -120,6 +126,11 @@ export default {
       // TODO: if constraints are provided, validate field constraints
       if (isFunction(this.blur)) {
         this.blur()
+      }
+    },
+    onChange: function() {
+      if (isFunction(this.change)) {
+        this.change()
       }
     }
   }

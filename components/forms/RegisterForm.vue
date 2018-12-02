@@ -4,53 +4,58 @@
 
       <Message
         :list="errorMessages"
-        :visible="errorsOccured"
+        :visible="errorApiResponse"
         header="Errors occured!"
         type="error"
         icon="exclamation"
-        closable />
+        closeable />
 
-      <TextField
-        :model.sync="username"
-        :error="isFieldUsernameIncorrect"
+      <FormInput
+        :model.sync="input.username"
+        :error="isPropertyInErrorState('Username')"
+        :change="() => setPropertyDirty('Username')"
         label="Username"
         name="Username"
         type="text"
         placeholder="Username"
         required />
 
-      <TextField
-        :model.sync="email"
-        :error="isFieldEmailIncorrect"
+      <FormInput
+        :model.sync="input.email"
+        :error="isPropertyInErrorState('Email')"
+        :change="() => setPropertyDirty('Email')"
         label="Email"
         name="Email"
         type="text"
         placeholder="Email"
         required />
 
-      <TextField
-        :model.sync="confirmEmail"
-        :error="isFieldConfirmEmailIncorrect"
+      <FormInput
+        :model.sync="input.confirmEmail"
+        :error="isPropertyInErrorState('ConfirmEmail')"
+        :change="() => setPropertyDirty('ConfirmEmail')"
         label="Confirm Email"
-        name="Confirm Email"
+        name="ConfirmEmail"
         type="text"
         placeholder="Email"
         required />
 
-      <TextField
-        :model.sync="password"
-        :error="isFieldPasswordIncorrect"
+      <FormInput
+        :model.sync="input.password"
+        :error="isPropertyInErrorState('Password')"
+        :change="() => setPropertyDirty('Password')"
         label="Password"
         name="Password"
         type="password"
         placeholder="Password"
         required />
 
-      <TextField
-        :model.sync="confirmPassword"
-        :error="isFieldConfirmPasswordIncorrect"
+      <FormInput
+        :model.sync="input.confirmPassword"
+        :error="isPropertyInErrorState('ConfirmPassword')"
+        :change="() => setPropertyDirty('ConfirmPassword')"
         label="Confirm Password"
-        name="Password"
+        name="ConfirmPassword"
         type="password"
         placeholder="Password"
         required />
@@ -65,83 +70,44 @@
 
 <script>
 import Message from '~/components/Message.vue'
-import TextField from '~/components/form-elements/TextField.vue'
-import {
-  formErrorHandler,
-  isFieldIncorrect
-} from '~/helpers/form-error-handler.js'
+import FormInput from '~/components/FormInput.vue'
+import { FormErrorHandlerMixin } from '~/mixins/FormErrorHandler.js'
 
 export default {
   layout: 'text-container',
   components: {
     Message,
-    TextField
+    FormInput
   },
+  mixins: [
+    FormErrorHandlerMixin([
+      'Username',
+      'Email',
+      'Password',
+      'ConfirmEmail',
+      'ConfirmPassword'
+    ])
+  ],
   data: function() {
     return {
-      username: '',
-      email: '',
-      confirmEmail: '',
-      password: '',
-      confirmPassword: '',
-      errors: []
-    }
-  },
-  computed: {
-    errorMessages: function() {
-      return this.errors.map(error => error.message)
-    },
-    errorsOccured: function() {
-      return this.errors.length !== 0
-    },
-    isFieldUsernameIncorrect: function() {
-      const errors = this.errors
-      return isFieldIncorrect(errors, 'Username')
-    },
-    isFieldEmailIncorrect: function() {
-      const errors = this.errors
-      return isFieldIncorrect(errors, 'Email')
-    },
-    isFieldConfirmEmailIncorrect: function() {
-      return this.confirmEmail.length !== 0 && this.confirmEmail !== this.email
-    },
-    isFieldPasswordIncorrect: function() {
-      const errors = this.errors
-      return isFieldIncorrect(errors, 'Password')
-    },
-    isFieldConfirmPasswordIncorrect: function() {
-      return (
-        this.confirmPassword.length !== 0 &&
-        this.confirmPassword !== this.password
-      )
+      input: {
+        username: '',
+        email: '',
+        confirmEmail: '',
+        password: '',
+        confirmPassword: ''
+      }
     }
   },
   methods: {
     register: function() {
       this.$axios
-        .$post('/api/account/register', {
-          username: this.username,
-          email: this.email,
-          confirmEmail: this.confirmEmail,
-          password: this.password,
-          confirmPassword: this.confirmPassword
-        })
+        .$post('/api/account/register', this.input)
         .then(response => response.json())
         .then(response => {
-          this.response = response
           console.log(JSON.stringify(response))
         })
-        .catch(error =>
-          formErrorHandler(
-            error,
-            null,
-            error => {
-              this.errors.push(error)
-              console.log(JSON.stringify(error))
-            },
-            () => (this.errors = [])
-          )
-        )
+        .catch(this.errorHandler)
     }
   }
 }
