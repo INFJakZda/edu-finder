@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import LinkList from '~/components/LinkList.vue'
+import LinkList from '~/components/dev/LinkList.vue'
 
 export default {
   layout: 'text-container',
