@@ -1,4 +1,5 @@
 const pkg = require('./package')
+import webpack from 'webpack'
 
 module.exports = {
   mode: 'universal',
@@ -59,7 +60,7 @@ module.exports = {
     extend(config, ctx) {
       config.resolve.alias['../../theme.config$'] =
         '~/assets/styles/theme.config'
-
+      config.build.plugins.push(new webpack.ProvidePlugin({ _: 'lodash' }))
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({

@@ -1,15 +1,32 @@
 <template>
-  <div :class="{ field: true, error, required }">
+  <div :class="{ field: true, error, required, disabled }">
     <label>{{ label }}</label>
     <input
       v-model="input"
       :type="type"
       :name="name"
-      :placeholder="placeholder">
+      :placeholder="placeholder"
+      @focus.prevent="onFocus()"
+      @blur.prevent="onBlur()">
+    <aside v-if="displayErrors">
+      <small class="helper">
+        <div class="ui list">
+          <div
+            v-for="(error, key) in errorList"
+            :key="key"
+            class="item right arrow icon">
+            {{ error }}
+          </div>
+        </div>
+      </small>
+    </aside>
   </div>
 </template>
 
 <script>
+import '~/assets/styles/form-helper-text.css'
+import { isFunction, includes } from 'lodash'
+
 export default {
   props: {
     model: {
@@ -30,9 +47,7 @@ export default {
       type: String,
       default: () => 'text',
       required: false,
-      validator: function(value) {
-        return ['text', 'password'].indexOf(value) !== -1
-      }
+      validator: v => includes(['text', 'password'], v)
     },
     placeholder: {
       type: String,
@@ -48,6 +63,36 @@ export default {
       type: Boolean,
       default: () => false,
       required: false
+    },
+    disabled: {
+      type: Boolean,
+      default: () => false,
+      required: false
+    },
+    loading: {
+      type: Boolean,
+      default: () => false,
+      required: false
+    },
+    focus: {
+      type: Function,
+      default: () => null,
+      required: false
+    },
+    blur: {
+      type: Function,
+      default: () => null,
+      required: false
+    },
+    errorList: {
+      type: Array,
+      default: () => [],
+      required: false
+    },
+    constraints: {
+      type: Object,
+      default: () => {},
+      required: false
     }
   },
   data: function() {
@@ -55,9 +100,27 @@ export default {
       input: this.model
     }
   },
+  computed: {
+    displayErrors: function() {
+      return this.errorList.length !== 0
+    }
+  },
   watch: {
     input: function(value) {
       this.$emit('update:model', value)
+    }
+  },
+  methods: {
+    onFocus: function() {
+      if (isFunction(this.focus)) {
+        this.focus()
+      }
+    },
+    onBlur: function() {
+      // TODO: if constraints are provided, validate field constraints
+      if (isFunction(this.blur)) {
+        this.blur()
+      }
     }
   }
 }

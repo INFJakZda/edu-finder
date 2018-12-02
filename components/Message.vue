@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { includes } from 'lodash'
+
 export default {
   props: {
     header: {
@@ -46,9 +48,7 @@ export default {
       type: String,
       default: () => 'info',
       required: false,
-      validator: function(value) {
-        return ['positive', 'info', 'warning', 'error'].indexOf(value) !== -1
-      }
+      validator: v => includes(['positive', 'info', 'warning', 'error'], v)
     },
     icon: {
       type: String,
@@ -64,9 +64,7 @@ export default {
       type: String,
       default: () => '',
       required: false,
-      validator: function(value) {
-        return ['bottom', 'top', ''].indexOf(value) !== -1
-      }
+      validator: v => includes(['bottom', 'top', ''], v)
     },
     visible: {
       type: Boolean,
@@ -88,8 +86,7 @@ export default {
       return this.icon.length !== 0
     },
     attachedClasses: function() {
-      if (this.attached.length !== 0) return ''
-      return [this.attached, this.attached]
+      return this.attached.length !== 0 ? [this.attached, 'attached'] : ''
     },
     visibleClass: function() {
       return this.visible ? 'visible' : 'hidden'
