@@ -73,30 +73,30 @@ export default {
     }
   },
   computed: {
-    isHeaderSet: function() {
+    isHeaderSet() {
       return this.header.length !== 0
     },
-    isMessageSet: function() {
+    isMessageSet() {
       return this.message.length !== 0
     },
-    isListSet: function() {
+    isListSet() {
       return this.list.length !== 0
     },
-    isIconSet: function() {
+    isIconSet() {
       return this.icon.length !== 0
     },
-    attachedClasses: function() {
+    attachedClasses() {
       return this.attached.length !== 0 ? [this.attached, 'attached'] : ''
     },
-    visibleClass: function() {
+    visibleClass() {
       return this.visible ? 'visible' : 'hidden'
     },
-    iconClassMessage: function() {
+    iconClassMessage() {
       return this.icon.length !== 0 ? 'icon' : ''
     }
   },
   methods: {
-    close: function() {
+    close() {
       this.visible = false
     }
   }

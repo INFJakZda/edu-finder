@@ -12,7 +12,7 @@ export default {
   components: {
     LinkList
   },
-  data: function() {
+  data() {
     return {
       title: 'Pages',
       items: [

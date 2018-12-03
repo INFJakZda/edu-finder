@@ -12,7 +12,7 @@ export default {
     }
   },
   computed: {
-    prettyPrintedData: function() {
+    prettyPrintedData() {
       return this.data !== null ? JSON.stringify(this.data, null, 2) : ''
     }
   }

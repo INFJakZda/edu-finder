@@ -31,7 +31,7 @@ function FormErrorHandlerMixin(properties) {
       }
     },
     methods: {
-      errorHandler: function(err) {
+      errorHandler(err) {
         this.resetFormErrorState()
 
         if (err.response) {
@@ -54,7 +54,7 @@ function FormErrorHandlerMixin(properties) {
           }
         }
       },
-      resetFormErrorState: function() {
+      resetFormErrorState() {
         clearMap(this.errorsByProperty, [])
         clearMap(this.validProperty, true)
         clearMap(this.dirtyProperty, false)
@@ -62,25 +62,25 @@ function FormErrorHandlerMixin(properties) {
         this.errorStatus = null
         this.errorOccured = false
       },
-      isPropertyValid: function(property) {
+      isPropertyValid(property) {
         return this.validProperty[property]
       },
-      isPropertyDirty: function(property) {
+      isPropertyDirty(property) {
         return this.dirtyProperty[property]
       },
-      isPropertyInErrorState: function(property) {
+      isPropertyInErrorState(property) {
         return (
           !this.isPropertyValid(property) && !this.isPropertyDirty(property)
         )
       },
-      setPropertyDirty: function(property) {
+      setPropertyDirty(property) {
         if (includes(this.trackedProperties, property)) {
           this.dirtyProperty[property] = true
         }
       }
     },
     computed: {
-      errorMessages: function() {
+      errorMessages() {
         return Object.values(this.errorsByProperty)
           .reduce(
             (previousMessages, currentMessages) =>
@@ -89,7 +89,7 @@ function FormErrorHandlerMixin(properties) {
           )
           .concat(this.errorsUnmatched)
       },
-      errorApiResponse: function() {
+      errorApiResponse() {
         return this.errorStatus !== null
       }
     }

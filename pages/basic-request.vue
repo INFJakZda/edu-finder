@@ -11,7 +11,7 @@
 <script>
 export default {
   layout: 'text-container',
-  data: function() {
+  data() {
     return {
       api_endpoint: '/api/values',
       title: 'Basic backend request',

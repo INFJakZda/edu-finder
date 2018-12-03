@@ -58,7 +58,7 @@ export default {
     FormInput
   },
   mixins: [FormErrorHandlerMixin(['Email', 'Password'])],
-  data: function() {
+  data() {
     return {
       input: {
         email: '',
@@ -67,7 +67,7 @@ export default {
     }
   },
   methods: {
-    login: function() {
+    login() {
       this.$auth.loginWith('local', {
         data: this.input
       })

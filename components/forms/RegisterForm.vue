@@ -88,7 +88,7 @@ export default {
       'ConfirmPassword'
     ])
   ],
-  data: function() {
+  data() {
     return {
       input: {
         username: '',
@@ -100,7 +100,7 @@ export default {
     }
   },
   methods: {
-    register: function() {
+    register() {
       this.$axios
         .$post('/api/account/register', this.input)
         .then(response => response.json())

@@ -101,34 +101,34 @@ export default {
       required: false
     }
   },
-  data: function() {
+  data() {
     return {
       input: this.model
     }
   },
   computed: {
-    displayErrors: function() {
+    displayErrors() {
       return this.errorList.length !== 0
     }
   },
   watch: {
-    input: function(value) {
+    input(value) {
       this.$emit('update:model', value)
     }
   },
   methods: {
-    onFocus: function() {
+    onFocus() {
       if (isFunction(this.focus)) {
         this.focus()
       }
     },
-    onBlur: function() {
+    onBlur() {
       // TODO: if constraints are provided, validate field constraints
       if (isFunction(this.blur)) {
         this.blur()
       }
     },
-    onChange: function() {
+    onChange() {
       if (isFunction(this.change)) {
         this.change()
       }
