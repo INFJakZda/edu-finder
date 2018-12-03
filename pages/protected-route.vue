@@ -2,7 +2,9 @@
   <div>
     <p>This is a secure page!</p>
     <Code :data="$auth.$state" />
-    <button @click="$auth.logout()">Logout</button>
+    <button
+      class="ui primary button"
+      @click="$auth.logout()">Logout</button>
   </div>
 </template>
 
