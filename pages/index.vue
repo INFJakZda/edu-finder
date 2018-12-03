@@ -35,6 +35,11 @@ export default {
           link: '/register-form',
           name: 'register-form',
           description: 'register form page'
+        },
+        {
+          link: '/protected-route',
+          name: 'protected-route',
+          description: 'protected route example'
         }
       ]
     }

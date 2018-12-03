@@ -68,12 +68,9 @@ export default {
   },
   methods: {
     login: function() {
-      this.$axios
-        .$post('/api/account/signin', this.input)
-        .then(token => {
-          console.log(token)
-        })
-        .catch(this.errorHandler)
+      this.$auth.loginWith('local', {
+        data: this.input
+      })
     }
   }
 }
