@@ -11,23 +11,20 @@
 <script>
 export default {
   layout: 'text-container',
-  data: function() {
+  data() {
     return {
-      api_endpoint: '/api/values',
       title: 'Basic backend request',
       values: undefined
     }
   },
   computed: {
     getValues() {
-      return this.values === undefined ? 'Brak danych.' : this.values.join('\n')
+      return this.values === undefined ? 'No data yet.' : this.values.join('\n')
     }
   },
   methods: {
     async fetchValues() {
-      const values = await this.$axios.$get(this.api_endpoint)
-      console.log(values)
-      this.values = values
+      this.values = await this.$axios.$get('/api/values')
     }
   }
 }

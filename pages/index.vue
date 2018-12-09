@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import LinkList from '~/components/LinkList.vue'
+import LinkList from '~/components/dev/LinkList.vue'
 
 export default {
   layout: 'text-container',
   components: {
     LinkList
   },
-  data: function() {
+  data() {
     return {
       title: 'Pages',
       items: [
@@ -24,7 +24,22 @@ export default {
         {
           link: '/basic-request',
           name: 'basic-request',
-          description: 'basic backend request test (with proxy module)'
+          description: 'basic api request'
+        },
+        {
+          link: '/login-form',
+          name: 'login-form',
+          description: 'login form page'
+        },
+        {
+          link: '/register-form',
+          name: 'register-form',
+          description: 'register form page'
+        },
+        {
+          link: '/protected-route',
+          name: 'protected-route',
+          description: 'protected route example'
         }
       ]
     }

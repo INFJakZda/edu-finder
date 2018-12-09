@@ -1,4 +1,5 @@
 const pkg = require('./package')
+import webpack from 'webpack'
 
 module.exports = {
   mode: 'universal',
@@ -37,8 +38,36 @@ module.exports = {
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
-    '@nuxtjs/proxy'
+    '@nuxtjs/auth'
   ],
+
+  auth: {
+    // Redirection options
+    redirect: {
+      // redirect if login is required
+      login: '/login-form',
+      // redirect after logout
+      logout: '/',
+      // redirect after login
+      home: '/'
+    },
+    strategies: {
+      local: {
+        _scheme: 'local',
+        endpoints: {
+          login: {
+            url: '/api/account/signin',
+            method: 'post',
+            propertyName: 'token'
+          },
+          logout: { url: '/api/account/signout', method: 'post' },
+          user: false
+        },
+        tokenRequired: true,
+        tokenType: 'bearer'
+      }
+    }
+  },
   /*
   ** Axios module configuration
   */
@@ -59,7 +88,7 @@ module.exports = {
     extend(config, ctx) {
       config.resolve.alias['../../theme.config$'] =
         '~/assets/styles/theme.config'
-
+      config.plugins.push(new webpack.ProvidePlugin({ _: 'lodash' }))
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
