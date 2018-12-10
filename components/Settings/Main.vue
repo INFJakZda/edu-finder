@@ -15,23 +15,56 @@
         />
       </sui-menu>
     </sui-grid-column>
-
+    
     <sui-grid-column 
       :width="12" 
       stretched>
       <sui-segment>
-        This is an stretched grid column. This segment will always match the tab height
+        <component :is="active"/>
       </sui-segment>
     </sui-grid-column>
   </sui-grid>
 </template>
 
 <script>
+import Contact from './UserContactEntries'
+import Bio from './UserDetails'
+import Education from './UserEducationEntries'
+import Skill from './UserSkillEntries'
+
 export default {
   name: 'TabularMenuExample',
+  components: {
+    Contact,
+    Bio,
+    Education,
+    Skill
+  },
+  props: {
+    userDetails: {
+      type: Object,
+      default: () => {},
+      required: false
+    },
+    userEducationEntries: {
+      type: Object,
+      default: () => {},
+      required: false
+    },
+    userContactEntries: {
+      type: Object,
+      default: () => {},
+      required: false
+    },
+    userSkillEntries: {
+      type: Object,
+      default: () => {},
+      required: false
+    }
+  },
   data() {
     return {
-      items: ['Bio', 'Pics', 'Companies', 'Links'],
+      items: ['Bio', 'Education', 'Contact', 'Skill'],
       active: 'Bio'
     }
   },
@@ -44,4 +77,4 @@ export default {
     }
   }
 }
-</script>s
+</script>
