@@ -2,15 +2,12 @@
   <div>
     <p>This is a secure page!</p>
     <button 
-      class="ui primary button" 
-      @click="setData">Get user details</button>
+      class="ui primary button"
+      style="margin: 20px"
+      @click="setData"
+    >Get user details</button>
     <div>
-      <Main
-        :userDetails="userDetails"
-        :userEducationEntries="userEducationEntries"
-        :userContactEntries="userContactEntries"
-        :userSkillEntries="userSkillEntries"
-      />
+      <Main />
     </div>
   </div>
 </template>
@@ -21,20 +18,6 @@ import Main from '~/components/Settings/Main'
 export default {
   components: {
     Main
-  },
-  computed: {
-    userDetails() {
-      return this.$store.getters.userDetails
-    },
-    userEducationEntries() {
-      return this.$store.getters.userEducationEntries
-    },
-    userContactEntries() {
-      return this.$store.getters.userContactEntries
-    },
-    userSkillEntries() {
-      return this.$store.getters.userSkillEntries
-    }
   },
   methods: {
     setData() {

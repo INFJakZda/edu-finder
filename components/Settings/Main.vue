@@ -1,6 +1,6 @@
 <template lang="html">
   <sui-grid>
-    <sui-grid-column :width="4">
+    <sui-grid-column :width="3">
       <sui-menu 
         fluid 
         vertical 
@@ -17,7 +17,7 @@
     </sui-grid-column>
     
     <sui-grid-column 
-      :width="12" 
+      :width="13" 
       stretched>
       <sui-segment>
         <component :is="active"/>
