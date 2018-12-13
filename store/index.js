@@ -22,6 +22,10 @@ const createStore = () => {
       },
       setUserSkillEntries(state, userSkillEntries) {
         state.userSkillEntries = userSkillEntries
+      },
+      setUserCity(state, cityId) {
+        state.userDetails.cityId = cityId
+        state.userDetails.city.id = cityId
       }
     },
     actions: {
@@ -29,7 +33,6 @@ const createStore = () => {
         return this.$axios
           .$get('/api/user/3/details')
           .then(userDetails => {
-            console.log(userDetails)
             vuexContext.commit('setUserDetails', userDetails)
           })
           .catch(e => context.error(e))
@@ -38,7 +41,6 @@ const createStore = () => {
         return this.$axios
           .$get('/api/user/3/educationentries')
           .then(userEducationEntries => {
-            console.log(userEducationEntries)
             vuexContext.commit('setUserEducationEntries', userEducationEntries)
           })
           .catch(e => context.error(e))
@@ -47,7 +49,6 @@ const createStore = () => {
         return this.$axios
           .$get('/api/user/3/contactentries')
           .then(userContactEntries => {
-            console.log(userContactEntries)
             vuexContext.commit('setUserContactEntries', userContactEntries)
           })
           .catch(e => context.error(e))
@@ -56,7 +57,6 @@ const createStore = () => {
         return this.$axios
           .$get('/api/user/3/skillentries')
           .then(setUserSkillEntries => {
-            console.log(setUserSkillEntries)
             vuexContext.commit('setUserSkillEntries', setUserSkillEntries)
           })
           .catch(e => context.error(e))

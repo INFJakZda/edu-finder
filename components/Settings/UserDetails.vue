@@ -2,12 +2,12 @@
   <div>
     <form 
       class="ui form" 
-      @submit.prevent>
+      @submit.prevent="submitForm">
       <h4 class="ui dividing header">User datails info</h4>
       <div class="field">
         <label>User Name</label>
         <input
-          :value="userDetails.username"
+          v-model="userDetails.username"
           type="text"
           name="shipping[first-name]"
           placeholder="Nick"
@@ -16,7 +16,7 @@
       <div class="field">
         <label>Email</label>
         <input
-          :value="userDetails.email"
+          v-model="userDetails.email"
           type="text"
           name="shipping[email]"
           placeholder="example@edu-finder.fun"
@@ -25,26 +25,27 @@
       <div class="field">
         <label>Bio</label>
         <textarea
-          :value="userDetails.bioText"
+          v-model="userDetails.bioText"
           rows="4"
-          placeholder="Tell us few word about you :)"/>
+          placeholder="Tell us few word about you :)"
+        />
       </div>
-      
+
       <div class="field">
         <label>City</label>
         <sui-dropdown
-          :options="cities"
-          :value="userDetails.city.name"
-          fluid
-          placeholder="Select City"
+          v-model="cityUser"
+          :options="userDetails.availableCities"
+          :placeholder="userDetails.city.name"
           search
           selection
         />
       </div>
 
-      <div 
+      <button 
         class="ui button" 
-        tabindex="0">Submit</div>
+        tabindex="0"
+      >Submit</button>
     </form>
   </div>
 </template>
@@ -53,17 +54,30 @@
 export default {
   data() {
     return {
-      cities: [
-        { key: 'AL', value: 'AL', text: 'Poznań' },
-        { key: 'AK', value: 'AK', text: 'Warszawa' },
-        { key: 'AZ', value: 'AZ', text: 'Wrocław' },
-        { key: 'AR', value: 'AR', text: 'Kraków' }
-      ]
+      current: null
     }
   },
   computed: {
-    userDetails() {
-      return this.$store.getters.userDetails
+    userDetails: {
+      get() {
+        return this.$store.getters.userDetails
+      },
+      set(value) {
+        this.$store.commit('setUserDetails', value)
+      }
+    },
+    cityUser: {
+      get() {
+        return this.$store.getters.userDetails.cityId
+      },
+      set(value) {
+        this.$store.commit('setUserCity', value)
+      }
+    }
+  },
+  methods: {
+    submitForm() {
+      console.log(this.$store.getters.userDetails)
     }
   }
 }
