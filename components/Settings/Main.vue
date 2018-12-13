@@ -40,28 +40,6 @@ export default {
     Education,
     Skill
   },
-  props: {
-    userDetails: {
-      type: Object,
-      default: () => {},
-      required: false
-    },
-    userEducationEntries: {
-      type: Object,
-      default: () => {},
-      required: false
-    },
-    userContactEntries: {
-      type: Object,
-      default: () => {},
-      required: false
-    },
-    userSkillEntries: {
-      type: Object,
-      default: () => {},
-      required: false
-    }
-  },
   data() {
     return {
       items: ['Bio', 'Education', 'Contact', 'Skill'],

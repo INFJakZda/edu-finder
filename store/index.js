@@ -3,7 +3,9 @@ import Vuex from 'vuex'
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      userDetails: {},
+      userDetails: {
+        city: {}
+      },
       userEducationEntries: {},
       userContactEntries: {},
       userSkillEntries: {}
