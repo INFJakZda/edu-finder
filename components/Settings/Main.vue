@@ -6,15 +6,15 @@
       <a
         is="sui-menu-item"
         v-for="item in items"
-        :key="item"
-        :content="item"
-        :active="isActive(item)"
-        @click="select(item)"
+        :key="item.id"
+        :content="item.desc"
+        :active="item.link === userData.loadedComponent"
+        @click="redirect(item)"
       />
     </sui-menu>
 
     <sui-segment>
-      <component :is="active"/>
+      <component :is="activecomp"/>
     </sui-segment>
   </div>
 </template>
@@ -33,18 +33,31 @@ export default {
     Education,
     Skill
   },
+  props: {
+    userData: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
-      items: ['Bio', 'Education', 'Contact', 'Skill'],
-      active: 'Bio'
+      items: [
+        { id: 1, desc: 'Bio', link: 'details' },
+        { id: 2, desc: 'Education', link: 'educationentries' },
+        { id: 3, desc: 'Contact', link: 'contactentries' },
+        { id: 4, desc: 'Skill', link: 'skillentries' }
+      ]
+    }
+  },
+  computed: {
+    activecomp() {
+      return this.items.find(ob => ob.link === this.userData.loadedComponent)
+        .desc
     }
   },
   methods: {
-    isActive(name) {
-      return this.active === name
-    },
-    select(name) {
-      this.active = name
+    redirect(item) {
+      this.$router.push('/settings/' + item.link)
     }
   }
 }

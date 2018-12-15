@@ -39,6 +39,11 @@ export default {
           link: '/protected-route',
           name: 'protected-route',
           description: 'protected route example'
+        },
+        {
+          link: '/settings/details',
+          name: 'settings',
+          description: 'settings page'
         }
       ]
     }
