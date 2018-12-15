@@ -7,7 +7,7 @@
       <div class="field">
         <label>User Name</label>
         <input
-          v-model="userDetails.username"
+          v-model="user.username"
           type="text"
           name="shipping[first-name]"
           placeholder="Nick"
@@ -16,7 +16,7 @@
       <div class="field">
         <label>Email</label>
         <input
-          v-model="userDetails.email"
+          v-model="user.email"
           type="text"
           name="shipping[email]"
           placeholder="example@edu-finder.fun"
@@ -25,7 +25,7 @@
       <div class="field">
         <label>Bio</label>
         <textarea
-          v-model="userDetails.bioText"
+          v-model="user.bioText"
           rows="4"
           placeholder="Tell us few word about you :)"
         />
@@ -34,9 +34,9 @@
       <div class="field">
         <label>City</label>
         <sui-dropdown
-          v-model.number="cityUser"
-          :options="userDetails.availableCities"
-          :placeholder="userDetails.city.name"
+          v-model="user.cityId"
+          :options="user.availableCities"
+          :placeholder="user.city.name"
           search
           selection
         />
@@ -52,36 +52,35 @@
 
 <script>
 export default {
+  props: {
+    user: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
       current: null
     }
   },
   computed: {
-    userDetails: {
-      get() {
-        return this.$store.getters.userDetails
-      },
-      set(value) {
-        this.$store.commit('setUserDetails', value)
-      }
-    },
-    cityUser: {
-      get() {
-        return this.$store.getters.userDetails.cityId
-      },
-      set(value) {
-        this.$store.commit('setUserCity', value)
-      }
+    city() {
+      return {}
     }
+  },
+  created() {
+    this.user.cityId = this.user.cityId.toString()
   },
   methods: {
     submitForm() {
       let post = {
-        ...this.$store.getters.userDetails,
-        id: 3
+        username: this.user.username,
+        email: this.user.email,
+        cityId: +this.user.cityId,
+        bioText: this.user.bioText,
+        id: +this.$store.state.auth.user.id
       }
-      console.log(post)
+      this.$emit('submit', post)
     }
   }
 }

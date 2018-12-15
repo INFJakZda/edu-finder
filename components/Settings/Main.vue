@@ -14,7 +14,10 @@
     </sui-menu>
 
     <sui-segment>
-      <component :is="activecomp"/>
+      <component 
+        :is="activecomp" 
+        :user="userData"
+        @submit="onSubmited" />
     </sui-segment>
   </div>
 </template>
@@ -55,6 +58,9 @@ export default {
   methods: {
     redirect(item) {
       this.$router.push('/settings/' + item.link)
+    },
+    onSubmited(post) {
+      this.$emit('submit', post)
     }
   }
 }

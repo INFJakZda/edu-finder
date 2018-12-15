@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Main :userData="loadedDetails" />
+    <Main 
+      :userData="loadedDetails" 
+      @submit="onSubmited" />
   </div>
 </template>
 
@@ -37,6 +39,26 @@ export default {
         }
       })
       .catch(e => context.error(e))
+  },
+  methods: {
+    onSubmited(postData) {
+      this.$axios
+        .$post(
+          '/api/user/' +
+            this.$store.state.auth.user.id +
+            '/' +
+            this.loadedDetails.loadedComponent,
+          postData
+        )
+        .then(result => {
+          console.log(result)
+          // this.loadedDetails = {
+          //   ...result,
+          //   loadedComponent: this.$route.params.tab
+          // }
+        })
+        .catch(e => console.log(e))
+    }
   }
 }
 </script>
