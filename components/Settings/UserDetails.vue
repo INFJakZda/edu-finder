@@ -34,7 +34,7 @@
       <div class="field">
         <label>City</label>
         <sui-dropdown
-          v-model="cityUser"
+          v-model.number="cityUser"
           :options="userDetails.availableCities"
           :placeholder="userDetails.city.name"
           search
@@ -77,7 +77,11 @@ export default {
   },
   methods: {
     submitForm() {
-      console.log(this.$store.getters.userDetails)
+      let post = {
+        ...this.$store.getters.userDetails,
+        id: 3
+      }
+      console.log(post)
     }
   }
 }

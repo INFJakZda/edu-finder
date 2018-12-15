@@ -1,29 +1,22 @@
-<template lang="html">
-  <sui-grid>
-    <sui-grid-column :width="3">
-      <sui-menu 
-        fluid 
-        vertical 
-        tabular>
-        <a
-          is="sui-menu-item"
-          v-for="item in items"
-          :key="item"
-          :content="item"
-          :active="isActive(item)"
-          @click="select(item)"
-        />
-      </sui-menu>
-    </sui-grid-column>
-    
-    <sui-grid-column 
-      :width="13" 
-      stretched>
-      <sui-segment>
-        <component :is="active"/>
-      </sui-segment>
-    </sui-grid-column>
-  </sui-grid>
+<template>
+  <div>
+    <sui-menu 
+      pointing 
+      secondary>
+      <a
+        is="sui-menu-item"
+        v-for="item in items"
+        :key="item"
+        :content="item"
+        :active="isActive(item)"
+        @click="select(item)"
+      />
+    </sui-menu>
+
+    <sui-segment>
+      <component :is="active"/>
+    </sui-segment>
+  </div>
 </template>
 
 <script>
