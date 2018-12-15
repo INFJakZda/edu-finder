@@ -6,8 +6,12 @@
 
 <script>
 import Main from '~/components/Settings/Main'
+import { categories } from '~/static/categories.json'
 
 export default {
+  validate({ params }) {
+    return categories.find(ob => ob.link === params.tab)
+  },
   components: {
     Main
   },

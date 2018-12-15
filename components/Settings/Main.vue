@@ -25,6 +25,8 @@ import Bio from './UserDetails'
 import Education from './UserEducationEntries'
 import Skill from './UserSkillEntries'
 
+import { categories } from '~/static/categories.json'
+
 export default {
   name: 'TabularMenuExample',
   components: {
@@ -41,12 +43,7 @@ export default {
   },
   data() {
     return {
-      items: [
-        { id: 1, desc: 'Bio', link: 'details' },
-        { id: 2, desc: 'Education', link: 'educationentries' },
-        { id: 3, desc: 'Contact', link: 'contactentries' },
-        { id: 4, desc: 'Skill', link: 'skillentries' }
-      ]
+      items: categories
     }
   },
   computed: {
