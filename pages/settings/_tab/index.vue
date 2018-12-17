@@ -25,10 +25,7 @@ export default {
   asyncData(context) {
     return context.app.$axios
       .$get(
-        '/api/user/' +
-          context.store.state.auth.user.id +
-          '/' +
-          context.params.tab
+        `/api/user/${context.store.state.auth.user.id}/${context.params.tab}`
       )
       .then(userData => {
         return {
@@ -44,14 +41,13 @@ export default {
     onSubmited(postData) {
       this.$axios
         .$post(
-          '/api/user/' +
-            this.$store.state.auth.user.id +
-            '/' +
-            this.loadedDetails.loadedComponent,
+          `/api/user/${this.$store.state.auth.user.id}/${
+            this.loadedDetails.loadedComponent
+          }`,
           postData
         )
         .then(result => {
-          console.log(result)
+          console.log(result.data)
           // this.loadedDetails = {
           //   ...result,
           //   loadedComponent: this.$route.params.tab
