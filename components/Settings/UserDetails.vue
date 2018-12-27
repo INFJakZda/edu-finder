@@ -36,7 +36,7 @@
         <sui-dropdown
           v-model="user.cityId"
           :options="user.availableCities"
-          :placeholder="user.city.name"
+          :placeholder="user.city ? user.city.name : ''"
           search
           selection
         />
@@ -69,7 +69,7 @@ export default {
     }
   },
   created() {
-    this.user.cityId = this.user.cityId.toString()
+    this.user.cityId = this.user.cityId ? this.user.cityId.toString() : ''
   },
   methods: {
     submitForm() {

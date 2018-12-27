@@ -14,6 +14,7 @@ export default {
   validate({ params }) {
     return categories.find(ob => ob.link === params.tab)
   },
+  middleware: 'auth',
   components: {
     Main
   },
