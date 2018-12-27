@@ -46,13 +46,7 @@ export default {
           }`,
           postData
         )
-        .then(result => {
-          console.log(result.data)
-          // this.loadedDetails = {
-          //   ...result,
-          //   loadedComponent: this.$route.params.tab
-          // }
-        })
+        .then(() => {})
         .catch(e => console.log(e))
     }
   }
