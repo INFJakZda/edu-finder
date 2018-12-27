@@ -1,5 +1,6 @@
 <template>
   <div>
+    <TheHeader /> 
     <div class="ui main text container">
       <nuxt/>
     </div>
