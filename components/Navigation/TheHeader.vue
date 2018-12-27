@@ -1,34 +1,32 @@
 <template>
   <div class="dev-header-container">
-    <div class="dev-header">
-      <div class="ui secondary menu">
+    <div class="ui secondary menu">
+      <a 
+        class="active item" 
+        @click="$router.push('/')">Home</a>
+      <div class="right menu">
         <a 
-          class="active item" 
-          @click="$router.push('/')">Home</a>
-        <div class="right menu">
-          <a 
-            v-if="!loggedIn" 
-            class="ui item"
-            @click="$router.push('/register-form')">
-            Sign up
-          </a>
-          <a 
-            v-if="!loggedIn" 
-            class="ui item"
-            @click="$router.push('/login-form')">
-            Log-in
-          </a>
-          <a 
-            v-if="loggedIn" 
-            class="ui item"
-            @click="logout">Logout</a>
-          <a 
-            v-if="loggedIn" 
-            class="ui item"
-            @click="$router.push('/settings/details')">
-            Settings
-          </a>
-        </div>
+          v-if="!loggedIn" 
+          class="ui item"
+          @click="$router.push('/register-form')">
+          Sign up
+        </a>
+        <a 
+          v-if="!loggedIn" 
+          class="ui item"
+          @click="$router.push('/login-form')">
+          Log-in
+        </a>
+        <a 
+          v-if="loggedIn" 
+          class="ui item"
+          @click="logout">Logout</a>
+        <a 
+          v-if="loggedIn" 
+          class="ui item"
+          @click="$router.push('/settings/details')">
+          Settings
+        </a>
       </div>
     </div>
   </div>
@@ -50,3 +48,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.dev-header-container {
+  padding: 10px;
+}
+</style>

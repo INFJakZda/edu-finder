@@ -10,7 +10,6 @@
 
 <script>
 export default {
-  layout: 'text-container',
   data() {
     return {
       title: 'Basic backend request',

@@ -12,7 +12,6 @@
 import Code from '~/components/dev/Code.vue'
 
 export default {
-  layout: 'text-container',
   middleware: 'auth',
   components: {
     Code
