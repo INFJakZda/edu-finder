@@ -2,7 +2,8 @@
   <div>
     <Main 
       :userData="loadedDetails" 
-      @submit="onSubmited" />
+      @submit="onSubmited" 
+      @refresh="onRefresh" />
   </div>
 </template>
 
@@ -18,11 +19,6 @@ export default {
   components: {
     Main
   },
-  data() {
-    return {
-      active: 'Education'
-    }
-  },
   asyncData(context) {
     return context.app.$axios
       .$get(
@@ -33,7 +29,8 @@ export default {
           loadedDetails: {
             ...userData,
             loadedComponent: context.params.tab
-          }
+          },
+          savedComponent: context.params.tab
         }
       })
       .catch(e => context.error(e))
@@ -41,13 +38,24 @@ export default {
   methods: {
     onSubmited(postData) {
       this.$axios
-        .$post(
-          `/api/user/${this.$store.state.auth.user.id}/${
-            this.loadedDetails.loadedComponent
-          }`,
+        .$put(
+          `/api/user/${this.$store.state.auth.user.id}/${this.savedComponent}`,
           postData
         )
         .then(() => {})
+        .catch(e => console.log(e))
+    },
+    onRefresh() {
+      this.$axios
+        .$get(
+          `/api/user/${this.$store.state.auth.user.id}/${this.savedComponent}`
+        )
+        .then(userData => {
+          this.loadedDetails = {
+            ...userData,
+            loadedComponent: this.savedComponent
+          }
+        })
         .catch(e => console.log(e))
     }
   }

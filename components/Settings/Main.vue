@@ -17,7 +17,8 @@
       <component 
         :is="activecomp" 
         :user="userData"
-        @submit="onSubmited" />
+        @submit="onSubmited" 
+        @refresh="onRefresh" />
     </sui-segment>
   </div>
 </template>
@@ -61,6 +62,9 @@ export default {
     },
     onSubmited(post) {
       this.$emit('submit', post)
+    },
+    onRefresh() {
+      this.$emit('refresh')
     }
   }
 }
