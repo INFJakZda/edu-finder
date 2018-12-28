@@ -67,8 +67,7 @@ export default {
     }
   },
   watch: {
-    univeristy: function(val, oldval) {
-      console.log('CHANGED', val, oldval)
+    univeristy: function() {
       this.$axios
         .$get(`/api/university/${this.univeristy}/departments`)
         .then(res => {
@@ -86,11 +85,10 @@ export default {
           universityId: +this.univeristy,
           departmentId: +this.department
         })
-        .then(res => {
-          console.log(res)
+        .then(() => {
+          this.$emit('refresh')
         })
         .catch(e => console.log(e))
-      this.$emit('refresh')
     }
   }
 }
