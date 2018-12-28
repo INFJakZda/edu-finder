@@ -43,8 +43,14 @@
           size="large" 
           vertical-align="middle" />
         <sui-list-content>
-          <sui-list-header>{{ education.university ? education.university.name : 'CHUUJ' }}</sui-list-header>
-          <sui-list-description>{{ education.department ? education.department.name : "CHOOY" }}</sui-list-description>
+          <sui-button
+            class="dev-button-delete"
+            basic 
+            negative
+            size="mini"
+            @click="deleteDepartment(education.id)">Usuń {{ education.department ? education.department.name : '' }}</sui-button>
+          <sui-list-header>{{ education.university ? education.university.name : '' }}</sui-list-header>
+          <sui-list-description>{{ education.department ? education.department.name : '' }}</sui-list-description>
         </sui-list-content>
       </sui-list-item>
     </sui-list>
@@ -89,10 +95,22 @@ export default {
           this.$emit('refresh')
         })
         .catch(e => console.log(e))
+    },
+    deleteDepartment(id) {
+      this.$axios
+        .$delete(`/api/educationEntry/${id}`)
+        .then(() => {
+          this.$emit('refresh')
+        })
+        .catch(e => console.log(e))
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
+.dev-button-delete {
+  position: absolute;
+  right: 30px;
+}
 </style>
