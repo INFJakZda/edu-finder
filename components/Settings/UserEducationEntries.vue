@@ -17,36 +17,19 @@
         </div>
         <div class="field">
           <label>Department</label>
-          <div class="ui fluid search selection dropdown">
-            <input 
-              type="hidden" 
-              name="country">
-            <i class="dropdown icon"/>
-            <div class="default text">Select Country</div>
-            <div class="menu">
-              <div 
-                class="item" 
-                data-value="ca"><i class="ca flag"/>Canada</div>
-              <div 
-                class="item" 
-                data-value="cv"><i class="cv flag"/>Cape Verde</div>
-              <div 
-                class="item" 
-                data-value="ky"><i class="ky flag"/>Cayman Islands</div>
-              <div 
-                class="item" 
-                data-value="cf"><i class="cf flag"/>Central African Republic</div>
-              <div 
-                class="item" 
-                data-value="td"><i class="td flag"/>Chad</div>
-            </div>
-          </div>
+          <sui-dropdown
+            v-model="newUniveristy.department"
+            :options="availableDepartments"
+            placeholder="Select univeristy..."
+            search
+            selection
+          />
         </div>
       </div>
       <button 
         class="ui button" 
         tabindex="0"
-        @click="showUn"
+        @click="fetchDep"
       >Add</button>
     </form>
     <h4 class="ui dividing header">Your Universities:</h4>
@@ -82,12 +65,19 @@ export default {
       newUniveristy: {
         univeristy: '',
         department: ''
-      }
+      },
+      availableDepartments: []
     }
   },
-  methods: {
-    showUn() {
-      console.log(this.newUniveristy)
+  watch: {
+    newUniveristy() {
+      console.log('CHANGED')
+      this.$axios
+        .$get(`/api/university/${this.newUniveristy.univeristy}/departments`)
+        .then(res => {
+          this.availableDepartments = res.departments
+        })
+        .catch(e => this.error(e))
     }
   }
 }
