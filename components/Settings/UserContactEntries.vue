@@ -3,9 +3,9 @@
     <h4 class="ui dividing header">Zdefiniuj swoje kontakty!</h4>
     <div 
       v-for="contact in contacts"
-      :key="contact.value"
+      :key="+contact.value"
       class="ui fluid action labeled input dev-contact">
-      <div  
+      <div
         class="ui label">
         <i 
           :class="contact.text === 'Inne' ? 'user circle' : contact.text.toLowerCase()"
@@ -16,7 +16,14 @@
         v-model="contact.description"
         placeholder="dodaj konto" 
         type="text"
-        @keyup="contact.originalDesc === contact.description ? contact.change = 0 : contact.change = 1" >
+        @keyup="contact.originalDesc == contact.description ? contact.change = 0 : contact.change = 1" >
+      <sui-button
+        v-show="contact.change && contact.filled"
+        class="dev-button-delete"
+        basic 
+        color="yellow"
+        size="mini"
+        @click="changeContact(contact)">Zmień</sui-button>
       <sui-button
         v-if="contact.filled"
         class="dev-button-delete"
@@ -31,12 +38,7 @@
         positive
         size="mini"
         @click="addContact(contact)">Dodaj</sui-button>
-      <sui-button
-        v-if="contact.change && contact.filled"
-        class="dev-button-delete"
-        basic 
-        color="yellow"
-        size="mini">Zmień</sui-button>
+      
     </div>
   </div>
 </template>
@@ -57,13 +59,15 @@ export default {
   watch: {
     user: function() {
       this.onInit()
-      console.log('sfdsf')
     }
   },
   created() {
     this.onInit()
   },
   methods: {
+    logger(contact) {
+      console.log(contact)
+    },
     onInit() {
       this.contacts = this.user.availableContactTypes.slice()
       this.contacts.forEach(avail => {
@@ -85,6 +89,21 @@ export default {
       this.$axios
         .$post('/api/contactEntry', {
           id: 0,
+          userId: +this.$store.state.auth.user.id,
+          user: {},
+          contactTypeId: +contact.value,
+          contactType: {},
+          text: contact.description
+        })
+        .then(() => {
+          this.$emit('refresh')
+        })
+        .catch(e => console.log(e))
+    },
+    changeContact(contact) {
+      this.$axios
+        .$put(`/api/contactEntry/${contact.contactId}`, {
+          id: contact.contactId,
           userId: +this.$store.state.auth.user.id,
           user: {},
           contactTypeId: +contact.value,
