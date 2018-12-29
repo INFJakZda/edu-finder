@@ -86,7 +86,7 @@ export default {
     addUniversity() {
       this.$axios
         .$post('/api/educationEntry', {
-          is: null,
+          id: 0,
           userId: +this.$store.state.auth.user.id,
           universityId: +this.univeristy,
           departmentId: +this.department
