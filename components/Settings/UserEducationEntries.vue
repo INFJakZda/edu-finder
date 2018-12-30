@@ -38,17 +38,20 @@
       <sui-list-item 
         v-for="education in user.educationEntries" 
         :key="education.id">
+        <div class="item">
+          <div class="right floated content">
+            <sui-button
+              basic 
+              negative
+              size="mini"
+              @click="deleteDepartment(education.id)">Usuń {{ education.department ? education.department.name : '' }}</sui-button>
+          </div>
+        </div>
         <sui-list-icon 
           name="university" 
           size="large" 
           vertical-align="middle" />
         <sui-list-content>
-          <sui-button
-            class="dev-button-delete"
-            basic 
-            negative
-            size="mini"
-            @click="deleteDepartment(education.id)">Usuń {{ education.department ? education.department.name : '' }}</sui-button>
           <sui-list-header>{{ education.university ? education.university.name : '' }}</sui-list-header>
           <sui-list-description>{{ education.department ? education.department.name : '' }}</sui-list-description>
         </sui-list-content>
@@ -108,9 +111,5 @@ export default {
 }
 </script>
 
-<style scoped>
-.dev-button-delete {
-  position: absolute;
-  right: 30px;
-}
+<style>
 </style>
