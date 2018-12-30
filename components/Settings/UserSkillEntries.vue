@@ -26,6 +26,14 @@
           />
         </div>
       </div>
+      <div class="field">
+        <label>Dodatkowe informacje</label>
+        <textarea
+          v-model="skillDetails"
+          rows="3"
+          placeholder="Napisz więcej o swoich umiejętnościach..."
+        />
+      </div>
       <button 
         class="ui button" 
         tabindex="0"
@@ -38,20 +46,23 @@
       <sui-list-item 
         v-for="skillEntry in user.skillEntries" 
         :key="skillEntry.id">
+        <div class="item">
+          <div class="right floated content">
+            <sui-button
+              basic 
+              negative
+              size="mini"
+              @click="deleteSkillLevel(skillEntry.id)">Usuń {{ categoryName(skillEntry.categoryId) }}</sui-button>
+          </div>
+        </div>
         <sui-list-icon 
-          name="university" 
+          name="star" 
           size="large" 
           vertical-align="middle" />
         <sui-list-content>
-          <sui-button
-            class="dev-button-delete"
-            basic 
-            negative
-            size="mini"
-            @click="deleteSkillLevel(skillEntry.id)">Usuń</sui-button>
-          <sui-list-header>{{ categoryName(skillEntry.categoryId) }}</sui-list-header>
-          <sui-list-description>{{ skillName(skillEntry.skillLevelId) }}</sui-list-description>
-        </sui-list-content>
+          <sui-list-header>{{ categoryName(skillEntry.categoryId) + ' poziom ' + skillName(skillEntry.skillLevelId) }}</sui-list-header>
+          <sui-list-description>{{ skillEntry.details }}</sui-list-description>
+        </sui-list-content>        
       </sui-list-item>
     </sui-list>
   </div>
@@ -110,9 +121,5 @@ export default {
 }
 </script>
 
-<style scoped>
-.dev-button-delete {
-  position: absolute;
-  right: 30px;
-}
+<style>
 </style>
