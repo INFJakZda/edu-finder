@@ -99,25 +99,33 @@ export default {
   data() {
     return {
       current: null,
-      selectedFile: null
+      selectedFile: null,
+      imgSrc: null
     }
   },
   computed: {
     city() {
       return {}
-    },
-    imgSrc() {
+    }
+  },
+  watch: {
+    user: function() {
+      this.imgSrc = this.updateImg()
+      this.user.cityId = this.user.cityId ? this.user.cityId.toString() : ''
+    }
+  },
+  created() {
+    this.user.cityId = this.user.cityId ? this.user.cityId.toString() : ''
+    this.imgSrc = this.updateImg()
+  },
+  methods: {
+    updateImg() {
       return this.user.avatarId === null
         ? 'https://www.logolynx.com/images/logolynx/03/039b004617d1ef43cf1769aae45d6ea2.png'
         : `https://loli-server.azurewebsites.net/api/picture/${
             this.user.avatarId
           }`
-    }
-  },
-  created() {
-    this.user.cityId = this.user.cityId ? this.user.cityId.toString() : ''
-  },
-  methods: {
+    },
     submitForm() {
       let post = {
         username: this.user.username,
