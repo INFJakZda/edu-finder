@@ -1,23 +1,41 @@
 <template>
   <div>
-    <div class="ui celled relaxed list">
-      <h4 class="ui dividing header">Załaduj swoje zdjęcie</h4>
-      <div class="item">
-        <img
-          :src="imgSrc"
-          class="ui middle aligned tiny image" >
-        <input 
-          id="embedpollfileinput" 
-          type="file" 
-          class="inputfile"
-          @change="onFileSelected">
-        <label 
-          for="embedpollfileinput" 
-          class="ui red right button">
-          <i class="ui file image icon"/> 
-          Wybierz zdjęcie
-        </label>
-        <button @click="onUpload">Załaduj obrazek</button>
+    <h4 class="ui dividing header">Załaduj swoje zdjęcie</h4>
+    <div class="dev-container">
+      <div class="ui grid container">
+        <div class="sixteen wide mobile five wide tablet five wide computer column">
+          <div class="dev-center">
+            <img
+              :src="imgSrc"
+              class="ui middle aligned tiny circular image" >
+          </div>
+        </div>
+        <div class="sixteen wide mobile six wide tablet six wide computer column">
+          <div class="dev-center">
+            <input 
+              id="embedpollfileinput" 
+              type="file" 
+              class="inputfile"
+              @change="onFileSelected">
+            <label 
+              for="embedpollfileinput" 
+              class="ui red right button">
+              <i class="ui file image icon"/> 
+              Zmień zdjęcie
+            </label>
+          </div>
+        </div>
+        <div class="sixteen wide mobile five wide tablet five wide computer column">
+          <div class="dev-center">
+            <button 
+              :class="{disabled: !selectedFile}"
+              class="ui green right button"
+              @click="onUpload">Załaduj obrazek</button>
+            <div 
+              v-if="selectedFile" 
+              style="display: block">{{ selectedFile.name }}</div>
+          </div>
+        </div>          
       </div>
     </div>
     <form 
@@ -116,10 +134,29 @@ export default {
     onUpload() {
       const formData = new FormData()
       formData.append('file', this.selectedFile, this.selectedFile.name)
-      this.$axios
-        .$post(`/api/user/${this.$store.state.auth.user.id}/avatar`, formData)
-        .then(() => {})
-        .catch(err => console.log(err))
+      if (this.user.avatarId) {
+        this.$axios
+          .$delete(`/api/user/${this.$store.state.auth.user.id}/avatar`)
+          .then(() => {
+            this.$axios.$post(
+              `/api/user/${this.$store.state.auth.user.id}/avatar`,
+              formData
+            )
+          })
+          .then(() => {
+            this.selectedFile = null
+            this.$emit('refresh')
+          })
+          .catch(err => console.log(err))
+      } else {
+        this.$axios
+          .$post(`/api/user/${this.$store.state.auth.user.id}/avatar`, formData)
+          .then(() => {
+            this.selectedFile = null
+            this.$emit('refresh')
+          })
+          .catch(err => console.log(err))
+      }
       // this.$axios.$post(/api/user/${this.$store.state.auth.user.id}/avatar, this.selectedFile)
     }
   }
@@ -129,5 +166,15 @@ export default {
 <style>
 .inputfile {
   display: none;
+}
+
+.dev-container {
+  padding: 10px;
+}
+
+.dev-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
