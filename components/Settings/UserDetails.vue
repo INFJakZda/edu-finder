@@ -3,19 +3,21 @@
     <div class="ui celled relaxed list">
       <h4 class="ui dividing header">Załaduj swoje zdjęcie</h4>
       <div class="item">
+        <img
+          :src="imgSrc"
+          class="ui middle aligned tiny image" >
         <input 
           id="embedpollfileinput" 
           type="file" 
-          class="inputfile">
+          class="inputfile"
+          @change="onFileSelected">
         <label 
           for="embedpollfileinput" 
-          class="ui huge red right floated button">
-          <i class="ui upload icon"/> 
-          Upload image
+          class="ui red right button">
+          <i class="ui file image icon"/> 
+          Wybierz zdjęcie
         </label>
-        <div class="middle aligned content">
-          Content A
-        </div>
+        <button @click="onUpload">Załaduj obrazek</button>
       </div>
     </div>
     <form 
@@ -78,7 +80,8 @@ export default {
   },
   data() {
     return {
-      current: null
+      current: null,
+      selectedFile: null
     }
   },
   computed: {
@@ -87,7 +90,7 @@ export default {
     },
     imgSrc() {
       return this.user.avatarId === null
-        ? 'https://www.metatube.com/assets/metatube/video/img/Upload.svg'
+        ? 'https://www.logolynx.com/images/logolynx/03/039b004617d1ef43cf1769aae45d6ea2.png'
         : `https://loli-server.azurewebsites.net/api/picture/${
             this.user.avatarId
           }`
@@ -106,10 +109,25 @@ export default {
         id: +this.$store.state.auth.user.id
       }
       this.$emit('submit', post)
+    },
+    onFileSelected() {
+      this.selectedFile = event.target.files[0]
+    },
+    onUpload() {
+      const formData = new FormData()
+      formData.append('file', this.selectedFile, this.selectedFile.name)
+      this.$axios
+        .$post(`/api/user/${this.$store.state.auth.user.id}/avatar`, formData)
+        .then(() => {})
+        .catch(err => console.log(err))
+      // this.$axios.$post(/api/user/${this.$store.state.auth.user.id}/avatar, this.selectedFile)
     }
   }
 }
 </script>
 
 <style>
+.inputfile {
+  display: none;
+}
 </style>
