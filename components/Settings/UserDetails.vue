@@ -1,5 +1,23 @@
 <template>
   <div>
+    <div class="ui celled relaxed list">
+      <h4 class="ui dividing header">Załaduj swoje zdjęcie</h4>
+      <div class="item">
+        <input 
+          id="embedpollfileinput" 
+          type="file" 
+          class="inputfile">
+        <label 
+          for="embedpollfileinput" 
+          class="ui huge red right floated button">
+          <i class="ui upload icon"/> 
+          Upload image
+        </label>
+        <div class="middle aligned content">
+          Content A
+        </div>
+      </div>
+    </div>
     <form 
       class="ui form" 
       @submit.prevent="submitForm">
@@ -66,6 +84,13 @@ export default {
   computed: {
     city() {
       return {}
+    },
+    imgSrc() {
+      return this.user.avatarId === null
+        ? 'https://www.metatube.com/assets/metatube/video/img/Upload.svg'
+        : `https://loli-server.azurewebsites.net/api/picture/${
+            this.user.avatarId
+          }`
     }
   },
   created() {
