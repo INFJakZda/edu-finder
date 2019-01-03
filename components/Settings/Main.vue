@@ -7,7 +7,7 @@
         is="sui-menu-item"
         v-for="item in items"
         :key="item.id"
-        :content="item.desc"
+        :content="item.name"
         :active="item.link === userData.loadedComponent"
         @click="redirect(item)"
       />

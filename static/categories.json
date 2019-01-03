@@ -3,22 +3,26 @@
     {
       "id": 1,
       "desc": "Bio",
-      "link": "details"
+      "link": "details",
+      "name": "Dane"
     },
     {
       "id": 2,
       "desc": "Education",
-      "link": "educationentries"
+      "link": "educationentries",
+      "name": "Edukacja"
     },
     {
       "id": 3,
       "desc": "Contact",
-      "link": "contactentries"
+      "link": "contactentries",
+      "name": "Kontakt"
     },
     {
       "id": 4,
       "desc": "Skill",
-      "link": "skillentries"
+      "link": "skillentries",
+      "name": "Umiejętności"
     }
   ]
 }

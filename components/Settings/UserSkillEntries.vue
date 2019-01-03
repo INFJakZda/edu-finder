@@ -3,7 +3,6 @@
     <form 
       class="ui form" 
       @submit.prevent="addSkillEntry">
-      <h4 class="ui dividing header">Zdefiniuj swoje umiejętności!</h4>
       <div class="two fields">
         <div class="field">
           <label>Wybierz Kategorię</label>
@@ -52,7 +51,7 @@
               basic 
               negative
               size="mini"
-              @click="deleteSkillLevel(skillEntry.id)">Usuń {{ categoryName(skillEntry.categoryId) }}</sui-button>
+              @click="deleteSkillLevel(skillEntry.id)">Usuń</sui-button>
           </div>
         </div>
         <sui-list-icon 

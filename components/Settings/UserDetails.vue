@@ -41,36 +41,36 @@
     <form 
       class="ui form" 
       @submit.prevent="submitForm">
-      <h4 class="ui dividing header">User datails info</h4>
+      <h4 class="ui dividing header">Twoje podstawowe dane</h4>
       <div class="field">
-        <label>User Name</label>
+        <label>Nazwa użytkownika</label>
         <input
           v-model="user.username"
           type="text"
           name="shipping[first-name]"
-          placeholder="Nick"
+          placeholder="nick"
         >
       </div>
       <div class="field">
-        <label>Email</label>
+        <label>Adres email</label>
         <input
           v-model="user.email"
           type="text"
           name="shipping[email]"
-          placeholder="example@edu-finder.fun"
+          placeholder="email@edu-finder.fun"
         >
       </div>
       <div class="field">
-        <label>Bio</label>
+        <label>Opis</label>
         <textarea
           v-model="user.bioText"
           rows="4"
-          placeholder="Tell us few word about you :)"
+          placeholder="Opowiedz nam kilka słów o sobie :)"
         />
       </div>
 
       <div class="field">
-        <label>City</label>
+        <label>Miasto</label>
         <sui-dropdown
           v-model="user.cityId"
           :options="user.availableCities"
@@ -83,7 +83,7 @@
       <button 
         class="ui button" 
         tabindex="0"
-      >Submit</button>
+      >Zatwierdź zmiany</button>
     </form>
   </div>
 </template>

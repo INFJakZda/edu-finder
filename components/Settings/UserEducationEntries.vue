@@ -3,10 +3,9 @@
     <form 
       class="ui form" 
       @submit.prevent="addUniversity">
-      <h4 class="ui dividing header">Add new Univeristy!</h4>
       <div class="two fields">
         <div class="field">
-          <label>University</label>
+          <label>Uniwersytet</label>
           <sui-dropdown
             v-model="univeristy"
             :options="user.availableUniversities"
@@ -16,7 +15,7 @@
           />
         </div>
         <div class="field">
-          <label>Department</label>
+          <label>Wydział</label>
           <sui-dropdown
             v-model="department"
             :options="availableDepartments"
@@ -27,11 +26,12 @@
         </div>
       </div>
       <button 
-        class="ui button" 
+        :class="{disabled: !department}" 
+        class="ui button"
         tabindex="0"
-      >Add</button>
+      >Dodaj</button>
     </form>
-    <h4 class="ui dividing header">Your Universities:</h4>
+    <h4 class="ui dividing header">Ukończone uczelnie:</h4>
     <sui-list 
       divided 
       relaxed>
@@ -44,7 +44,7 @@
               basic 
               negative
               size="mini"
-              @click="deleteDepartment(education.id)">Usuń {{ education.department ? education.department.name : '' }}</sui-button>
+              @click="deleteDepartment(education.id)">Usuń</sui-button>
           </div>
         </div>
         <sui-list-icon 
@@ -83,6 +83,7 @@ export default {
           this.availableDepartments = res.departments
         })
         .catch(e => this.error(e))
+      this.department = ''
     }
   },
   methods: {
