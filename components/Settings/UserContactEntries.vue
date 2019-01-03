@@ -38,7 +38,6 @@
         positive
         size="mini"
         @click="addContact(contact)">Dodaj</sui-button>
-      
     </div>
   </div>
 </template>
@@ -65,9 +64,7 @@ export default {
     this.onInit()
   },
   methods: {
-    logger(contact) {
-      console.log(contact)
-    },
+    logger() {},
     onInit() {
       this.contacts = this.user.availableContactTypes.slice()
       this.contacts.forEach(avail => {

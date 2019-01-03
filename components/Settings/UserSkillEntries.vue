@@ -34,7 +34,8 @@
         />
       </div>
       <button 
-        class="ui button" 
+        :class="{disabled: !(skillLevel && category)}" 
+        class="ui button"
         tabindex="0"
       >Dodaj</button>
     </form>

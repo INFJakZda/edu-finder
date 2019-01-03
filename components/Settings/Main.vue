@@ -17,7 +17,6 @@
       <component 
         :is="activecomp" 
         :user="userData"
-        @submit="onSubmited" 
         @refresh="onRefresh" />
     </sui-segment>
   </div>
@@ -59,9 +58,6 @@ export default {
   methods: {
     redirect(item) {
       this.$router.push('/settings/' + item.link)
-    },
-    onSubmited(post) {
-      this.$emit('submit', post)
     },
     onRefresh() {
       this.$emit('refresh')

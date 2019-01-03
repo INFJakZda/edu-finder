@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="ui dividing header">Załaduj swoje zdjęcie</h4>
+    <h4 class="ui dividing header">Zdjęcie profilowe</h4>
     <div class="dev-container">
       <div class="ui grid container">
         <div class="sixteen wide mobile five wide tablet five wide computer column">
@@ -41,7 +41,7 @@
     <form 
       class="ui form" 
       @submit.prevent="submitForm">
-      <h4 class="ui dividing header">Twoje podstawowe dane</h4>
+      <h4 class="ui dividing header">Podstawowe dane</h4>
       <div class="field">
         <label>Nazwa użytkownika</label>
         <input
@@ -81,9 +81,15 @@
       </div>
 
       <button 
-        class="ui button" 
-        tabindex="0"
-      >Zatwierdź zmiany</button>
+        :class="{green: showMessage}" 
+        class="ui button"
+        tabindex="0">
+        <span v-show="showMessage">
+          <i class="save icon"/>Zapisano zmiany
+        </span>
+        <span v-show="!showMessage">Zapisz zmiany</span>
+      </button>
+      
     </form>
   </div>
 </template>
@@ -100,7 +106,8 @@ export default {
     return {
       current: null,
       selectedFile: null,
-      imgSrc: null
+      imgSrc: null,
+      showMessage: false
     }
   },
   computed: {
@@ -134,7 +141,18 @@ export default {
         bioText: this.user.bioText,
         id: +this.$store.state.auth.user.id
       }
-      this.$emit('submit', post)
+      this.$axios
+        .$put(`/api/user/${this.$store.state.auth.user.id}/details`, post)
+        .then(() => {
+          this.updateMassage()
+        })
+        .catch(e => console.log(e))
+    },
+    updateMassage() {
+      this.showMessage = true
+      setTimeout(() => {
+        this.showMessage = false
+      }, 3000)
     },
     onFileSelected() {
       this.selectedFile = event.target.files[0]
@@ -142,30 +160,13 @@ export default {
     onUpload() {
       const formData = new FormData()
       formData.append('file', this.selectedFile, this.selectedFile.name)
-      if (this.user.avatarId) {
-        this.$axios
-          .$delete(`/api/user/${this.$store.state.auth.user.id}/avatar`)
-          .then(() => {
-            this.$axios.$post(
-              `/api/user/${this.$store.state.auth.user.id}/avatar`,
-              formData
-            )
-          })
-          .then(() => {
-            this.selectedFile = null
-            this.$emit('refresh')
-          })
-          .catch(err => console.log(err))
-      } else {
-        this.$axios
-          .$post(`/api/user/${this.$store.state.auth.user.id}/avatar`, formData)
-          .then(() => {
-            this.selectedFile = null
-            this.$emit('refresh')
-          })
-          .catch(err => console.log(err))
-      }
-      // this.$axios.$post(/api/user/${this.$store.state.auth.user.id}/avatar, this.selectedFile)
+      this.$axios
+        .$post(`/api/user/${this.$store.state.auth.user.id}/avatar`, formData)
+        .then(() => {
+          this.selectedFile = null
+          this.$emit('refresh')
+        })
+        .catch(err => console.log(err))
     }
   }
 }

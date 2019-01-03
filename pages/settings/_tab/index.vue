@@ -2,7 +2,6 @@
   <div>
     <Main 
       :userData="loadedDetails" 
-      @submit="onSubmited" 
       @refresh="onRefresh" />
   </div>
 </template>
@@ -36,15 +35,6 @@ export default {
       .catch(e => context.error(e))
   },
   methods: {
-    onSubmited(postData) {
-      this.$axios
-        .$put(
-          `/api/user/${this.$store.state.auth.user.id}/${this.savedComponent}`,
-          postData
-        )
-        .then(() => {})
-        .catch(e => console.log(e))
-    },
     onRefresh() {
       this.$axios
         .$get(
