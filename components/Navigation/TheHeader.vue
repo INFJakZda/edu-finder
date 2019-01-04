@@ -21,8 +21,7 @@
             <a 
               class="ui item"
               @click="$router.push('/settings/details')">
-              <i class="cogs icon"/>Settings
-            </a>
+            <i class="cogs icon"/>Settings</a>
             <div class="divider"/>
             <a 
               class="ui item"
@@ -42,13 +41,11 @@
             <a 
               class="ui item"
               @click="$router.push('/register-form')">
-              <i class="sing-in icon"/>Sign up
-            </a>
+            <i class="sign-in icon"/>Sign up</a>
             <a 
               class="ui item"
               @click="$router.push('/login-form')">
-              Log-in
-            </a>
+            <i class="play icon"/>Log-in</a>
           </div>
         </div>
       </div>

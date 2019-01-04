@@ -106,24 +106,26 @@ export default {
     return {
       current: null,
       selectedFile: null,
-      imgSrc: null,
       showMessage: false
     }
   },
   computed: {
-    city() {
-      return {}
+    imgSrc() {
+      return this.$store.getters.imgSrc
     }
   },
   watch: {
     user: function() {
-      this.imgSrc = this.updateImg()
+      if (this.$store.state.auth.loggedIn) {
+        this.$store.dispatch('getUserImg', this.$store.state.auth.user.id)
+      } else {
+        this.$store.dispatch('rmUserImg')
+      }
       this.user.cityId = this.user.cityId ? this.user.cityId.toString() : ''
     }
   },
   created() {
     this.user.cityId = this.user.cityId ? this.user.cityId.toString() : ''
-    this.imgSrc = this.updateImg()
   },
   methods: {
     updateImg() {

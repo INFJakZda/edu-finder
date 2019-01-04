@@ -3,14 +3,14 @@ import Vuex from 'vuex'
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      imgSrc: '~assets/add-user.png'
+      imgSrc: 'http://simpleicon.com/wp-content/uploads/add-user.png'
     },
     mutations: {
       setUserImg(state, imgSrc) {
         state.imgSrc = imgSrc
       },
       rmUserImg(state) {
-        state.imgSrc = '~assets/add-user.png'
+        state.imgSrc = 'http://simpleicon.com/wp-content/uploads/add-user.png'
       }
     },
     actions: {
@@ -22,7 +22,7 @@ const createStore = () => {
               ? `https://loli-server.azurewebsites.net/api/picture/${
                   userDetails.avatarId
                 }`
-              : '~assets/user-admin.png'
+              : 'http://cdn.onlinewebfonts.com/svg/img_210318.png'
             vuexContext.commit('setUserImg', imgSrc)
           })
           .catch(e => console.log(e))

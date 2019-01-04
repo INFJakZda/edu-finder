@@ -16,31 +16,6 @@ export default {
       title: 'Pages',
       items: [
         {
-          link: '/',
-          name: 'index',
-          description: 'index page'
-        },
-        {
-          link: '/basic-request',
-          name: 'basic-request',
-          description: 'basic api request'
-        },
-        {
-          link: '/login-form',
-          name: 'login-form',
-          description: 'login form page'
-        },
-        {
-          link: '/register-form',
-          name: 'register-form',
-          description: 'register form page'
-        },
-        {
-          link: '/protected-route',
-          name: 'protected-route',
-          description: 'protected route example'
-        },
-        {
           link: '/settings/details',
           name: 'settings',
           description: 'settings page'
