@@ -15,29 +15,34 @@
           <img 
             :src="imgSrc" 
             class="ui avatar image">
+          {{ userName }}
           <i class="dropdown icon"/>
           <div class="menu">
             <a 
               class="ui item"
-              @click="logout">Logout</a>
+              @click="$router.push('/settings/details')">
+              <i class="cogs icon"/>Settings
+            </a>
+            <div class="divider"/>
             <a 
               class="ui item"
-              @click="$router.push('/settings/details')">
-              Settings
-            </a>
+              @click="logout">
+            <i class="power off icon"/>Logout</a>
           </div>
         </div>
         <div 
           v-if="!loggedIn" 
           class="ui simple dropdown item">
-          <i class="user plus icon"/>
+          <img 
+            :src="imgSrc" 
+            class="ui avatar image">
           Moje konto
           <i class="dropdown icon"/>
           <div class="menu">
             <a 
               class="ui item"
               @click="$router.push('/register-form')">
-              Sign up
+              <i class="sing-in icon"/>Sign up
             </a>
             <a 
               class="ui item"
@@ -54,42 +59,36 @@
 <script>
 export default {
   name: 'TheHeader',
-  data() {
-    return {
-      imgSrc: null
-    }
-  },
   computed: {
     loggedIn() {
-      return this.$auth.$state.loggedIn
+      return this.$store.state.auth.loggedIn
+    },
+    imgSrc() {
+      return this.$store.getters.imgSrc
+    },
+    userName() {
+      return this.$store.state.auth.user.username
     }
   },
   watch: {
     loggedIn: function() {
-      console.log('LOGGING DEBUG')
-      this.logoUpdate()
+      this.updateUser()
     }
   },
   created() {
-    this.logoUpdate()
+    this.updateUser()
   },
   methods: {
     logout() {
       this.$auth.logout()
+      this.$store.dispatch('rmUserImg')
       this.$router.push('/')
     },
-    logoUpdate() {
-      if (this.$store.state.auth.user) {
-        this.$axios
-          .$get(`/api/user/${this.$store.state.auth.user.id}/details`)
-          .then(userData => {
-            this.imgSrc = userData.avatarId
-              ? `https://loli-server.azurewebsites.net/api/picture/${
-                  userData.avatarId
-                }`
-              : 'https://www.logolynx.com/images/logolynx/03/039b004617d1ef43cf1769aae45d6ea2.png'
-          })
-          .catch(e => console.log(e))
+    updateUser() {
+      if (this.$store.state.auth.loggedIn) {
+        this.$store.dispatch('getUserImg', this.$store.state.auth.user.id)
+      } else {
+        this.$store.dispatch('rmUserImg')
       }
     }
   }
