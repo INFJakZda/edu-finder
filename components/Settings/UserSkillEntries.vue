@@ -89,7 +89,7 @@ export default {
       this.$axios
         .$post('/api/skillEntry', {
           id: 0,
-          userId: +this.$store.state.auth.user.id,
+          userId: +this.$auth.user.id,
           categoryId: +this.category,
           skillLevelId: +this.skillLevel,
           details: this.skillDetails

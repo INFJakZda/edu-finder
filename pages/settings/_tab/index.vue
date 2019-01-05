@@ -37,9 +37,7 @@ export default {
   methods: {
     onRefresh() {
       this.$axios
-        .$get(
-          `/api/user/${this.$store.state.auth.user.id}/${this.savedComponent}`
-        )
+        .$get(`/api/user/${this.$auth.user.id}/${this.savedComponent}`)
         .then(userData => {
           this.loadedDetails = {
             ...userData,

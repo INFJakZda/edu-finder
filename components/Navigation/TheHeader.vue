@@ -58,13 +58,18 @@ export default {
   name: 'TheHeader',
   computed: {
     loggedIn() {
-      return this.$store.state.auth.loggedIn
+      if (this.$auth) {
+        if (this.$auth.loggedIn) {
+          return this.$auth.loggedIn
+        }
+      }
+      return false
     },
     imgSrc() {
       return this.$store.getters.imgSrc
     },
     userName() {
-      return this.$store.state.auth.user.username
+      return this.$auth.user.username
     }
   },
   watch: {
@@ -82,8 +87,8 @@ export default {
       this.$router.push('/')
     },
     updateUser() {
-      if (this.$store.state.auth.loggedIn) {
-        this.$store.dispatch('getUserImg', this.$store.state.auth.user.id)
+      if (this.$auth.loggedIn) {
+        this.$store.dispatch('getUserImg', this.$auth.user.id)
       } else {
         this.$store.dispatch('rmUserImg')
       }
