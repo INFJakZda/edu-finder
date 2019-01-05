@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="dev-margin">
     <TheHeader /> 
-    <div class="ui main text container dev-margin">
+    <div class="ui main text container">
       <nuxt/>
     </div>
   </div>
@@ -16,8 +16,9 @@ export default {
   }
 }
 </script>
-<style>
+
+<style scoped>
 .dev-margin {
-  padding-bottom: 20px;
+  padding-bottom: 30px;
 }
 </style>

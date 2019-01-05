@@ -46,7 +46,6 @@ import Pagination from '~/components/Pagination.vue'
 import RatingPost from '~/components/RatingPost.vue'
 
 export default {
-  layout: 'text-container',
   components: {
     Button,
     Checkbox,

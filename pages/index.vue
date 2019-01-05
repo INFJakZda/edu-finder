@@ -19,6 +19,11 @@ export default {
           link: '/settings/details',
           name: 'settings',
           description: 'settings page'
+        },
+        {
+          link: '/component-showcase',
+          name: 'Componenty',
+          description: 'componenty do użycia'
         }
       ]
     }
