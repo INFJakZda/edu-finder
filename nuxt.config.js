@@ -40,7 +40,18 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/auth',
     'semantic-ui-vue/nuxt'
+    'nuxt-fontawesome'
   ],
+
+  fontawesome: {
+    component: 'icon',
+    imports: [
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas']
+      }
+    ]
+  },
 
   auth: {
     // Redirection options
