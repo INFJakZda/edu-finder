@@ -74,7 +74,6 @@ import FormInput from '~/components/FormInput.vue'
 import { FormErrorHandlerMixin } from '~/mixins/FormErrorHandler.js'
 
 export default {
-  layout: 'text-container',
   components: {
     Message,
     FormInput

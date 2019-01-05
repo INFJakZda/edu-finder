@@ -83,3 +83,4 @@ dist
 *.ntvs*
 *.njsproj
 *.sln
+.vscode

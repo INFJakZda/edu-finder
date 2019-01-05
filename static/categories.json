@@ -1,0 +1,28 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "desc": "Bio",
+      "link": "details",
+      "name": "Dane"
+    },
+    {
+      "id": 2,
+      "desc": "Education",
+      "link": "educationentries",
+      "name": "Edu"
+    },
+    {
+      "id": 3,
+      "desc": "Contact",
+      "link": "contactentries",
+      "name": "Kontakt"
+    },
+    {
+      "id": 4,
+      "desc": "Skill",
+      "link": "skillentries",
+      "name": "Zdolności"
+    }
+  ]
+}
