@@ -116,8 +116,8 @@ export default {
   },
   watch: {
     user: function() {
-      if (this.$store.state.auth.loggedIn) {
-        this.$store.dispatch('getUserImg', this.$store.state.auth.user.id)
+      if (this.$auth.loggedIn) {
+        this.$store.dispatch('getUserImg', this.$auth.user.id)
       } else {
         this.$store.dispatch('rmUserImg')
       }
@@ -141,10 +141,10 @@ export default {
         email: this.user.email,
         cityId: +this.user.cityId,
         bioText: this.user.bioText,
-        id: +this.$store.state.auth.user.id
+        id: +this.$auth.user.id
       }
       this.$axios
-        .$put(`/api/user/${this.$store.state.auth.user.id}/details`, post)
+        .$put(`/api/user/${this.$auth.user.id}/details`, post)
         .then(() => {
           this.updateMassage()
         })
@@ -163,7 +163,7 @@ export default {
       const formData = new FormData()
       formData.append('file', this.selectedFile, this.selectedFile.name)
       this.$axios
-        .$post(`/api/user/${this.$store.state.auth.user.id}/avatar`, formData)
+        .$post(`/api/user/${this.$auth.user.id}/avatar`, formData)
         .then(() => {
           this.selectedFile = null
           this.$emit('refresh')

@@ -86,7 +86,7 @@ export default {
       this.$axios
         .$post('/api/contactEntry', {
           id: 0,
-          userId: +this.$store.state.auth.user.id,
+          userId: +this.$auth.user.id,
           user: {},
           contactTypeId: +contact.value,
           contactType: {},
@@ -101,7 +101,7 @@ export default {
       this.$axios
         .$put(`/api/contactEntry/${contact.contactId}`, {
           id: contact.contactId,
-          userId: +this.$store.state.auth.user.id,
+          userId: +this.$auth.user.id,
           user: {},
           contactTypeId: +contact.value,
           contactType: {},
