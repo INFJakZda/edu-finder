@@ -20,13 +20,17 @@
           <div class="menu">
             <a 
               class="ui item"
+              @click="$router.push('/post')">
+            <i class="pencil icon"/>Posty</a>
+            <a 
+              class="ui item"
               @click="$router.push('/settings/details')">
-            <i class="cogs icon"/>Settings</a>
+            <i class="cogs icon"/>Profil</a>
             <div class="divider"/>
             <a 
               class="ui item"
               @click="logout">
-            <i class="power off icon"/>Logout</a>
+            <i class="power off icon"/>Wyloguj</a>
           </div>
         </div>
         <div 
@@ -41,11 +45,11 @@
             <a 
               class="ui item"
               @click="$router.push('/register-form')">
-            <i class="sign-in icon"/>Sign up</a>
+            <i class="sign-in icon"/>Zarejestruj</a>
             <a 
               class="ui item"
               @click="$router.push('/login-form')">
-            <i class="play icon"/>Log-in</a>
+            <i class="play icon"/>Zaloguj</a>
           </div>
         </div>
       </div>
