@@ -1,14 +1,15 @@
 <template>
-  <button
-    @click="onClick()"
-    :class="{ primary, secondary }">
+  <button 
+    :class="computedClasses" 
+    @click.prevent="click()">
+    <icon
+      v-if="icon !== null"
+      :icon="['fas', icon]"/>
     {{ text }}
   </button>
 </template>
 
 <script>
-import { isFunction } from 'lodash'
-
 export default {
   props: {
     text: {
@@ -16,12 +17,17 @@ export default {
       required: false,
       default: ''
     },
-    primary: {
+    modifiers: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    loading: {
       type: Boolean,
       required: false,
       default: false
     },
-    secondary: {
+    disabled: {
       type: Boolean,
       required: false,
       default: false
@@ -30,18 +36,22 @@ export default {
       type: String,
       required: false,
       default: null
-    },
-    click: {
-      type: Function,
-      required: false,
-      default: null
+    }
+  },
+  computed: {
+    computedClasses() {
+      const base = ['ui', 'button']
+      let disabled = this.disabled === true ? ['disabled'] : []
+      let loading = this.loading ? ['loading'] : []
+      return base
+        .concat(this.modifiers)
+        .concat(disabled)
+        .concat(loading)
     }
   },
   methods: {
-    onClick() {
-      if (isFunction(this.click)) {
-        this.click()
-      }
+    click() {
+      this.$emit('click')
     }
   }
 }
