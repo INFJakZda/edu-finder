@@ -9,7 +9,7 @@
           <sui-dropdown
             v-model="univeristy"
             :options="user.availableUniversities"
-            placeholder="Select univeristy..."
+            placeholder="Wybierz uniwersytet..."
             search
             selection
           />
@@ -19,14 +19,37 @@
           <sui-dropdown
             v-model="department"
             :options="availableDepartments"
-            placeholder="Select univeristy..."
+            placeholder="Wybierz wydział..."
             search
             selection
           />
         </div>
       </div>
+      <div class="field">
+        <label>Rok rozpoczęcia i zakończenia</label>
+        <div class="two fields">
+          <div class="field">
+            <input
+              v-model.number="startYear"
+              type="number" 
+              name="university[year-start]" 
+              maxlength="4" 
+              placeholder="Rok rozpoczęcia">
+          </div>
+          <div class="field">
+            <div class="field">
+              <input
+                v-model="endYear"
+                type="number" 
+                name="university[year-end]" 
+                maxlength="4" 
+                placeholder="Rok zakończenia, jeśli ukończyłeś studia">
+            </div>
+          </div>
+        </div>
+      </div>
       <button 
-        :class="{disabled: !department}" 
+        :class="{disabled: !(department && startYear)}" 
         class="ui button"
         tabindex="0"
       >Dodaj</button>
@@ -53,7 +76,11 @@
           vertical-align="middle" />
         <sui-list-content>
           <sui-list-header>{{ education.university ? education.university.name : '' }}</sui-list-header>
-          <sui-list-description>{{ education.department ? education.department.name : '' }}</sui-list-description>
+          <sui-list-description>
+            <span v-if="education.yearEnd">{{ education.yearStart }} - {{ education.yearEnd }}</span>
+            <span v-else>Rozpoczęcie: {{ education.yearStart }}</span>
+            {{ education.department ? education.department.name : '' }}
+          </sui-list-description>
         </sui-list-content>
       </sui-list-item>
     </sui-list>
@@ -70,9 +97,11 @@ export default {
   },
   data() {
     return {
-      univeristy: '',
-      department: '',
-      availableDepartments: []
+      univeristy: null,
+      department: null,
+      availableDepartments: [],
+      startYear: null,
+      endYear: null
     }
   },
   watch: {
@@ -93,7 +122,9 @@ export default {
           id: 0,
           userId: +this.$auth.user.id,
           universityId: +this.univeristy,
-          departmentId: +this.department
+          departmentId: +this.department,
+          yearStart: +this.startYear,
+          yearEnd: +this.endYear
         })
         .then(() => {
           this.$emit('refresh')
