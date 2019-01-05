@@ -25,7 +25,7 @@
     "lodash": "^4.17.11",
     "nuxt": "^2.0.0",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-vue": "^0.7.0"
+    "semantic-ui-vue": "^0.7.0",
     "nuxt-fontawesome": "^0.3.0"
   },
   "devDependencies": {
