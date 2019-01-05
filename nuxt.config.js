@@ -38,8 +38,19 @@ module.exports = {
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    'nuxt-fontawesome'
   ],
+
+  fontawesome: {
+    component: 'icon',
+    imports: [
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas']
+      }
+    ]
+  },
 
   auth: {
     // Redirection options

@@ -10,25 +10,22 @@
       @blur.prevent="onBlur()"
       @change.prevent="onChange()">
     <aside v-if="displayErrors">
-      <small class="helper">
-        <div class="ui list">
-          <div
-            v-for="(error, key) in errorList"
-            :key="key"
-            class="item right arrow icon">
-            {{ error }}
-          </div>
-        </div>
-      </small>
+      <FormInputLabel 
+        :modifiers="['red']" 
+        :messages="errorList" />
     </aside>
   </div>
 </template>
 
 <script>
+import FormInputLabel from '~/components/FormInputLabel.vue'
 import '~/assets/styles/form-helper-text.css'
 import { isFunction, includes } from 'lodash'
 
 export default {
+  components: {
+    FormInputLabel
+  },
   props: {
     model: {
       type: String,

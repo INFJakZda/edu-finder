@@ -41,14 +41,19 @@ function FormErrorHandlerMixin(properties) {
           }
 
           if (response.data) {
-            const errors = response.data
-            for (let error of errors) {
-              let property = error.propertyName
-              if (includes(this.trackedProperties, property)) {
-                this.errorsByProperty[property].push(error.errorMessage)
-                this.validProperty[property] = false
-              } else {
-                this.errorsUnmatched.push(error.errorMessage)
+            if (response.data.errors) {
+              const errors = response.data.errors
+              for (let property in errors) {
+                if (includes(this.trackedProperties, property)) {
+                  for (let error of errors[property]) {
+                    this.errorsByProperty[property].push(error)
+                    this.validProperty[property] = false
+                  }
+                } else {
+                  for (let error of errors[property]) {
+                    this.errorsUnmatched.push(error)
+                  }
+                }
               }
             }
           }
