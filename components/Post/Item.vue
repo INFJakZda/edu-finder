@@ -1,49 +1,76 @@
 <template lang="html">
-  <sui-item-group>
-   
-    <sui-item class="dev-border">
-      <sui-item-image src="static/images/wireframes/image.png" />
-      <sui-item-content>
-        <sui-item-header>Header</sui-item-header>
-        <sui-item-meta>
-          <span>Description</span>
-        </sui-item-meta>
-        <sui-item-description>
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-          </p>
-        </sui-item-description>
-        <sui-item-extra>
-          Additional Details
-        </sui-item-extra>
-      </sui-item-content>
-    </sui-item>
-    
-    <sui-item>
-      <sui-item-image src="static/images/wireframes/image.png" />
-      <sui-item-content>
-        <sui-item-header>Header</sui-item-header>
-        <sui-item-meta>
-          <span>Description</span>
-        </sui-item-meta>
-        <sui-item-description>
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-          </p>
-        </sui-item-description>
-        <sui-item-extra>
-          Additional Details
-        </sui-item-extra>
-      </sui-item-content>
-    </sui-item>
-  </sui-item-group>
+  <div class="ui divided items">
+    <div class="item">
+      <div class="image">
+        <img :src="imgSrc">
+      </div>
+      <div class="content">
+        <a class="header">12 Years a Slave</a>
+        <div class="meta">
+          <span class="cinema">Union Square 14</span>
+        </div>
+        <div class="description">
+          <p/>
+        </div>
+        <div class="extra">
+          <div class="ui label">IMAX</div>
+          <div class="ui label"><i class="globe icon"/> Additional Languages</div>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="image">
+        <img src="/images/wireframe/image.png">
+      </div>
+      <div class="content">
+        <a class="header">My Neighbor Totoro</a>
+        <div class="meta">
+          <span class="cinema">IFC Cinema</span>
+        </div>
+        <div class="description">
+          <p/>
+        </div>
+        <div class="extra">
+          <!-- <div class="ui right floated primary button">
+            Buy tickets
+            <i class="right chevron icon"/>
+          </div> -->
+          <div class="ui right floated compact menu">
+            <div class="ui simple dropdown item">
+              opcje
+              <i class="dropdown icon"/>
+              <div class="menu">
+                <div class="item"><i class="edit icon"/> Edytuj post</div>
+                <div class="item"><i class="delete icon"/> Usuń post</div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="ui teal buttons">
+            <div class="ui button">Save</div>
+            <div class="ui floating dropdown icon button">
+              <i class="dropdown icon"/>
+              <div class="menu">
+                <div class="item"><i class="edit icon"/> Edit Post</div>
+                <div class="item"><i class="delete icon"/> Remove Post</div>
+                <div class="item"><i class="hide icon"/> Hide Post</div>
+              </div>
+            </div>
+          </div> -->
+          <div class="ui label">Limited</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'ItemGroupExample'
+  name: 'ItemGroupExample',
+  computed: {
+    imgSrc() {
+      return this.$store.getters.imgSrc
+    }
+  }
 }
 </script>
 
