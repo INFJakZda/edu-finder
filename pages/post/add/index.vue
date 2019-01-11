@@ -51,18 +51,12 @@
         </button>
       </div>
     </div>
-    <Item />
   </div>
   
 </template>
 
 <script>
-import Item from '~/components/Post/Item.vue'
-
 export default {
-  components: {
-    Item
-  },
   methods: {
     addPost() {
       return 0
