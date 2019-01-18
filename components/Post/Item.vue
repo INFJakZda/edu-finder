@@ -5,30 +5,30 @@
         <img :src="imgSrc">
       </div>
       <div class="content">
-        <a class="header">12 Years a Slave</a>
+        <a class="header">Adam Nowak</a>
         <div class="meta">
-          <span class="cinema">Union Square 14</span>
+          <span class="cinema">Politechnika Poznańska, Wydział Informatyki</span>
         </div>
         <div class="description">
-          <p/>
+          <p>Poszukuję wiedzy na temat programowania współbieżnego</p>
         </div>
         <div class="extra">
-          <div class="ui label">IMAX</div>
-          <div class="ui label"><i class="globe icon"/> Additional Languages</div>
+          <div class="ui label">Informatyka</div>
+          <div class="ui label"><i class="globe icon"/> Programowanie Współbieżne</div>
         </div>
       </div>
     </div>
     <div class="item">
       <div class="image">
-        <img src="/images/wireframe/image.png">
+        <img :src="imgSrc">
       </div>
       <div class="content">
-        <a class="header">My Neighbor Totoro</a>
+        <a class="header">Jan Kowalski</a>
         <div class="meta">
-          <span class="cinema">IFC Cinema</span>
+          <span class="cinema">Uniwersytet Adama Mickiewicza, Biologia</span>
         </div>
         <div class="description">
-          <p/>
+          <p>Potrzebuję korepetycji z Komórek biologicznych u profesora Mickiewicza</p>
         </div>
         <div class="extra">
           <!-- <div class="ui right floated primary button">
@@ -56,7 +56,7 @@
               </div>
             </div>
           </div> -->
-          <div class="ui label">Limited</div>
+          <div class="ui label">Szybka pomoc</div>
         </div>
       </div>
     </div>
