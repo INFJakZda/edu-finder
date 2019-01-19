@@ -1,5 +1,5 @@
 <template>
-  <div class="ui menu">
+  <div class="ui borderless menu">
     <div class="ui container">
       <a 
         class="header item"
@@ -102,10 +102,6 @@ export default {
 </script>
 
 <style scoped>
-.dev-header-container {
-  padding: 10px;
-}
-
 .dev-logo {
   padding-right: 10px;
 }
