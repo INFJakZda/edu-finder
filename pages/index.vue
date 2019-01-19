@@ -7,9 +7,11 @@
             Znajdź korepetycje!
           </div>
           <p>
-            Aby skorzystać z pełni możliwości platformy załóż konto w jednym prostym kroku. Umożliwi ci to dodawanie postów, kontakt z innymi użytkownikami oraz dużo więcej...
+            Aby skorzystać z pełni możliwości platformy załóż konto w jednym prostym kroku. Umożliwi to dodawanie postów, kontakt z innymi użytkownikami oraz dużo więcej...
           </p>
-          <a class="ui large green button">Załóż konto &raquo;</a>
+          <nuxt-link 
+            to="/register-form" 
+            class="ui large green button">Załóż konto &raquo;</nuxt-link>
         </div>
       </div>
     </div>
@@ -22,33 +24,39 @@
               Znajdź korepetytora
             </h1>
             <p>
-              Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+              Możesz wyszukać korepetytora z naszej bazy użytkowników. Wprowadź konkretne parametry wuszukiwania i skontaktuj się z korepetytorem. 
             </p>
-            <div class="ui small primary button">
-              View detailes &raquo;
-            </div>
+            <nuxt-link 
+              to="/find-tutor"
+              class="ui small primary button">
+              Znajdź korepetycje &raquo;
+            </nuxt-link>
           </div>
           <div class="column">
             <h1 class="ui header">
               Znajdź studenta
             </h1>
             <p>
-              Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+              W naszej bazie jest mnóstwo osób potrzebujących pomocy, możesz wyszukać i skontaktować się z nimi.
             </p>
-            <div class="ui small primary button">
-              View detailes &raquo;
-            </div>
+            <nuxt-link 
+              to="/find-student"
+              class="ui small primary button">
+              Znajdź uczniów &raquo;
+            </nuxt-link>
           </div>
           <div class="column">
             <h1 class="ui header">
-              Zaloguj się
+              Dla posiadających konto
             </h1>
             <p>
-              Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+              Jeżeli posiadasz już konto możesz się zalogować, aby skorzystać z pełni usług. 
             </p>
-            <div class="ui small primary button">
-              View detailes &raquo;
-            </div>
+            <nuxt-link 
+              to="/login-form"
+              class="ui small primary button">
+              Zaloguj się &raquo;
+            </nuxt-link>
           </div>
         </div>
         <div class="row">
