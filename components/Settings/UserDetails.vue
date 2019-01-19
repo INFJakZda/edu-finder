@@ -163,7 +163,7 @@ export default {
       const formData = new FormData()
       formData.append('file', this.selectedFile, this.selectedFile.name)
       this.$axios
-        .$post(`/api/user/${this.$auth.user.id}/avatar`, formData)
+        .$post(`/api/user/avatar`, formData)
         .then(() => {
           this.selectedFile = null
           this.$emit('refresh')
