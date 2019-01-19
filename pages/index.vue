@@ -123,10 +123,14 @@ export default {
   border-radius: 0;
 }
 .ui.grid.message .row {
-  margin-top: 2.5em;
-  margin-bottom: 2.5em;
+  margin-top: 2em;
+  margin-bottom: 2em;
 }
 .ui.menu {
   margin: 0px;
+}
+.ui.message {
+  margin: 0px;
+  padding: 0px;
 }
 </style>
