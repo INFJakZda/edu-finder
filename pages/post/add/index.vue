@@ -5,43 +5,23 @@
     </div>
     <div class="ui bottom attached active tab segment">
       <div class="ui equal width form">
-        <div class="fields">
-          <div class="field">
-            <label>Username</label>
-            <input 
-              type="text" 
-              placeholder="Username">
-          </div>
-          <div class="field">
-            <label>Password</label>
-            <input type="password">
-          </div>
+        <div class="field">
+          <label>Tytuł postu</label>
+          <input
+            v-model="post.title"
+            type="text"
+            name="Tytuł postu"
+            placeholder="Tytuł..."
+          >
         </div>
-        <div class="fields">
-          <div class="field">
-            <label>First name</label>
-            <input 
-              type="text" 
-              placeholder="First Name">
-          </div>
-          <div class="field">
-            <label>Middle name</label>
-            <input 
-              type="text" 
-              placeholder="Middle Name">
-          </div>
-          <div class="field">
-            <label>Last name</label>
-            <input 
-              type="text" 
-              placeholder="Last Name">
-          </div>
-        </div>
-        <div class="fields">
-          <div class="field">
-            <label>Opis</label>
-            <textarea rows="2"/>
-          </div>
+        <div class="field">
+          <label>Opis postu</label>
+          <input
+            v-model="post.text"
+            type="text"
+            name="Opis postu"
+            placeholder="Dodaj opis do postu..."
+          >
         </div>
         <button 
           class="ui button"
@@ -52,14 +32,36 @@
       </div>
     </div>
   </div>
-  
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      post: {
+        authorId: this.$auth.user.id,
+        author: {},
+        cityId: 0,
+        city: {},
+        categoryId: 0,
+        category: {},
+        skillLevelId: 0,
+        skillLevel: {},
+        timestamp: null,
+        title: '',
+        text: '',
+        tags: []
+      }
+    }
+  },
   methods: {
     addPost() {
-      return 0
+      this.$axios
+        .$post('/api/post', this.post)
+        .then(() => {
+          this.$router.push('/post/add')
+        })
+        .catch(e => console.log(e))
     }
   }
 }

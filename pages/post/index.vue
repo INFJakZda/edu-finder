@@ -1,11 +1,9 @@
 <template>
   <div>
-    <button @click="addedPost = !addedPost" />
     <div 
-      v-if="addedPost"
+      v-if="postsData.posts"
       class="ui placeholder segment">
       <div class="ui icon header">
-        <!-- <i class="pdf file outline icon"/> -->
         <i class="address card outline icon"/>
         Nie masz dodanego żadnego postu.
       </div>
@@ -17,7 +15,7 @@
       </button>
     </div>
     <div v-else>
-      <Item />
+      <Item :posts="postsData.posts"/>
     </div>
   </div>
 </template>
@@ -26,18 +24,19 @@
 import Item from '~/components/Post/Item.vue'
 
 export default {
+  middleware: 'auth',
   components: {
     Item
   },
-  data() {
-    return {
-      addedPost: 0
-    }
-  },
-  methods: {
-    addPost() {
-      return 0
-    }
+  asyncData(context) {
+    return context.app.$axios
+      .$get(`/api/user/${context.store.state.auth.user.id}/posts`)
+      .then(postsData => {
+        return {
+          postsData
+        }
+      })
+      .catch(e => context.error(e))
   }
 }
 </script>
