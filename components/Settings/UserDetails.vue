@@ -3,39 +3,35 @@
     <h4 class="ui dividing header">Zdjęcie profilowe</h4>
     <div class="dev-container">
       <div class="ui grid container">
-        <div class="sixteen wide mobile five wide tablet five wide computer column">
+        <div class="sixteen wide mobile sixteen wide tablet five wide computer column">
           <div class="dev-center">
             <img
               :src="imgSrc"
               class="ui middle aligned tiny circular image" >
           </div>
         </div>
-        <div class="sixteen wide mobile six wide tablet six wide computer column">
-          <div class="dev-center">
-            <input 
-              id="embedpollfileinput" 
-              type="file" 
-              class="inputfile"
-              @change="onFileSelected">
-            <label 
-              for="embedpollfileinput" 
-              class="ui red right button">
-              <i class="ui file image icon"/> 
-              Zmień zdjęcie
-            </label>
-          </div>
+        <div class="dev-center sixteen wide mobile eight wide tablet six wide computer column">
+          <input 
+            id="embedpollfileinput" 
+            type="file" 
+            class="inputfile"
+            @change="onFileSelected">
+          <label 
+            for="embedpollfileinput" 
+            class="ui red right button">
+            <i class="ui file image icon"/> 
+            Zmień zdjęcie
+          </label>
         </div>
-        <div class="sixteen wide mobile five wide tablet five wide computer column">
-          <div class="dev-center">
-            <button 
-              :class="{disabled: !selectedFile}"
-              class="ui green right button"
-              @click="onUpload">Załaduj obrazek</button>
-            <div 
-              v-if="selectedFile" 
-              style="display: block">{{ selectedFile.name }}</div>
-          </div>
-        </div>          
+        <div class="dev-center sixteen wide mobile eight wide tablet five wide computer column">
+          <button 
+            :class="{disabled: !selectedFile}"
+            class="ui green right button"
+            @click="onUpload">Załaduj obrazek</button>
+          <div 
+            v-if="selectedFile" 
+            style="display: block">{{ selectedFile.name }}</div>
+        </div>
       </div>
     </div>
     <form 
@@ -174,7 +170,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .inputfile {
   display: none;
 }
@@ -184,7 +180,7 @@ export default {
 }
 
 .dev-center {
-  display: flex;
+  display: flex !important;
   justify-content: center;
   align-items: center;
 }
