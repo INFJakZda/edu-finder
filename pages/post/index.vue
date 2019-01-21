@@ -26,12 +26,14 @@
             class="positive ui button"
             @click="$router.push('/post/add')">
             <i class="add icon"/>
-            Dodaj nowy post
+            Dodaj post
           </button>
         </div>
       </div>
       
-      <Item :posts="postsData.posts"/>
+      <Item 
+        :posts="postsData.posts" 
+        @refresh="refresh"/>
     </div>
   </div>
 </template>
@@ -53,6 +55,16 @@ export default {
         }
       })
       .catch(e => context.error(e))
+  },
+  methods: {
+    refresh() {
+      this.$axios
+        .$get(`/api/user/${this.$auth.user.id}/posts`)
+        .then(data => {
+          this.postsData = data
+        })
+        .catch(e => console.log(e))
+    }
   }
 }
 </script>

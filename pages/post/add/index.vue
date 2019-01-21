@@ -110,7 +110,7 @@ export default {
       this.$axios
         .$post('/api/post', this.post)
         .then(() => {
-          this.$router.push('/post/add')
+          this.$router.push('/post')
         })
         .catch(e => console.log(e))
     }

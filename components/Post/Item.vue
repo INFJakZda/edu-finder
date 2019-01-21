@@ -4,29 +4,47 @@
       v-for="post in posts"
       :key="post.id"
       class="item">
+
       <div class="image">
         <img :src="imgSrc">
       </div>
+      
       <div class="content">
-        <a class="header">Jan Kowalski</a>
+
+        <a class="header">{{ post.title }}</a>
+
         <div class="meta">
-          <span class="cinema">Uniwersytet Adama Mickiewicza, Biologia</span>
+          <span><i class="user icon"/>{{ post.author.username }}</span>
+          <span><i class="graduation cap icon"/>{{ post.skillLevel.name }}</span>
+          <span><i class="globe icon"/>{{ post.category.name }}</span>
+          <span><i class="home icon"/>{{ post.city.name }}</span>
+          
         </div>
+
         <div class="description">
-          <p>Potrzebuję korepetycji z Komórek biologicznych u profesora Mickiewicza</p>
+          <p>{{ post.text }}</p>
         </div>
+
         <div class="extra">
+          
+          <div 
+            v-for="(tag, idx) in post.tags"
+            :key="idx"
+            class="ui label">{{ tag }}</div>
+
           <div class="ui right floated compact menu">
             <div class="ui simple dropdown item">
               opcje
               <i class="dropdown icon"/>
               <div class="menu">
                 <div class="item"><i class="edit icon"/> Edytuj post</div>
-                <div class="item"><i class="delete icon"/> Usuń post</div>
+                <div 
+                  class="item"
+                  @click="deletePost(post.id)"><i class="delete icon"/> Usuń post</div>
               </div>
             </div>
           </div>
-          <div class="ui label">Szybka pomoc</div>
+
         </div>
       </div>
     </div>
@@ -45,6 +63,16 @@ export default {
   computed: {
     imgSrc() {
       return this.$store.getters.imgSrc
+    }
+  },
+  methods: {
+    deletePost(id) {
+      this.$axios
+        .$delete(`/api/post/${id}`)
+        .then(() => {
+          this.$emit('refresh')
+        })
+        .catch(e => console.log(e))
     }
   }
 }
