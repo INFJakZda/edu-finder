@@ -1,7 +1,7 @@
 <template>
   <div>
     <div 
-      v-if="postsData.posts"
+      v-if="!(postsData.posts.length > 0)"
       class="ui placeholder segment">
       <div class="ui icon header">
         <i class="address card outline icon"/>
@@ -15,6 +15,22 @@
       </button>
     </div>
     <div v-else>
+      <div class="ui menu borderless dev-color">
+        <div class="item">
+          <h3 class="header">
+            Dodane posty
+          </h3>
+        </div>
+        <div class="right item">
+          <button 
+            class="positive ui button"
+            @click="$router.push('/post/add')">
+            <i class="add icon"/>
+            Dodaj nowy post
+          </button>
+        </div>
+      </div>
+      
       <Item :posts="postsData.posts"/>
     </div>
   </div>
@@ -41,5 +57,16 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.dev-center {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+.dev-inline {
+  display: inline;
+}
+.dev-color {
+  background: #eeeeee90;
+}
 </style>

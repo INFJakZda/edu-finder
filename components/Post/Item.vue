@@ -38,7 +38,7 @@ export default {
   name: 'ItemGroupExample',
   props: {
     posts: {
-      type: Object,
+      type: Array,
       required: true
     }
   },
