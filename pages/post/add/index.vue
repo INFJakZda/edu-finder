@@ -61,7 +61,20 @@
             />
           </div>
         </div>
-        
+        <div class="field">
+          <label>Wybierz tagi</label>
+          <sui-dropdown
+            :options="tags"
+            v-model="post.tags"
+            multiple
+            fluid
+            placeholder="Wybierz tagi"
+            search
+            selection
+            allow-additions
+            @keyup="autoComplete()"
+          />
+        </div>
 
         <button 
           class="ui button"
@@ -91,7 +104,9 @@ export default {
         title: '',
         text: '',
         tags: ['test']
-      }
+      },
+      tags: [],
+      helper: []
     }
   },
   asyncData(context) {
@@ -113,6 +128,28 @@ export default {
           this.$router.push('/post')
         })
         .catch(e => console.log(e))
+    },
+    autoComplete() {
+      if (this.$children[3].filter.length > 0) {
+        this.$axios
+          .$get('/api/tag', { params: { term: this.$children[3].filter } })
+          .then(response => {
+            this.helper = []
+            this.post.tag.forEach(ele => {
+              this.helper.push({
+                key: ele,
+                text: ele
+              })
+            })
+            this.tags = this.helper.slice()
+            response.forEach(ele => {
+              this.tags.push({
+                key: ele.name,
+                text: ele.name
+              })
+            })
+          })
+      }
     }
   }
 }

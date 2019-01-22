@@ -14,10 +14,10 @@
         <a class="header">{{ post.title }}</a>
 
         <div class="meta">
-          <span><i class="user icon"/>{{ post.author.username }}</span>
-          <span><i class="graduation cap icon"/>{{ post.skillLevel.name }}</span>
-          <span><i class="globe icon"/>{{ post.category.name }}</span>
-          <span><i class="home icon"/>{{ post.city.name }}</span>
+          <span class="dev-inline"><i class="user icon"/> {{ post.author.username }} </span>
+          <span class="dev-inline"><i class="graduation cap icon"/> {{ post.skillLevel.name }} </span>
+          <span class="dev-inline"><i class="globe icon"/> {{ post.category.name }} </span>
+          <span class="dev-inline"><i class="home icon"/> {{ post.city.name }} </span>
           
         </div>
 
@@ -83,5 +83,8 @@ export default {
 .dev-border {
   box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12),
     0px 2px 10px 0px rgba(34, 36, 38, 0.15);
+}
+.dev-inline {
+  display: inline-block;
 }
 </style>
