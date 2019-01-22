@@ -94,16 +94,16 @@ export default {
       post: {
         authorId: this.$auth.user.id,
         author: {},
-        cityId: '',
+        cityId: null,
         city: {},
-        categoryId: '',
+        categoryId: null,
         category: {},
-        skillLevelId: '',
+        skillLevelId: null,
         skillLevel: {},
         timestamp: null,
         title: '',
         text: '',
-        tags: ['test']
+        tags: []
       },
       tags: [],
       helper: []
@@ -135,17 +135,19 @@ export default {
           .$get('/api/tag', { params: { term: this.$children[3].filter } })
           .then(response => {
             this.helper = []
-            this.post.tag.forEach(ele => {
+            this.post.tags.forEach(ele => {
               this.helper.push({
                 key: ele,
-                text: ele
+                text: ele,
+                value: ele
               })
             })
             this.tags = this.helper.slice()
             response.forEach(ele => {
               this.tags.push({
                 key: ele.name,
-                text: ele.name
+                text: ele.name,
+                value: ele.name
               })
             })
           })
