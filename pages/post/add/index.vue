@@ -1,114 +1,11 @@
 <template>
-  <div>
-    <div class="ui top attached tabular menu">
-      <div class="active item">Dodaj nowy post</div>
-    </div>
-    <div class="ui bottom attached active tab segment">
-      <div class="ui equal width form">
-        
-        <div class="fields">
-          <div class="field">
-            <label>Tytuł postu</label>
-            <input
-              v-model="post.title"
-              type="text"
-              name="Tytuł postu"
-              placeholder="Tytuł..."
-            >
-          </div>
-
-          <div class="field">
-            <label>Miasto</label>
-            <sui-dropdown
-              v-model="post.cityId"
-              :options="postsData.availableCities"
-              placeholder="Wybierz miasto"
-              search
-              selection
-            />
-          </div>
-        </div>
-        
-        <div class="field">
-          <label>Opis postu</label>
-          <textarea
-            v-model="post.text"
-            rows="2"
-            name="Opis postu"
-            placeholder="Dodaj opis do postu..."
-          />
-        </div>
-
-        <div class="fields">
-          <div class="field">
-            <label>Wybierz Kategorię</label>
-            <sui-dropdown
-              v-model="post.categoryId"
-              :options="postsData.availableCategories"
-              placeholder="Wybierz kategorie..."
-              search
-              selection
-            />
-          </div>
-          <div class="field">
-            <label>Poziom zaawansowania</label>
-            <sui-dropdown
-              v-model="post.skillLevelId"
-              :options="postsData.availableSkillLevels"
-              placeholder="Wybierz poziom..."
-              search
-              selection
-            />
-          </div>
-        </div>
-        <div class="field">
-          <label>Wybierz tagi</label>
-          <sui-dropdown
-            :options="tags"
-            v-model="post.tags"
-            multiple
-            fluid
-            placeholder="Wybierz tagi"
-            search
-            selection
-            allow-additions
-            @keyup="autoComplete()"
-          />
-        </div>
-
-        <button 
-          class="ui button"
-          @click="addPost">
-          <i class="add icon"/>
-          Dodaj nowy post
-        </button>
-      </div>
-    </div>
-  </div>
+  <Add :postdata="postsData"/>  
 </template>
 
 <script>
+import Add from '~/components/Post/Add'
+
 export default {
-  data() {
-    return {
-      post: {
-        authorId: this.$auth.user.id,
-        author: {},
-        cityId: null,
-        city: {},
-        categoryId: null,
-        category: {},
-        skillLevelId: null,
-        skillLevel: {},
-        timestamp: null,
-        title: '',
-        text: '',
-        tags: []
-      },
-      tags: [],
-      helper: []
-    }
-  },
   asyncData(context) {
     return context.app.$axios
       .$get(`/api/user/${context.store.state.auth.user.id}/posts`)
@@ -119,40 +16,8 @@ export default {
       })
       .catch(e => context.error(e))
   },
-  methods: {
-    addPost() {
-      this.post.timestamp = new Date()
-      this.$axios
-        .$post('/api/post', this.post)
-        .then(() => {
-          this.$router.push('/post')
-        })
-        .catch(e => console.log(e))
-    },
-    autoComplete() {
-      if (this.$children[3].filter.length > 0) {
-        this.$axios
-          .$get('/api/tag', { params: { term: this.$children[3].filter } })
-          .then(response => {
-            this.helper = []
-            this.post.tags.forEach(ele => {
-              this.helper.push({
-                key: ele,
-                text: ele,
-                value: ele
-              })
-            })
-            this.tags = this.helper.slice()
-            response.forEach(ele => {
-              this.tags.push({
-                key: ele.name,
-                text: ele.name,
-                value: ele.name
-              })
-            })
-          })
-      }
-    }
+  components: {
+    Add
   }
 }
 </script>
