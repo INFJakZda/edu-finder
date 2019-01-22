@@ -32,19 +32,20 @@
             :key="idx"
             class="ui label">{{ tag }}</div>
 
-          <div class="ui right floated compact menu">
-            <div class="ui simple dropdown item">
-              opcje
-              <i class="dropdown icon"/>
-              <div class="menu">
-                <div class="item"><i class="edit icon"/> Edytuj post</div>
-                <div 
-                  class="item"
-                  @click="deletePost(post.id)"><i class="delete icon"/> Usuń post</div>
-              </div>
-            </div>
-          </div>
-
+          <sui-dropdown
+            class="teal ui right floated"
+            text="Opcje"
+            button
+            floating
+            direction="upward"
+          >
+            <sui-dropdown-menu>
+              <sui-dropdown-item><sui-icon name="edit" />Edycja</sui-dropdown-item>
+              <sui-dropdown-item @click="deletePost(post.id)">
+                <sui-icon name="delete" />Usuń
+              </sui-dropdown-item>
+            </sui-dropdown-menu>
+          </sui-dropdown>
         </div>
       </div>
     </div>
