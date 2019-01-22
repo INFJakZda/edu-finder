@@ -7,7 +7,7 @@
         <img 
           class="logo dev-logo" 
           src="https://images-eu.ssl-images-amazon.com/images/I/71Ie8rLruiL.png"
-      >Edu Finder</a>
+      >Edu Student</a>
       <div class="right menu">
         <div 
           v-if="loggedIn" 

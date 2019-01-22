@@ -53,3 +53,11 @@
 & { @import "~semantic-ui-less/definitions/modules/sticky"; }
 & { @import "~semantic-ui-less/definitions/modules/tab"; }
 & { @import "~semantic-ui-less/definitions/modules/transition"; }
+
+@media only screen and (max-width: 767px) {
+  .ui.items:not(.unstackable) > .item > .image, .ui.items:not(.unstackable) > .item > .image > img {
+    max-width: 160px !important;
+    max-height: 160px !important;
+  }
+}
+

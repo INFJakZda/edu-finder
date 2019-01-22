@@ -14,7 +14,7 @@
       
       <div class="content">
 
-        <a class="header">{{ post.title }}</a>
+        <div class="header">{{ post.title }}</div>
 
         <div class="meta">
           <span class="dev-inline"><i class="graduation cap icon"/> {{ post.skillLevel.name }} </span>
@@ -124,5 +124,6 @@ export default {
 }
 .dev-image {
   max-width: 150px !important;
+  max-height: 150px !important;
 }
 </style>
