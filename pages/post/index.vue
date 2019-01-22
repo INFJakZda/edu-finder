@@ -32,7 +32,8 @@
       </div>
       
       <Item 
-        :posts="postsData.posts" 
+        :posts="postsData.posts"
+        :postdata="postsData"
         @refresh="refresh"/>
     </div>
   </div>

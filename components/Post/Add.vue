@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="ui top attached tabular menu">
+    <div 
+      v-if="!postinfo" 
+      class="ui top attached tabular menu">
       <div class="active item">Dodaj nowy post</div>
     </div>
     <div class="ui bottom attached active tab segment">
@@ -41,7 +43,7 @@
 
         <div class="fields">
           <div class="field">
-            <label>Wybierz Kategorię</label>
+            <label>Kategoria</label>
             <sui-dropdown
               v-model="post.categoryId"
               :options="postdata.availableCategories"
@@ -62,7 +64,7 @@
           </div>
         </div>
         <div class="field">
-          <label>Wybierz tagi</label>
+          <label>Tagi</label>
           <sui-dropdown
             :options="tags"
             v-model="post.tags"
@@ -76,12 +78,32 @@
           />
         </div>
 
-        <button 
-          class="ui button"
+        <button
+          v-if="!postinfo"
+          :class="{ disabled: !active }"
+          class="ui blue button"
           @click="addPost">
           <i class="add icon"/>
           Dodaj nowy post
         </button>
+
+        <button
+          v-if="postinfo"
+          :class="{ disabled: !active }"
+          class="ui blue button"
+          @click="putPost">
+          <i class="save icon"/>
+          Zatwierdź
+        </button>
+
+        <button
+          v-if="postinfo"
+          class="ui right floated red button"
+          @click="$emit('cancel')">
+          <i class="cancel icon"/>
+          Anuluj
+        </button>
+
       </div>
     </div>
   </div>
@@ -119,7 +141,23 @@ export default {
             tags: []
           },
       tags: [],
-      helper: []
+      helper: [],
+      active: null
+    }
+  },
+  watch: {
+    post: {
+      handler() {
+        this.active = true
+      },
+      deep: true
+    }
+  },
+  created() {
+    if (this.postinfo) {
+      this.post.cityId = this.post.cityId.toString()
+      this.post.categoryId = this.post.categoryId.toString()
+      this.post.skillLevelId = this.post.skillLevelId.toString()
     }
   },
   methods: {
@@ -129,6 +167,15 @@ export default {
         .$post('/api/post', this.post)
         .then(() => {
           this.$router.push('/post')
+        })
+        .catch(e => console.log(e))
+    },
+    putPost() {
+      this.post.timestamp = new Date()
+      this.$axios
+        .$put(`/api/post/${this.post.id}`, this.post)
+        .then(() => {
+          this.$emit('refresh')
         })
         .catch(e => console.log(e))
     },

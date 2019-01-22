@@ -40,12 +40,24 @@
             direction="upward"
           >
             <sui-dropdown-menu>
-              <sui-dropdown-item><sui-icon name="edit" />Edycja</sui-dropdown-item>
+              <sui-dropdown-item @click.native="toggle"><sui-icon name="edit" />Edycja</sui-dropdown-item>
               <sui-dropdown-item @click="deletePost(post.id)">
                 <sui-icon name="delete" />Usuń
               </sui-dropdown-item>
             </sui-dropdown-menu>
           </sui-dropdown>
+
+          <sui-modal v-model="open">
+            <sui-modal-header>Wprowadź zmiany</sui-modal-header>
+            <sui-modal-content scrolling>
+              <Add 
+                :postdata="postdata" 
+                :postinfo="post"
+                @refresh="refresh"
+                @cancel="toggle"/>
+            </sui-modal-content>
+          </sui-modal>
+
         </div>
       </div>
     </div>
@@ -53,12 +65,26 @@
 </template>
 
 <script>
+import Add from '~/components/Post/Add'
+
 export default {
   name: 'ItemGroupExample',
+  components: {
+    Add
+  },
   props: {
     posts: {
       type: Array,
       required: true
+    },
+    postdata: {
+      type: Object,
+      required: true
+    }
+  },
+  data() {
+    return {
+      open: false
     }
   },
   computed: {
@@ -74,6 +100,13 @@ export default {
           this.$emit('refresh')
         })
         .catch(e => console.log(e))
+    },
+    toggle() {
+      this.open = !this.open
+    },
+    refresh() {
+      this.open = !this.open
+      this.$emit('refresh')
     }
   }
 }
