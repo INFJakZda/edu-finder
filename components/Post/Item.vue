@@ -5,7 +5,10 @@
       :key="post.id"
       class="item">
 
-      <div class="image">
+      <div class="ui image dev-image">
+        <div class="ui black ribbon label">
+          <span class="dev-inline"><i class="user icon"/> {{ post.author.username }} </span>
+        </div>
         <img :src="imgSrc">
       </div>
       
@@ -14,7 +17,6 @@
         <a class="header">{{ post.title }}</a>
 
         <div class="meta">
-          <span class="dev-inline"><i class="user icon"/> {{ post.author.username }} </span>
           <span class="dev-inline"><i class="graduation cap icon"/> {{ post.skillLevel.name }} </span>
           <span class="dev-inline"><i class="globe icon"/> {{ post.category.name }} </span>
           <span class="dev-inline"><i class="home icon"/> {{ post.city.name }} </span>
@@ -112,12 +114,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .dev-border {
   box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12),
     0px 2px 10px 0px rgba(34, 36, 38, 0.15);
 }
 .dev-inline {
   display: inline-block;
+}
+.dev-image {
+  max-width: 150px !important;
 }
 </style>

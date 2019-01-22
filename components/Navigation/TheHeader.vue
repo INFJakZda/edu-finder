@@ -45,11 +45,11 @@
             <a 
               class="ui item"
               @click="$router.push('/register-form')">
-            <i class="sign-in icon"/>Zarejestruj</a>
+            <i class="sign-in icon"/>Rejestracja</a>
             <a 
               class="ui item"
               @click="$router.push('/login-form')">
-            <i class="play icon"/>Zaloguj</a>
+            <i class="play icon"/>Logowanie</a>
           </div>
         </div>
       </div>

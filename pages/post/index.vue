@@ -18,7 +18,7 @@
       <div class="ui menu borderless dev-color">
         <div class="item">
           <h3 class="header">
-            Dodane posty
+            Dodane posty <i class="level down alternate icon"/>
           </h3>
         </div>
         <div class="right item">
