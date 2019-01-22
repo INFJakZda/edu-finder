@@ -78,8 +78,8 @@ export default {
   },
   data() {
     return {
-      category: '',
-      skillLevel: '',
+      category: null,
+      skillLevel: null,
       availableSkillLevels: [],
       skillDetails: ''
     }
