@@ -2,7 +2,7 @@
   <div>
     <Main 
       :userData="loadedDetails" 
-      @refresh="onRefresh" />
+      @refreshdev="onrefreshdev" />
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
       .catch(e => context.error(e))
   },
   methods: {
-    onRefresh() {
+    onrefreshdev() {
       this.$axios
         .$get(`/api/user/${this.$auth.user.id}/${this.savedComponent}`)
         .then(userData => {

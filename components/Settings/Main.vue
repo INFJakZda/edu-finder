@@ -17,7 +17,7 @@
       <component 
         :is="activecomp" 
         :user="userData"
-        @refresh="onRefresh" />
+        @refreshdev="onrefreshdev" />
     </sui-segment>
   </div>
 </template>
@@ -59,8 +59,8 @@ export default {
     redirect(item) {
       this.$router.push('/settings/' + item.link)
     },
-    onRefresh() {
-      this.$emit('refresh')
+    onrefreshdev() {
+      this.$emit('refreshdev')
     }
   }
 }

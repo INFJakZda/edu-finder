@@ -93,7 +93,7 @@ export default {
           text: contact.description
         })
         .then(() => {
-          this.$emit('refresh')
+          this.$emit('refreshdev')
         })
         .catch(e => console.log(e))
     },
@@ -108,7 +108,7 @@ export default {
           text: contact.description
         })
         .then(() => {
-          this.$emit('refresh')
+          this.$emit('refreshdev')
         })
         .catch(e => console.log(e))
     },
@@ -116,7 +116,7 @@ export default {
       this.$axios
         .$delete(`/api/contactEntry/${contact.contactId}`)
         .then(() => {
-          this.$emit('refresh')
+          this.$emit('refreshdev')
         })
         .catch(e => console.log(e))
     }

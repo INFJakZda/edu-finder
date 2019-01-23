@@ -34,7 +34,7 @@
       <Item 
         :posts="postsData.posts"
         :postdata="postsData"
-        @refresh="refresh"/>
+        @refreshdev="refreshdev"/>
     </div>
   </div>
 </template>
@@ -58,7 +58,7 @@ export default {
       .catch(e => context.error(e))
   },
   methods: {
-    refresh() {
+    refreshdev() {
       this.$axios
         .$get(`/api/user/${this.$auth.user.id}/posts`)
         .then(data => {

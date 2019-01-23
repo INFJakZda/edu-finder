@@ -162,7 +162,7 @@ export default {
         .$post(`/api/user/avatar`, formData)
         .then(() => {
           this.selectedFile = null
-          this.$emit('refresh')
+          this.$emit('refreshdev')
         })
         .catch(err => console.log(err))
     }

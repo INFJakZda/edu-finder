@@ -12,20 +12,35 @@
       <div class="active section">{{ entry.user.username }}</div>
     </div>
     <div class="ui items">
-      <Item 
+      <Details 
         :entry="entry"
-        :data="{}"
-        @refresh="refresh"/>
+        :data="{}"/>
     </div>
+    
+    <div class="ui large comments">
+      <h4 class="ui dividing header">Rekomendacje:</h4>
+      <Comment 
+        v-for="rec in entry.recommendations"
+        :key="rec.id" 
+        :data="rec"/>
+    </div>
+
+    <Education
+      :list="entry.user.educationEntries"/>
+    
   </div>
 </template>
 
 <script>
-import Item from '~/components/SkillEntry/Item.vue'
+import Details from '~/components/SkillEntry/Details.vue'
+import Education from '~/components/SkillEntry/Education.vue'
+import Comment from '~/components/SkillEntry/Comment.vue'
 
 export default {
   components: {
-    Item
+    Details,
+    Education,
+    Comment
   },
   asyncData(context) {
     return context.app.$axios

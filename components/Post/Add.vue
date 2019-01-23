@@ -175,7 +175,7 @@ export default {
       this.$axios
         .$put(`/api/post/${this.post.id}`, this.post)
         .then(() => {
-          this.$emit('refresh')
+          this.$emit('refreshdev')
         })
         .catch(e => console.log(e))
     },

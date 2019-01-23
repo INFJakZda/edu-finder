@@ -55,7 +55,7 @@
               <Add 
                 :postdata="postdata" 
                 :postinfo="post"
-                @refresh="refresh"
+                @refreshdev="refreshdev"
                 @cancel="toggle"/>
             </sui-modal-content>
           </sui-modal>
@@ -99,16 +99,16 @@ export default {
       this.$axios
         .$delete(`/api/post/${id}`)
         .then(() => {
-          this.$emit('refresh')
+          this.$emit('refreshdev')
         })
         .catch(e => console.log(e))
     },
     toggle() {
       this.open = !this.open
     },
-    refresh() {
+    refreshdev() {
       this.open = !this.open
-      this.$emit('refresh')
+      this.$emit('refreshdev')
     }
   }
 }

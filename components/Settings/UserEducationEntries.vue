@@ -127,7 +127,7 @@ export default {
           yearEnd: +this.endYear
         })
         .then(() => {
-          this.$emit('refresh')
+          this.$emit('refreshdev')
         })
         .catch(e => console.log(e))
     },
@@ -135,7 +135,7 @@ export default {
       this.$axios
         .$delete(`/api/educationEntry/${id}`)
         .then(() => {
-          this.$emit('refresh')
+          this.$emit('refreshdev')
         })
         .catch(e => console.log(e))
     }

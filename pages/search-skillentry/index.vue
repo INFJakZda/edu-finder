@@ -13,7 +13,7 @@
         :key="entry.id" 
         :entry="entry"
         :data="entryData"
-        @refresh="refresh"/>
+        @refreshdev="refreshdev"/>
     </div>
   </div>
 </template>
@@ -36,7 +36,7 @@ export default {
       .catch(e => context.error(e))
   },
   methods: {
-    refresh() {
+    refreshdev() {
       this.$axios
         .$get(`/api/skillentry`)
         .then(data => {

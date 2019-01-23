@@ -1,7 +1,6 @@
 <template lang="html">
   <div 
-    class="item"
-    @click="$router.push(`/search-skillentry/${entry.id}`)">
+    class="item">
     <div 
       class="ui image dev-image">
       <div class="ui black ribbon label">
@@ -49,12 +48,6 @@ export default {
       return `https://loli-server.azurewebsites.net/api/picture/${
         this.entry.user.avatarId
       }`
-    }
-  },
-  methods: {
-    refreshdev() {
-      this.open = !this.open
-      this.$emit('refreshdev')
     }
   }
 }

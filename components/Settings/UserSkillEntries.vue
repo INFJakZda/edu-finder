@@ -95,7 +95,7 @@ export default {
           details: this.skillDetails
         })
         .then(() => {
-          this.$emit('refresh')
+          this.$emit('refreshdev')
         })
         .catch(e => console.log(e))
     },
@@ -103,7 +103,7 @@ export default {
       this.$axios
         .$delete(`/api/skillEntry/${id}`)
         .then(() => {
-          this.$emit('refresh')
+          this.$emit('refreshdev')
         })
         .catch(e => console.log(e))
     },
