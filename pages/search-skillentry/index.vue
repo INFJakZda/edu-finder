@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div class="ui breadcrumb">
+      <nuxt-link 
+        to="/" 
+        class="section">Strona startowa</nuxt-link>
+      <i class="right angle icon divider"/>
+      <div class="active section">Korepetytorzy</div>
+    </div>
     <div class="ui divided link items">
       <Item 
         v-for="entry in entryData.skillEntries"

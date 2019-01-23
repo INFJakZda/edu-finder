@@ -1,6 +1,16 @@
 <template>
   <div>
-    Jesteś
+    <div class="ui breadcrumb">
+      <nuxt-link 
+        to="/" 
+        class="section">Strona startowa</nuxt-link>
+      <i class="right angle icon divider"/>
+      <nuxt-link 
+        to="/search-skillentry" 
+        class="section">Korepetytorzy</nuxt-link>
+      <i class="right angle icon divider"/>
+      <div class="active section">{{ entry.user.username }}</div>
+    </div>
     <div>
       {{ entry }}
     </div>

@@ -1,5 +1,18 @@
 <template>
-  <Add :postdata="postsData"/>  
+  <div>
+    <div class="ui breadcrumb">
+      <nuxt-link 
+        to="/" 
+        class="section">Strona startowa</nuxt-link>
+      <i class="right angle icon divider"/>
+      <nuxt-link 
+        to="/post" 
+        class="section">Twoje posty</nuxt-link>
+      <i class="right angle icon divider"/>
+      <div class="active section">Dodaj nowy post</div>
+    </div>
+    <Add :postdata="postsData"/>
+  </div>
 </template>
 
 <script>
