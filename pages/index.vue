@@ -35,7 +35,7 @@
               Możesz wyszukać korepetytora z naszej bazy użytkowników. Wprowadź konkretne parametry wuszukiwania i skontaktuj się z korepetytorem. 
             </p>
             <nuxt-link 
-              to="/find-tutor"
+              to="/search-skillentry"
               class="ui small primary button">
               Znajdź korepetycje &raquo;
             </nuxt-link>
@@ -48,7 +48,7 @@
               W naszej bazie jest mnóstwo osób potrzebujących pomocy, możesz wyszukać w konkretnych kategoriach oraz skontaktować się z nimi.
             </p>
             <nuxt-link 
-              to="/find-student"
+              to="/search-post"
               class="ui small primary button">
               Znajdź uczniów &raquo;
             </nuxt-link>
