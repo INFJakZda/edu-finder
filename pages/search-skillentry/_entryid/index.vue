@@ -11,14 +11,22 @@
       <i class="right angle icon divider"/>
       <div class="active section">{{ entry.user.username }}</div>
     </div>
-    <div>
-      {{ entry }}
+    <div class="ui items">
+      <Item 
+        :entry="entry"
+        :data="{}"
+        @refresh="refresh"/>
     </div>
   </div>
 </template>
 
 <script>
+import Item from '~/components/SkillEntry/Item.vue'
+
 export default {
+  components: {
+    Item
+  },
   asyncData(context) {
     return context.app.$axios
       .$get(`/api/skillentry/${context.params.entryid}`)

@@ -7,7 +7,7 @@
       <i class="right angle icon divider"/>
       <div class="active section">Korepetytorzy</div>
     </div>
-    <div class="ui divided link items">
+    <div class="ui link items">
       <Item 
         v-for="entry in entryData.skillEntries"
         :key="entry.id" 

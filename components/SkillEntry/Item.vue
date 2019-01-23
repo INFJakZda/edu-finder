@@ -1,6 +1,6 @@
 <template lang="html">
   <div 
-    class="item dev-border"
+    class="item"
     @click="$router.push(`/search-skillentry/${entry.id}`)">
     <div 
       class="ui image dev-image">
@@ -61,25 +61,11 @@ export default {
 </script>
 
 <style scoped>
-.dev-border {
-  margin-top: 10px !important;
-  margin-bottom: 10px !important;
-  box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12),
-    0px 2px 10px 0px rgba(34, 36, 38, 0.15) !important;
-  background: #fff !important;
-  -webkit-box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15) !important;
-  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15) !important;
-  border-radius: 0.28571429rem !important;
-  border: 1px solid rgba(34, 36, 38, 0.15) !important;
-}
 .dev-inline {
   display: inline-block;
 }
 .dev-image {
   max-width: 150px !important;
   max-height: 150px !important;
-}
-.dev-padding {
-  padding: 10px 10px !important;
 }
 </style>

@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="ui divided items">
+  <div class="ui items">
     <div 
       v-for="post in posts"
       :key="post.id"
@@ -115,10 +115,6 @@ export default {
 </script>
 
 <style scoped>
-.dev-border {
-  box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12),
-    0px 2px 10px 0px rgba(34, 36, 38, 0.15);
-}
 .dev-inline {
   display: inline-block;
 }
