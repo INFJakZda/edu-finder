@@ -1,5 +1,7 @@
 <template lang="html">
-  <div class="ui divided items">
+  <div 
+    class="item dev-border"
+    @click="$router.push(`/search-skillentry/${entry.id}`)">
     <div 
       class="ui image dev-image">
       <div class="ui black ribbon label">
@@ -7,7 +9,7 @@
       </div>
       <img :src="imgSrc">
     </div>
-      
+        
     <div class="content">
 
       <div class="header">{{ entry.title }}</div>
@@ -15,36 +17,10 @@
       <div class="meta">
         <span class="dev-inline"><i class="graduation cap icon"/> {{ entry.skillLevel.name }} </span>
         <span class="dev-inline"><i class="globe icon"/> {{ entry.category.name }} </span>
-        <span class="dev-inline"><i class="home icon"/> {{ entry.city.name }} </span>
-          
       </div>
 
       <div class="description">
-        <p>{{ entry.text }}</p>
-      </div>
-
-      <div class="extra">
-          
-        <div 
-          v-for="(tag, idx) in entry.tags"
-          :key="idx"
-          class="ui label">{{ tag }}</div>
-
-        <sui-dropdown
-          class="teal ui right floated"
-          text="Opcje"
-          button
-          floating
-          direction="upward"
-        >
-          <sui-dropdown-menu>
-            <sui-dropdown-item @click.native="toggle"><sui-icon name="edit" />Edycja</sui-dropdown-item>
-            <sui-dropdown-item @click="deletePost(entry.id)">
-              <sui-icon name="delete" />Usuń
-            </sui-dropdown-item>
-          </sui-dropdown-menu>
-        </sui-dropdown>
-
+        <p>{{ entry.details }}</p>
       </div>
     </div>
   </div>
@@ -70,7 +46,9 @@ export default {
   },
   computed: {
     imgSrc() {
-      return this.$store.getters.imgSrc
+      return `https://loli-server.azurewebsites.net/api/picture/${
+        this.entry.user.avatarId
+      }`
     }
   },
   methods: {
@@ -84,8 +62,15 @@ export default {
 
 <style scoped>
 .dev-border {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
   box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12),
-    0px 2px 10px 0px rgba(34, 36, 38, 0.15);
+    0px 2px 10px 0px rgba(34, 36, 38, 0.15) !important;
+  background: #fff !important;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15) !important;
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15) !important;
+  border-radius: 0.28571429rem !important;
+  border: 1px solid rgba(34, 36, 38, 0.15) !important;
 }
 .dev-inline {
   display: inline-block;
@@ -93,5 +78,8 @@ export default {
 .dev-image {
   max-width: 150px !important;
   max-height: 150px !important;
+}
+.dev-padding {
+  padding: 10px 10px !important;
 }
 </style>

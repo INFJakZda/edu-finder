@@ -1,27 +1,13 @@
 <template>
   <div>
-    <div class="ui menu borderless dev-color">
-      <div class="item">
-        <h3 class="header">
-          Dodane posty <i class="level down alternate icon"/>
-        </h3>
-      </div>
-      <div class="right item">
-        <button 
-          class="positive ui button"
-          @click="$router.push('/post/add')">
-          <i class="add icon"/>
-          Dodaj post
-        </button>
-      </div>
+    <div class="ui divided link items">
+      <Item 
+        v-for="entry in entryData.skillEntries"
+        :key="entry.id" 
+        :entry="entry"
+        :data="entryData"
+        @refresh="refresh"/>
     </div>
-      
-    <Item 
-      v-for="entry in entryData.skillEntries"
-      :key="entry.id" 
-      :entry="entry"
-      :data="entryData"
-      @refresh="refresh"/>
   </div>
 </template>
 
