@@ -131,8 +131,8 @@ export default {
       this.endYear = null
       this.endYears = Array.from({ length: 8 }, (v, k) => {
         return {
-          value: (+this.startYear + 7 - k).toString(),
-          text: (+this.startYear + 7 - k).toString()
+          value: (+this.startYear + k).toString(),
+          text: (+this.startYear + k).toString()
         }
       })
     }
