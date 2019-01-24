@@ -29,21 +29,21 @@
         <label>Rok rozpoczęcia i zakończenia</label>
         <div class="two fields">
           <div class="field">
-            <input
-              v-model.number="startYear"
-              type="number" 
-              name="university[year-start]" 
-              maxlength="4" 
-              placeholder="Rok rozpoczęcia">
+            <sui-dropdown
+              :options="years"
+              v-model="startYear"
+              placeholder="Rok rozpoczęcia"
+              selection
+            />
           </div>
           <div class="field">
             <div class="field">
-              <input
+              <sui-dropdown
+                :options="years"
                 v-model="endYear"
-                type="number" 
-                name="university[year-end]" 
-                maxlength="4" 
-                placeholder="Rok zakończenia, jeśli ukończyłeś studia">
+                placeholder="Rok zakończenia, jeśli ukończyłeś studia"
+                selection
+              />
             </div>
           </div>
         </div>
@@ -101,7 +101,13 @@ export default {
       department: null,
       availableDepartments: [],
       startYear: null,
-      endYear: null
+      endYear: null,
+      years: Array.from({ length: 40 }, (v, k) => {
+        return {
+          value: (k + 1980).toString(),
+          text: (k + 1980).toString()
+        }
+      })
     }
   },
   watch: {
@@ -123,8 +129,8 @@ export default {
           userId: +this.$auth.user.id,
           universityId: +this.univeristy,
           departmentId: +this.department,
-          yearStart: +this.startYear,
-          yearEnd: +this.endYear
+          yearStart: this.startYear ? +this.startYear : 0,
+          yearEnd: this.endYear ? +this.endYear : 0
         })
         .then(() => {
           this.$emit('refreshdev')
