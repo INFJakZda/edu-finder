@@ -25,6 +25,27 @@
           />
         </div>
       </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Tytuł</label>
+          <input
+            v-model="skillTitle"
+            type="text"
+            name="title"
+            placeholder="Nazwij swoją umiejętność"
+          >
+        </div>
+        <div class="field">
+          <label>Cena (zł/godz)</label>
+          <input
+            v-model.number="price"
+            type="number"
+            name="price"
+            placeholder="Podaj cenę za godzinę korepetycji"
+          >
+        </div>
+      </div>
+
       <div class="field">
         <label>Dodatkowe informacje</label>
         <textarea
@@ -33,12 +54,15 @@
           placeholder="Napisz więcej o swoich umiejętnościach..."
         />
       </div>
+
       <button 
-        :class="{disabled: !(skillLevel && category)}" 
-        class="ui button"
+        :class="{disabled: !(skillLevel && category && skillDetails && skillTitle)}" 
+        class="ui green button"
         tabindex="0"
       >Dodaj</button>
+
     </form>
+
     <h4 class="ui dividing header">Zdefiniowane umiejętności:</h4>
     <sui-list 
       divided 
@@ -57,10 +81,18 @@
         </div>
         <sui-list-icon 
           name="star" 
-          size="large" 
+          size="big" 
           vertical-align="middle" />
         <sui-list-content>
-          <sui-list-header>{{ categoryName(skillEntry.categoryId) + ' poziom ' + skillName(skillEntry.skillLevelId) }}</sui-list-header>
+          <sui-list-header>{{ skillEntry.title }}</sui-list-header>
+          <div class="meta">
+            <span class="dev-inline"><i class="graduation cap icon"/>{{ skillName(skillEntry.skillLevelId) }} </span>
+            <span class="dev-inline"><i class="globe icon"/>{{ categoryName(skillEntry.categoryId) }} </span>
+            <span 
+              v-if="skillEntry.price"
+              class="dev-inline"><i class="balance scale icon"/>{{ skillEntry.price }} zł/godz </span>
+          
+          </div>
           <sui-list-description>{{ skillEntry.details }}</sui-list-description>
         </sui-list-content>        
       </sui-list-item>
@@ -81,7 +113,9 @@ export default {
       category: null,
       skillLevel: null,
       availableSkillLevels: [],
-      skillDetails: ''
+      skillDetails: '',
+      skillTitle: '',
+      price: null
     }
   },
   methods: {
@@ -92,7 +126,9 @@ export default {
           userId: +this.$auth.user.id,
           categoryId: +this.category,
           skillLevelId: +this.skillLevel,
-          details: this.skillDetails
+          details: this.skillDetails,
+          title: this.skillTitle,
+          price: this.price ? this.price : 0
         })
         .then(() => {
           this.$emit('refreshdev')
@@ -121,5 +157,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.dev-inline {
+  display: inline-block;
+}
 </style>
