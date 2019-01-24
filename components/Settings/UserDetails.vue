@@ -61,7 +61,7 @@
         <textarea
           v-model="user.bioText"
           rows="4"
-          placeholder="Opowiedz nam kilka słów o sobie :)"
+          placeholder="Opowiedz kilka słów o sobie"
         />
       </div>
 
@@ -70,7 +70,7 @@
         <sui-dropdown
           v-model="user.cityId"
           :options="user.availableCities"
-          :placeholder="user.city ? user.city.name : ''"
+          placeholder="Wybierz miasto"
           search
           selection
         />
@@ -121,7 +121,7 @@ export default {
     }
   },
   created() {
-    this.user.cityId = this.user.cityId ? this.user.cityId.toString() : ''
+    this.user.cityId = this.user.cityId ? this.user.cityId.toString() : null
   },
   methods: {
     updateImg() {
@@ -135,7 +135,7 @@ export default {
       let post = {
         username: this.user.username,
         email: this.user.email,
-        cityId: +this.user.cityId,
+        cityId: this.user.cityId ? +this.user.cityId : 0,
         bioText: this.user.bioText,
         id: +this.$auth.user.id
       }
