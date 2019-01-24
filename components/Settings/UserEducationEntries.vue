@@ -39,7 +39,8 @@
           <div class="field">
             <div class="field">
               <sui-dropdown
-                :options="years"
+                :options="endYears"
+                :class="{disabled: !(startYear)}"
                 v-model="endYear"
                 placeholder="Rok zakończenia, jeśli ukończyłeś studia"
                 selection
@@ -50,7 +51,7 @@
       </div>
       <button 
         :class="{disabled: !(department && startYear)}" 
-        class="ui button"
+        class="ui green button"
         tabindex="0"
       >Dodaj</button>
     </form>
@@ -104,10 +105,16 @@ export default {
       endYear: null,
       years: Array.from({ length: 40 }, (v, k) => {
         return {
-          value: (k + 1980).toString(),
-          text: (k + 1980).toString()
+          value: (2019 - k).toString(),
+          text: (2019 - k).toString()
         }
-      })
+      }),
+      endYears: [
+        {
+          value: null,
+          text: 'Wprowadź rok rozpoczęcia'
+        }
+      ]
     }
   },
   watch: {
@@ -118,7 +125,16 @@ export default {
           this.availableDepartments = res.departments
         })
         .catch(e => this.error(e))
-      this.department = ''
+      this.department = null
+    },
+    startYear: function() {
+      this.endYear = null
+      this.endYears = Array.from({ length: 8 }, (v, k) => {
+        return {
+          value: (+this.startYear + 7 - k).toString(),
+          text: (+this.startYear + 7 - k).toString()
+        }
+      })
     }
   },
   methods: {

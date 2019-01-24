@@ -18,7 +18,7 @@
             @change="onFileSelected">
           <label 
             for="embedpollfileinput" 
-            class="ui red right button">
+            class="ui blue right button">
             <i class="ui file image icon"/> 
             Zmień zdjęcie
           </label>
@@ -78,7 +78,7 @@
 
       <button 
         :class="{green: showMessage}" 
-        class="ui button"
+        class="ui blue button"
         tabindex="0">
         <span v-show="showMessage">
           <i class="save icon"/>Zapisano zmiany
