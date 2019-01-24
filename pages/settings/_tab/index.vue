@@ -1,5 +1,13 @@
 <template>
   <div>
+    <div class="ui breadcrumb">
+      <nuxt-link 
+        to="/" 
+        class="section">Strona startowa</nuxt-link>
+      <i class="right angle icon divider"/>
+      <div class="active section">Ustawienia</div>
+    </div>
+    <div class="ui divider"/>
     <Main 
       :userData="loadedDetails" 
       @refreshdev="onrefreshdev" />
