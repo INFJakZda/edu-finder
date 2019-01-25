@@ -20,7 +20,14 @@
       </div>
 
       <div class="description">
-        <p>{{ post.details }}</p>
+        <p>{{ post.text }}</p>
+      </div>
+
+      <div class="extra">
+        <div 
+          v-for="(tag, idx) in post.tags"
+          :key="idx"
+          class="ui label">{{ tag }}</div>
       </div>
     </div>
   </div>
@@ -40,9 +47,13 @@ export default {
   },
   computed: {
     imgSrc() {
-      return `https://loli-server.azurewebsites.net/api/picture/${
-        this.post.author.avatarId
-      }`
+      if (this.post.author.avatarId) {
+        return `https://loli-server.azurewebsites.net/api/picture/${
+          this.post.author.avatarId
+        }`
+      } else {
+        return `http://cdn.onlinewebfonts.com/svg/img_210318.png`
+      }
     }
   },
   methods: {
