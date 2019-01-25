@@ -7,7 +7,9 @@
       <div class="ui black ribbon label">
         <span class="dev-inline"><i class="user icon"/> {{ post.author.username }} </span>
       </div>
-      <img :src="imgSrc">
+      <img 
+        :src="imgSrc" 
+        class="dev-image">
     </div>
         
     <div class="content">
@@ -65,5 +67,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.dev-image {
+  max-width: 150px !important;
+  max-height: 150px !important;
+}
 </style>
