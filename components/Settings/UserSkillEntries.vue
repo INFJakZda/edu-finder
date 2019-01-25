@@ -74,6 +74,12 @@
         :user="user"
         @refreshdev="$emit('refreshdev')"/>
     </sui-list>
+
+    <sui-segment v-if="user.skillEntries.length === 0">
+      <h5 
+        class="ui header">Nie dodałeś żadnej umiejętności</h5>
+    </sui-segment>
+
   </div>
 </template>
 

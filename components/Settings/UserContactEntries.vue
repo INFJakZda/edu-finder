@@ -32,6 +32,7 @@
         tabindex="0"
       >Dodaj</button>
     </form>
+
     <h4 class="ui dividing header">Zdefiniowane kontakty:</h4>
     <div class="ui large relaxed divided list">
       <Contact
@@ -40,6 +41,12 @@
         :contact="item"
         @refreshdev="$emit('refreshdev')"/>
     </div>
+    <sui-segment v-if="user.contactEntries.length === 0">
+      <h5 
+        class="ui header">Nie dodałeś żadnego kontaktu</h5>
+    </sui-segment>
+    
+
   </div>
 </template>
 

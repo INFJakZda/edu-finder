@@ -55,6 +55,7 @@
         tabindex="0"
       >Dodaj</button>
     </form>
+
     <h4 class="ui dividing header">Ukończone uczelnie:</h4>
     <sui-list 
       divided 
@@ -65,6 +66,12 @@
         :education="education"
         @refreshdev="$emit('refreshdev')"/>
     </sui-list>
+
+    <sui-segment v-if="user.educationEntries.length === 0">
+      <h5 
+        class="ui header">Nie dodałeś żadnej uczelni</h5>
+    </sui-segment>
+
   </div>
 </template>
 
