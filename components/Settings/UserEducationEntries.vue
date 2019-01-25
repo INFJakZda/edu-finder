@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import Education from '~/components/Settings/Education.vue'
+import Education from '~/components/Settings/Items/Education.vue'
 
 export default {
   components: {
