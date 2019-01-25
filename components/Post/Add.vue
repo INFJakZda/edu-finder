@@ -80,7 +80,7 @@
 
         <button
           v-if="!postinfo"
-          :class="{ disabled: !active }"
+          :class="{ disabled: !active || !(post.title && post.text && post.cityId && post.categoryId && post.skillLevelId) }"
           class="ui blue button"
           @click="addPost">
           <i class="add icon"/>
@@ -89,7 +89,7 @@
 
         <button
           v-if="postinfo"
-          :class="{ disabled: !active }"
+          :class="{ disabled: !active || !(post.title && post.text && post.cityId && post.categoryId && post.skillLevelId) }"
           class="ui blue button"
           @click="putPost">
           <i class="save icon"/>
@@ -163,6 +163,11 @@ export default {
   methods: {
     addPost() {
       this.post.timestamp = new Date()
+      this.post.cityId = this.post.cityId ? this.post.cityId : 0
+      this.post.categoryId = this.post.categoryId ? this.post.categoryId : 0
+      this.post.skillLevelId = this.post.skillLevelId
+        ? this.post.skillLevelId
+        : 0
       this.$axios
         .$post('/api/post', this.post)
         .then(() => {

@@ -134,7 +134,4 @@ export default {
 </script>
 
 <style scoped>
-.dev-inline {
-  display: inline-block;
-}
 </style>

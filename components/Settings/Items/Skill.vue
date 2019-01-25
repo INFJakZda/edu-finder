@@ -84,5 +84,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.dev-inline {
+  display: inline-block;
+}
 </style>
