@@ -23,7 +23,7 @@
           class="ui label">{{ tag }}</div>
 
         <sui-dropdown
-          class="teal ui right floated"
+          class="blue ui right floated"
           text="Opcje"
           button
           floating
@@ -31,7 +31,7 @@
         >
           <sui-dropdown-menu>
             <sui-dropdown-item @click.native="toggle"><sui-icon name="edit" />Edycja</sui-dropdown-item>
-            <sui-dropdown-item @click="deletePost(post.id)">
+            <sui-dropdown-item @click="openDelete = !openDelete">
               <sui-icon name="delete" />Usuń
             </sui-dropdown-item>
           </sui-dropdown-menu>
@@ -48,6 +48,13 @@
           </sui-modal-content>
         </sui-modal>
 
+        <Modal 
+          :open="openDelete"
+          @deletemodal="openDelete = !openDelete"
+          @deleteitem="deletePost(post.id)">
+          {{ post.title }}
+        </Modal>
+
       </div>
     </div>
   </div>
@@ -55,10 +62,12 @@
 
 <script>
 import Add from '~/components/Post/Add'
+import Modal from '~/components/Settings/Items/Modal.vue'
 
 export default {
   components: {
-    Add
+    Add,
+    Modal
   },
   props: {
     post: {
@@ -72,7 +81,8 @@ export default {
   },
   data() {
     return {
-      open: false
+      open: false,
+      openDelete: false
     }
   },
   methods: {
