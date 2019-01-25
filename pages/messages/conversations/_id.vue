@@ -32,7 +32,6 @@ export default {
     }
   },
   created() {
-    console.log(this.$route.params.id)
     this.recipientUserId = parseInt(this.$route.params.id, 10)
     this.fetchConversation()
   },
