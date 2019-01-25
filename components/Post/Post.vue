@@ -13,6 +13,11 @@
 
       <div class="description">
         <p>{{ post.text }}</p>
+        <truncate 
+          :length="90" 
+          :text="post.text" 
+          clamp="..." 
+          less=" Zwiń"/>
       </div>
 
       <div class="extra">
@@ -63,11 +68,13 @@
 <script>
 import Add from '~/components/Post/Add'
 import Modal from '~/components/Settings/Items/Modal.vue'
+import truncate from 'vue-truncate-collapsed'
 
 export default {
   components: {
     Add,
-    Modal
+    Modal,
+    truncate
   },
   props: {
     post: {
