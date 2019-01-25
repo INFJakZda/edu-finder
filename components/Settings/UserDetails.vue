@@ -51,7 +51,7 @@
         <label>Adres email</label>
         <input
           v-model="user.email"
-          type="text"
+          type="email"
           name="shipping[email]"
           placeholder="email@edu-finder.fun"
         >
