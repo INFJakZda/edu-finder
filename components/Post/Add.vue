@@ -142,7 +142,7 @@ export default {
           },
       tags: [],
       helper: [],
-      active: null
+      active: false
     }
   },
   watch: {
@@ -155,6 +155,7 @@ export default {
   },
   created() {
     if (this.postinfo) {
+      this.active = false
       this.post.cityId = this.post.cityId.toString()
       this.post.categoryId = this.post.categoryId.toString()
       this.post.skillLevelId = this.post.skillLevelId.toString()
