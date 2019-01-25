@@ -9,7 +9,9 @@
         <div class="ui black ribbon label">
           <span class="dev-inline"><i class="user icon"/> {{ post.author.username }} </span>
         </div>
-        <img :src="imgSrc">
+        <img 
+          :src="imgSrc" 
+          class="dev-image">
       </div>
       
       <div class="content">
