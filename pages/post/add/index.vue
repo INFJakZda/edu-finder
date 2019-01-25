@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="ui breadcrumb">
+    <div class="ui breadcrumb dev-margin">
       <nuxt-link 
         to="/" 
         class="section">Strona startowa</nuxt-link>
@@ -9,7 +9,7 @@
         to="/post" 
         class="section">Twoje posty</nuxt-link>
       <i class="right angle icon divider"/>
-      <div class="active section">Dodaj nowy post</div>
+      <div class="active section">Dodaj post</div>
     </div>
     <Add :postdata="postsData"/>
   </div>
@@ -35,5 +35,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.dev-margin {
+  margin-bottom: 15px !important;
+}
 </style>
