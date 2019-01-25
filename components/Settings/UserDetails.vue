@@ -77,7 +77,10 @@
       </div>
 
       <button 
-        :class="{green: showMessage}" 
+        :class="{
+          green: showMessage,
+          disabled: !(user.cityId && user.email && user.username)
+        }" 
         class="ui blue button"
         tabindex="0">
         <span v-show="showMessage">
