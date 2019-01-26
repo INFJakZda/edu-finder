@@ -40,7 +40,8 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/auth',
     'semantic-ui-vue/nuxt',
-    'nuxt-fontawesome'
+    'nuxt-fontawesome',
+    ['@nuxtjs/moment', { locales: ['pl'], defaultLocale: 'pl' }]
   ],
 
   fontawesome: {
