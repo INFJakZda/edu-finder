@@ -9,7 +9,7 @@
           <sui-dropdown
             v-model="univeristy"
             :options="user.availableUniversities"
-            placeholder="Select univeristy..."
+            placeholder="Wybierz uniwersytet..."
             search
             selection
           />
@@ -19,49 +19,69 @@
           <sui-dropdown
             v-model="department"
             :options="availableDepartments"
-            placeholder="Select univeristy..."
+            placeholder="Wybierz wydział..."
             search
             selection
           />
         </div>
       </div>
+      <div class="field">
+        <label>Rok rozpoczęcia i zakończenia</label>
+        <div class="two fields">
+          <div class="field">
+            <sui-dropdown
+              :options="years"
+              v-model="startYear"
+              placeholder="Rok rozpoczęcia"
+              selection
+            />
+          </div>
+          <div class="field">
+            <div class="field">
+              <sui-dropdown
+                :options="endYears"
+                :class="{disabled: !(startYear)}"
+                v-model="endYear"
+                placeholder="Rok zakończenia, jeśli ukończyłeś studia"
+                selection
+              />
+            </div>
+          </div>
+        </div>
+      </div>
       <button 
-        :class="{disabled: !department}" 
-        class="ui button"
+        :class="{disabled: !(department && startYear)}" 
+        class="ui green button"
         tabindex="0"
       >Dodaj</button>
     </form>
+
     <h4 class="ui dividing header">Ukończone uczelnie:</h4>
     <sui-list 
       divided 
       relaxed>
-      <sui-list-item 
+      <Education
         v-for="education in user.educationEntries" 
-        :key="education.id">
-        <div class="item">
-          <div class="right floated content">
-            <sui-button
-              basic 
-              negative
-              size="mini"
-              @click="deleteDepartment(education.id)">Usuń</sui-button>
-          </div>
-        </div>
-        <sui-list-icon 
-          name="university" 
-          size="large" 
-          vertical-align="middle" />
-        <sui-list-content>
-          <sui-list-header>{{ education.university ? education.university.name : '' }}</sui-list-header>
-          <sui-list-description>{{ education.department ? education.department.name : '' }}</sui-list-description>
-        </sui-list-content>
-      </sui-list-item>
+        :key="education.id"
+        :education="education"
+        @refreshdev="$emit('refreshdev')"/>
     </sui-list>
+
+    <sui-segment v-if="user.educationEntries.length === 0">
+      <h5 
+        class="ui header">Nie dodałeś żadnej uczelni</h5>
+    </sui-segment>
+
   </div>
 </template>
 
 <script>
+import Education from '~/components/Settings/Items/Education.vue'
+
 export default {
+  components: {
+    Education
+  },
   props: {
     user: {
       type: Object,
@@ -70,20 +90,60 @@ export default {
   },
   data() {
     return {
-      univeristy: '',
-      department: '',
-      availableDepartments: []
+      univeristy: null,
+      department: null,
+      availableDepartments: [],
+      startYear: null,
+      endYear: null,
+      years: Array.from({ length: 40 }, (v, k) => {
+        return {
+          value: (2019 - k).toString(),
+          text: (2019 - k).toString()
+        }
+      }),
+      endYears: [
+        {
+          value: null,
+          text: 'Wprowadź rok rozpoczęcia'
+        }
+      ]
     }
   },
   watch: {
+    user: function() {
+      this.univeristy = null
+      this.department = null
+      this.availableDepartments = []
+      this.startYear = null
+      this.endYear = null
+      this.endYears = [
+        {
+          value: null,
+          text: 'Wprowadź rok rozpoczęcia'
+        }
+      ]
+    },
     univeristy: function() {
-      this.$axios
-        .$get(`/api/university/${this.univeristy}/departments`)
-        .then(res => {
-          this.availableDepartments = res.departments
+      if (this.univeristy) {
+        this.$axios
+          .$get(`/api/university/${this.univeristy}/departments`)
+          .then(res => {
+            this.availableDepartments = res.departments
+          })
+          .catch(e => console.log(e))
+        this.department = null
+      }
+    },
+    startYear: function() {
+      if (this.startYear) {
+        this.endYear = null
+        this.endYears = Array.from({ length: 8 }, (v, k) => {
+          return {
+            value: (+this.startYear + k).toString(),
+            text: (+this.startYear + k).toString()
+          }
         })
-        .catch(e => this.error(e))
-      this.department = ''
+      }
     }
   },
   methods: {
@@ -93,18 +153,12 @@ export default {
           id: 0,
           userId: +this.$auth.user.id,
           universityId: +this.univeristy,
-          departmentId: +this.department
+          departmentId: +this.department,
+          yearStart: this.startYear ? +this.startYear : 0,
+          yearEnd: this.endYear ? +this.endYear : 0
         })
         .then(() => {
-          this.$emit('refresh')
-        })
-        .catch(e => console.log(e))
-    },
-    deleteDepartment(id) {
-      this.$axios
-        .$delete(`/api/educationEntry/${id}`)
-        .then(() => {
-          this.$emit('refresh')
+          this.$emit('refreshdev')
         })
         .catch(e => console.log(e))
     }

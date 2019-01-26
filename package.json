@@ -1,5 +1,5 @@
 {
-  "name": "loli-client",
+  "name": "edu-student",
   "version": "1.0.0",
   "description": "Educational service discovery - frontend layer app. (BSc Thesis project)",
   "author": "multiple",
@@ -28,7 +28,8 @@
     "nuxt": "^2.0.0",
     "nuxt-fontawesome": "^0.3.0",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-vue": "^0.7.0"
+    "semantic-ui-vue": "^0.7.0",
+    "vue-truncate-collapsed": "^2.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

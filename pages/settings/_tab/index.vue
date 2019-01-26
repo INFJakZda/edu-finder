@@ -1,8 +1,16 @@
 <template>
   <div>
+    <div class="ui breadcrumb">
+      <nuxt-link 
+        to="/" 
+        class="section">Strona startowa</nuxt-link>
+      <i class="right angle icon divider"/>
+      <div class="active section">Ustawienia</div>
+    </div>
+    <div class="ui divider"/>
     <Main 
       :userData="loadedDetails" 
-      @refresh="onRefresh" />
+      @refreshdev="onrefreshdev" />
   </div>
 </template>
 
@@ -35,7 +43,7 @@ export default {
       .catch(e => context.error(e))
   },
   methods: {
-    onRefresh() {
+    onrefreshdev() {
       this.$axios
         .$get(`/api/user/${this.$auth.user.id}/${this.savedComponent}`)
         .then(userData => {

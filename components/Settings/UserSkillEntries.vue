@@ -25,6 +25,27 @@
           />
         </div>
       </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Tytuł</label>
+          <input
+            v-model="skillTitle"
+            type="text"
+            name="title"
+            placeholder="Nazwij swoją umiejętność"
+          >
+        </div>
+        <div class="field">
+          <label>Cena (zł/godz)</label>
+          <input
+            v-model.number="price"
+            type="number"
+            name="price"
+            placeholder="Podaj cenę za godzinę korepetycji"
+          >
+        </div>
+      </div>
+
       <div class="field">
         <label>Dodatkowe informacje</label>
         <textarea
@@ -33,43 +54,42 @@
           placeholder="Napisz więcej o swoich umiejętnościach..."
         />
       </div>
+
       <button 
-        :class="{disabled: !(skillLevel && category)}" 
-        class="ui button"
+        :class="{disabled: !(skillLevel && category && skillDetails && skillTitle)}" 
+        class="ui green button"
         tabindex="0"
       >Dodaj</button>
+
     </form>
+
     <h4 class="ui dividing header">Zdefiniowane umiejętności:</h4>
     <sui-list 
       divided 
       relaxed>
-      <sui-list-item 
+      <Skill
         v-for="skillEntry in user.skillEntries" 
-        :key="skillEntry.id">
-        <div class="item">
-          <div class="right floated content">
-            <sui-button
-              basic 
-              negative
-              size="mini"
-              @click="deleteSkillLevel(skillEntry.id)">Usuń</sui-button>
-          </div>
-        </div>
-        <sui-list-icon 
-          name="star" 
-          size="large" 
-          vertical-align="middle" />
-        <sui-list-content>
-          <sui-list-header>{{ categoryName(skillEntry.categoryId) + ' poziom ' + skillName(skillEntry.skillLevelId) }}</sui-list-header>
-          <sui-list-description>{{ skillEntry.details }}</sui-list-description>
-        </sui-list-content>        
-      </sui-list-item>
+        :key="skillEntry.id"
+        :skill-entry="skillEntry"
+        :user="user"
+        @refreshdev="$emit('refreshdev')"/>
     </sui-list>
+
+    <sui-segment v-if="user.skillEntries.length === 0">
+      <h5 
+        class="ui header">Nie dodałeś żadnej umiejętności</h5>
+    </sui-segment>
+
   </div>
 </template>
 
 <script>
+import Skill from '~/components/Settings/Items/Skill.vue'
+
 export default {
+  components: {
+    Skill
+  },
   props: {
     user: {
       type: Object,
@@ -78,10 +98,12 @@ export default {
   },
   data() {
     return {
-      category: '',
-      skillLevel: '',
+      category: null,
+      skillLevel: null,
       availableSkillLevels: [],
-      skillDetails: ''
+      skillDetails: '',
+      skillTitle: '',
+      price: null
     }
   },
   methods: {
@@ -92,34 +114,24 @@ export default {
           userId: +this.$auth.user.id,
           categoryId: +this.category,
           skillLevelId: +this.skillLevel,
-          details: this.skillDetails
+          details: this.skillDetails,
+          title: this.skillTitle,
+          price: this.price ? this.price : 0
         })
         .then(() => {
-          this.$emit('refresh')
+          this.$emit('refreshdev')
+          this.category = null
+          this.skillLevel = null
+          this.availableSkillLevels = []
+          this.skillDetails = ''
+          this.skillTitle = ''
+          this.price = null
         })
         .catch(e => console.log(e))
-    },
-    deleteSkillLevel(id) {
-      this.$axios
-        .$delete(`/api/skillEntry/${id}`)
-        .then(() => {
-          this.$emit('refresh')
-        })
-        .catch(e => console.log(e))
-    },
-    categoryName(id) {
-      return this.user.availableCategories.find(skill => {
-        return +skill.value === id
-      }).text
-    },
-    skillName(id) {
-      return this.user.availableSkillLevels.find(skill => {
-        return +skill.value === id
-      }).text
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 </style>

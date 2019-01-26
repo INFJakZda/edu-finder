@@ -1,5 +1,5 @@
 <template>
-  <div class="ui menu">
+  <div class="ui borderless menu">
     <div class="ui container">
       <a 
         class="header item"
@@ -7,7 +7,7 @@
         <img 
           class="logo dev-logo" 
           src="https://images-eu.ssl-images-amazon.com/images/I/71Ie8rLruiL.png"
-      >Edu Finder</a>
+      >Edu Student</a>
       <div class="right menu">
         <div 
           v-if="loggedIn" 
@@ -20,13 +20,17 @@
           <div class="menu">
             <a 
               class="ui item"
+              @click="$router.push('/post')">
+            <i class="pencil icon"/>Posty</a>
+            <a 
+              class="ui item"
               @click="$router.push('/settings/details')">
-            <i class="cogs icon"/>Settings</a>
+            <i class="cogs icon"/>Profil</a>
             <div class="divider"/>
             <a 
               class="ui item"
               @click="logout">
-            <i class="power off icon"/>Logout</a>
+            <i class="power off icon"/>Wyloguj</a>
           </div>
         </div>
         <div 
@@ -41,11 +45,11 @@
             <a 
               class="ui item"
               @click="$router.push('/register-form')">
-            <i class="sign-in icon"/>Sign up</a>
+            <i class="sign-in icon"/>Rejestracja</a>
             <a 
               class="ui item"
               @click="$router.push('/login-form')">
-            <i class="play icon"/>Log-in</a>
+            <i class="play icon"/>Logowanie</a>
           </div>
         </div>
       </div>
@@ -98,10 +102,6 @@ export default {
 </script>
 
 <style scoped>
-.dev-header-container {
-  padding: 10px;
-}
-
 .dev-logo {
   padding-right: 10px;
 }

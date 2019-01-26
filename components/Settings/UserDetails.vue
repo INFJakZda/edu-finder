@@ -3,39 +3,35 @@
     <h4 class="ui dividing header">Zdjęcie profilowe</h4>
     <div class="dev-container">
       <div class="ui grid container">
-        <div class="sixteen wide mobile five wide tablet five wide computer column">
+        <div class="sixteen wide mobile sixteen wide tablet five wide computer column">
           <div class="dev-center">
             <img
               :src="imgSrc"
               class="ui middle aligned tiny circular image" >
           </div>
         </div>
-        <div class="sixteen wide mobile six wide tablet six wide computer column">
-          <div class="dev-center">
-            <input 
-              id="embedpollfileinput" 
-              type="file" 
-              class="inputfile"
-              @change="onFileSelected">
-            <label 
-              for="embedpollfileinput" 
-              class="ui red right button">
-              <i class="ui file image icon"/> 
-              Zmień zdjęcie
-            </label>
-          </div>
+        <div class="dev-center sixteen wide mobile eight wide tablet six wide computer column">
+          <input 
+            id="embedpollfileinput" 
+            type="file" 
+            class="inputfile"
+            @change="onFileSelected">
+          <label 
+            for="embedpollfileinput" 
+            class="ui blue right button">
+            <i class="ui file image icon"/> 
+            Zmień zdjęcie
+          </label>
         </div>
-        <div class="sixteen wide mobile five wide tablet five wide computer column">
-          <div class="dev-center">
-            <button 
-              :class="{disabled: !selectedFile}"
-              class="ui green right button"
-              @click="onUpload">Załaduj obrazek</button>
-            <div 
-              v-if="selectedFile" 
-              style="display: block">{{ selectedFile.name }}</div>
-          </div>
-        </div>          
+        <div class="dev-center sixteen wide mobile eight wide tablet five wide computer column">
+          <button 
+            :class="{disabled: !selectedFile}"
+            class="ui green right button"
+            @click="onUpload">Załaduj obrazek</button>
+          <div 
+            v-if="selectedFile" 
+            style="display: block">{{ selectedFile.name }}</div>
+        </div>
       </div>
     </div>
     <form 
@@ -55,7 +51,7 @@
         <label>Adres email</label>
         <input
           v-model="user.email"
-          type="text"
+          type="email"
           name="shipping[email]"
           placeholder="email@edu-finder.fun"
         >
@@ -65,7 +61,7 @@
         <textarea
           v-model="user.bioText"
           rows="4"
-          placeholder="Opowiedz nam kilka słów o sobie :)"
+          placeholder="Opowiedz kilka słów o sobie"
         />
       </div>
 
@@ -74,15 +70,18 @@
         <sui-dropdown
           v-model="user.cityId"
           :options="user.availableCities"
-          :placeholder="user.city ? user.city.name : ''"
+          placeholder="Wybierz miasto"
           search
           selection
         />
       </div>
 
       <button 
-        :class="{green: showMessage}" 
-        class="ui button"
+        :class="{
+          green: showMessage,
+          disabled: !(user.cityId && user.email && user.username)
+        }" 
+        class="ui blue button"
         tabindex="0">
         <span v-show="showMessage">
           <i class="save icon"/>Zapisano zmiany
@@ -125,7 +124,7 @@ export default {
     }
   },
   created() {
-    this.user.cityId = this.user.cityId ? this.user.cityId.toString() : ''
+    this.user.cityId = this.user.cityId ? this.user.cityId.toString() : null
   },
   methods: {
     updateImg() {
@@ -139,7 +138,7 @@ export default {
       let post = {
         username: this.user.username,
         email: this.user.email,
-        cityId: +this.user.cityId,
+        cityId: this.user.cityId ? +this.user.cityId : 0,
         bioText: this.user.bioText,
         id: +this.$auth.user.id
       }
@@ -163,10 +162,10 @@ export default {
       const formData = new FormData()
       formData.append('file', this.selectedFile, this.selectedFile.name)
       this.$axios
-        .$post(`/api/user/${this.$auth.user.id}/avatar`, formData)
+        .$post(`/api/user/avatar`, formData)
         .then(() => {
           this.selectedFile = null
-          this.$emit('refresh')
+          this.$emit('refreshdev')
         })
         .catch(err => console.log(err))
     }
@@ -174,7 +173,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .inputfile {
   display: none;
 }
@@ -184,7 +183,7 @@ export default {
 }
 
 .dev-center {
-  display: flex;
+  display: flex !important;
   justify-content: center;
   align-items: center;
 }

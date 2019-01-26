@@ -53,3 +53,19 @@
 & { @import "~semantic-ui-less/definitions/modules/sticky"; }
 & { @import "~semantic-ui-less/definitions/modules/tab"; }
 & { @import "~semantic-ui-less/definitions/modules/transition"; }
+
+@media only screen and (max-width: 767px) {
+  .ui.items:not(.unstackable) > .item > .image, .ui.items:not(.unstackable) > .item > .image > img {
+    max-width: 160px !important;
+    max-height: 160px !important;
+  }
+}
+.ui.items > .item {
+  padding: 5px !important;
+  background: #fff !important;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15) !important;
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15) !important;
+  border-radius: 0.28571429rem !important;
+  border: 1px solid rgba(34, 36, 38, 0.15) !important;
+  margin: 1em 0em !important;
+}
