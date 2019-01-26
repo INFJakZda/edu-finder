@@ -12,7 +12,6 @@
       </div>
 
       <div class="description">
-        <p>{{ post.text }}</p>
         <truncate 
           :length="90" 
           :text="post.text" 
