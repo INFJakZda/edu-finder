@@ -3,7 +3,7 @@
     <h4 class="ui dividing header">Zdjęcie profilowe</h4>
     <div class="dev-container">
       <div class="ui grid container">
-        <div class="sixteen wide mobile eight wide tablet eight wide computer column">
+        <div class="sixteen wide mobile sixteen wide tablet eight wide computer column">
           <div class="dev-center">
             <img
               :src="imgSrc"
@@ -12,7 +12,7 @@
         </div>
         <div 
           :class="{'dev-visible': selectedFile}"
-          class="dev-center sixteen wide mobile eight wide tablet eight wide computer column">
+          class="dev-center sixteen wide mobile sixteen wide tablet eight wide computer column">
           <input
             id="embedpollfileinput"
             :class="{'dev-visible': selectedFile}" 
@@ -29,7 +29,7 @@
         </div>
         <div 
           :class="{'dev-visible': !selectedFile}"
-          class="dev-center sixteen wide mobile eight wide tablet eight wide computer column">
+          class="dev-center sixteen wide mobile sixteen wide tablet eight wide computer column">
           <div class="dev-center">
             <button
               :class="{'dev-visible': !selectedFile}"

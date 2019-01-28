@@ -15,7 +15,7 @@
         </div>
         <ul class="list">
           <li>ogłoszeń o korepetycje,</li>
-          <li>informacji o twoich zdolnościach w profilu,</li>
+          <li>informacji o twoich umięjętnościach w profilu,</li>
           <li>dzięki nim będziesz widoczny dla studentów szukających pomocy.</li>
         </ul>
       </div>
