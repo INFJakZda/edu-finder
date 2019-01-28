@@ -3,7 +3,7 @@
     <form 
       class="ui form" 
       @submit.prevent="addContact">
-      <h4 class="ui dividing header">Zdefiniuj swoje kontakty!</h4>
+      <h4 class="ui dividing header">Sposoby kontaktu z tobą</h4>
 
       <div class="two fields">
 

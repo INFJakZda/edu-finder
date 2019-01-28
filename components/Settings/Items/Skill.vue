@@ -24,7 +24,13 @@
           class="dev-inline"><i class="balance scale icon"/>{{ skillEntry.price }} zł/godz </span>
           
       </div>
-      <sui-list-description>{{ skillEntry.details }}</sui-list-description>
+      <sui-list-description>
+        <truncate 
+          :length="90" 
+          :text="skillEntry.details" 
+          clamp="..." 
+          less=" Zwiń"/>
+      </sui-list-description>
     </sui-list-content>
     <Modal 
       :open="open"
@@ -37,10 +43,12 @@
 
 <script>
 import Modal from '~/components/Settings/Items/Modal.vue'
+import truncate from 'vue-truncate-collapsed'
 
 export default {
   components: {
-    Modal
+    Modal,
+    truncate
   },
   props: {
     skillEntry: {

@@ -3,6 +3,7 @@
     <form 
       class="ui form" 
       @submit.prevent="addUniversity">
+      <h4 class="ui dividing header">Uczelnie na które uczęszczałeś</h4>
       <div class="two fields">
         <div class="field">
           <label>Uniwersytet</label>

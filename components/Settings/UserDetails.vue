@@ -45,7 +45,7 @@
       </div>
     </div>
     <form 
-      class="ui form" 
+      class="ui form dev-top-margin" 
       @submit.prevent="submitForm">
       <h4 class="ui dividing header">Podstawowe dane</h4>
       <div class="field">
@@ -70,7 +70,7 @@
         <label>Opis</label>
         <textarea
           v-model="user.bioText"
-          rows="4"
+          rows="2"
           placeholder="Opowiedz kilka słów o sobie"
         />
       </div>
@@ -200,5 +200,8 @@ export default {
 }
 .dev-visible {
   display: none !important;
+}
+.dev-top-margin {
+  margin-top: 20px;
 }
 </style>

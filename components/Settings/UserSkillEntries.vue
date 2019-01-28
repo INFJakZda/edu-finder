@@ -3,6 +3,7 @@
     <form 
       class="ui form" 
       @submit.prevent="addSkillEntry">
+      <h4 class="ui dividing header">Informacje o udzielaniu korepetycji</h4>
       <div class="two fields">
         <div class="field">
           <label>Wybierz Kategorię</label>
@@ -50,7 +51,7 @@
         <label>Dodatkowe informacje</label>
         <textarea
           v-model="skillDetails"
-          rows="3"
+          rows="2"
           placeholder="Napisz więcej o swoich umiejętnościach..."
         />
       </div>
