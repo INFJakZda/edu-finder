@@ -1,15 +1,19 @@
 <template>
   <div>
-    <div class="ui grid massive message">
-      <div class="ui container">
-        <div class="row">
-          <div class="h1 ui huge header">
+    <div class="ui grid massive message dev-mobile">
+      <div class="ui container dev-container">
+        <div class="row dev-row">
+          <div class="h1 ui huge header dev-header">
             Znajdź korepetycje!
           </div>
-          <p v-if="!loggedIn">
+          <p 
+            v-if="!loggedIn" 
+            class="dev-font">
             Aby skorzystać z pełni możliwości platformy załóż konto w jednym prostym kroku. Umożliwi to dodawanie postów, kontakt z innymi użytkownikami oraz dużo więcej...
           </p>
-          <p v-if="loggedIn">
+          <p 
+            v-if="loggedIn"
+            class="dev-font">
             Pamiętaj aby ułatwić znalezienie twoich potrzeb powinieneś wprowadzić jak najwięcej informacji o sobie. Pochwal się swoimi umiejętnościami oraz ukończoną edukacją ;)
           </p>
           <nuxt-link
@@ -132,5 +136,21 @@ export default {
 .ui.message {
   margin: 0px;
   padding: 0px;
+}
+@media only screen and (max-width: 767px) {
+  .dev-row {
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
+  }
+  .dev-container {
+    margin-left: 0em !important;
+    margin-right: 0em !important;
+  }
+  .dev-header {
+    font-size: 36px !important;
+  }
+  .dev-font {
+    font-size: 20px !important;
+  }
 }
 </style>
