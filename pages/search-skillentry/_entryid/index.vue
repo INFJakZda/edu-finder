@@ -12,7 +12,7 @@
       <div class="active section">{{ entry.user.username }}</div>
     </div>
 
-    <div class="ui grid container">
+    <div class="ui grid">
       <div class="sixteen wide mobile ten wide tablet ten wide computer column">
         <User
           :user="entry.user"

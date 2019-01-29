@@ -8,7 +8,7 @@
         class="item">
         <i
           :class="contact.contactType.name === 'Email' ? 'mail' : contact.contactType.name === 'Skype' ? 'skype' : 'phone'"
-          class="big middle aligned icon"/>
+          class="large middle aligned icon"/>
         <div class="content">
           <div class="header">{{ contact.text }}</div>
           <div class="description">{{ contact.contactType.name }}</div>

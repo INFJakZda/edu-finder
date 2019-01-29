@@ -15,7 +15,7 @@
           clamp="..." 
           less=" Zwiń"/>
       </div>
-      <div class="meta">
+      <div class="extra">
         <div class="dev-inline"><i class="balance scale icon"/> Cena: {{ entry.price }} zł/godz, </div>
         <div class="dev-inline"><i class="graduation cap icon"/> Poziom: {{ entry.skillLevel.name }}, </div>
         <div class="dev-inline"><i class="globe icon"/> Kategoria: {{ entry.category.name }} </div>
