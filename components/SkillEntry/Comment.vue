@@ -9,7 +9,7 @@
         <span class="date">Dziś o 11:24</span>
         <div class="rating">
           <i class="star icon"/>
-          {{ data.rating }}/{{ data.rating }}
+          {{ data.rating }}/5
         </div>
       </div>
       <div class="text">

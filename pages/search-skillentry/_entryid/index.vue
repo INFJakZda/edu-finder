@@ -16,7 +16,8 @@
       <div class="sixteen wide mobile seven wide tablet seven wide computer column">
         <User
           :user="entry.user"
-          :entry="entry" />
+          :entry="entry"
+          @refreshdev="update"/>
       </div>
       <div 
         class="dev-center sixteen wide mobile nine wide tablet nine wide computer column">
@@ -34,41 +35,30 @@
         </sui-menu>
 
         <sui-segment>
-          sdfsdgs
+          <Education
+            :list="entry.user.educationEntries"/>
+        </sui-segment>
+
+        <sui-segment>
+          <Contact
+            :user="entry.user" />
         </sui-segment>
       </div>
     </div>
 
-    <User
-      :user="entry.user"
-      :entry="entry" />
-    
-    <div class="ui large comments">
-      <h4 class="ui dividing header">Rekomendacje:</h4>
-      <Comment 
-        v-for="rec in entry.recommendations"
-        :key="rec.id" 
-        :data="rec"/>
-    </div>
-
-    <Education
-      :list="entry.user.educationEntries"/>
-    
   </div>
 </template>
 
 <script>
-import Details from '~/components/SkillEntry/Details.vue'
 import Education from '~/components/SkillEntry/Education.vue'
-import Comment from '~/components/SkillEntry/Comment.vue'
 import User from '~/components/SkillEntry/Card.vue'
+import Contact from '~/components/SkillEntry/Contact.vue'
 
 export default {
   components: {
-    Details,
     Education,
-    Comment,
-    User
+    User,
+    Contact
   },
   data() {
     return {
@@ -82,6 +72,14 @@ export default {
     },
     select(name) {
       this.active = name
+    },
+    update() {
+      this.$axios
+        .$get(`/api/skillentry/${this.entry.id}`)
+        .then(data => {
+          this.entry = data
+        })
+        .catch(e => console.log(e))
     }
   },
   asyncData(context) {
