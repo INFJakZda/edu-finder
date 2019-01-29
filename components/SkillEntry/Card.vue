@@ -19,15 +19,23 @@
           less=" Zwiń"/>
       </div>
       <div class="meta">
-        <span class="dev-inline"><i class="graduation cap icon"/> {{ entry.skillLevel.name }} </span>
-        <span class="dev-inline"><i class="globe icon"/> {{ entry.category.name }} </span>
+        <div class="dev-inline"><i class="balance scale icon"/> Cena: {{ entry.price }} zł/godz, </div>
+        <div class="dev-inline"><i class="graduation cap icon"/> Poziom: {{ entry.skillLevel.name }}, </div>
+        <div class="dev-inline"><i class="globe icon"/> Kategoria: {{ entry.category.name }} </div>
       </div>
       
     </div>
     <div class="content">
-      <i class="comment icon"/>
-      {{ entry.recommendations.length }} rekomendacje
-      <div class="ui medium comments">
+      <div 
+        class="click"
+        @click="open = !open">
+        <i class="comment icon"/>
+        {{ entry.recommendations.length }} rekomendacje
+      </div>
+      
+      <div 
+        v-if="open && entry.recommendations.length" 
+        class="ui medium comments">
         <Comment 
           v-for="rec in entry.recommendations"
           :key="rec.id" 
@@ -43,6 +51,7 @@
             @rate="handleRate"/>
         </div>
         <button 
+          :class="{disabled: !comment}"
           class="mini ui button right floated"
           @click="addRecomendation">
           Dodaj
@@ -83,7 +92,8 @@ export default {
   data() {
     return {
       value: 1,
-      comment: ''
+      comment: '',
+      open: false
     }
   },
   computed: {
@@ -128,5 +138,9 @@ export default {
 <style scoped>
 .dev-margin-top {
   margin-top: 10px !important;
+}
+.ui.cards > .card,
+.ui.card {
+  width: 100% !important;
 }
 </style>

@@ -13,26 +13,15 @@
     </div>
 
     <div class="ui grid container">
-      <div class="sixteen wide mobile seven wide tablet seven wide computer column">
+      <div class="sixteen wide mobile ten wide tablet ten wide computer column">
         <User
           :user="entry.user"
           :entry="entry"
           @refreshdev="update"/>
       </div>
       <div 
-        class="dev-center sixteen wide mobile nine wide tablet nine wide computer column">
-        <sui-menu 
-          pointing 
-          secondary>
-          <a
-            is="sui-menu-item"
-            v-for="item in items"
-            :active="isActive(item)"
-            :key="item"
-            :content="item"
-            @click="select(item)"
-          />
-        </sui-menu>
+        class="dev-center sixteen wide mobile six wide tablet six wide computer column">
+        <h3 class="ui dividing header">Informacje o {{ entry.user.username }}:</h3>
 
         <sui-segment>
           <Education
@@ -43,6 +32,12 @@
           <Contact
             :user="entry.user" />
         </sui-segment>
+
+        <button 
+          class="ui button right floated"
+          @click="sendMessage">
+          Napisz do {{ entry.user.username }}
+        </button>
       </div>
     </div>
 
@@ -80,6 +75,9 @@ export default {
           this.entry = data
         })
         .catch(e => console.log(e))
+    },
+    sendMessage() {
+      this.$router.push(`/messages/conversations/${this.entry.user.id}`)
     }
   },
   asyncData(context) {
