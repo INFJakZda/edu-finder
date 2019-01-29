@@ -12,7 +12,7 @@
         <truncate
           :length="90"
           :text="entry.details"
-          clamp="..." 
+          clamp=" ..." 
           less=" Zwiń"/>
       </div>
       <div class="extra">
