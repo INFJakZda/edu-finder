@@ -32,9 +32,9 @@
       <div class="ui stackable grid">
         <div class="three column row">
           <div class="column">
-            <h1 class="ui header">
+            <h2 class="ui header">
               Znajdź korepetytora
-            </h1>
+            </h2>
             <p>
               Możesz wyszukać korepetytora z naszej bazy użytkowników. Wprowadź konkretne parametry wuszukiwania i skontaktuj się z korepetytorem. 
             </p>
@@ -45,9 +45,9 @@
             </nuxt-link>
           </div>
           <div class="column">
-            <h1 class="ui header">
+            <h2 class="ui header">
               Znajdź studenta
-            </h1>
+            </h2>
             <p>
               W naszej bazie jest mnóstwo osób potrzebujących pomocy, możesz wyszukać w konkretnych kategoriach oraz skontaktować się z nimi.
             </p>
@@ -60,11 +60,11 @@
           <div 
             v-if="!loggedIn" 
             class="column">
-            <h1 class="ui header">
-              Dla posiadających konto
-            </h1>
+            <h2 class="ui header">
+              Posiadający konto
+            </h2>
             <p>
-              Jeżeli posiadasz już konto możesz się zalogować, aby skorzystać z pełni usług. Pamiętaj o wprowadzeniu informacji o twoim doświadczeniu.
+              Jeżeli posiadasz już konto możesz się zalogować, aby skorzystać z pełni usług. Pamiętaj o wprowadzeniu informacji o tobie i twoim doświadczeniu.
             </p>
             <nuxt-link 
               to="/login-form"
@@ -75,9 +75,9 @@
           <div 
             v-if="loggedIn" 
             class="column">
-            <h1 class="ui header">
+            <h2 class="ui header">
               Dodaj nowy post
-            </h1>
+            </h2>
             <p>
               Aby umożliwić innym znalezienie twoich potrzeb poinformuj o tym. Wprowadź pełne informacje na temat tego czego potrzebujesz. Daj się znaleźć!
             </p>

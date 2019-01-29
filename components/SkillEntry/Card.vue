@@ -8,9 +8,6 @@
     </div>
     <div class="content">
       <a class="header">{{ entry.title }}</a>
-      <div class="meta">
-        <span class="date">{{ entry.price }} zł/godz</span>
-      </div>
       <div class="description">
         <truncate
           :length="90"
@@ -35,7 +32,7 @@
       
       <div 
         v-if="open && entry.recommendations.length" 
-        class="ui medium comments">
+        class="ui comments">
         <Comment 
           v-for="rec in entry.recommendations"
           :key="rec.id" 
