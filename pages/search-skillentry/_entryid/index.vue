@@ -55,19 +55,7 @@ export default {
     User,
     Contact
   },
-  data() {
-    return {
-      active: 'Uczelnie',
-      items: ['Uczelnie', 'Korepetycje', 'Friends']
-    }
-  },
   methods: {
-    isActive(name) {
-      return this.active === name
-    },
-    select(name) {
-      this.active = name
-    },
     update() {
       this.$axios
         .$get(`/api/skillentry/${this.entry.id}`)

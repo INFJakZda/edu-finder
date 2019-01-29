@@ -104,7 +104,7 @@ export default {
       }
     },
     prettyPrintTimestamp() {
-      return moment(this.user.lastactive).fromNow()
+      return moment(this.user.creationDate).fromNow()
     }
   },
   methods: {
