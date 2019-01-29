@@ -34,7 +34,7 @@
         </sui-menu>
 
         <sui-segment>
-          <docs-wireframe name="media-paragraph" />
+          sdfsdgs
         </sui-segment>
       </div>
     </div>
@@ -61,19 +61,19 @@
 import Details from '~/components/SkillEntry/Details.vue'
 import Education from '~/components/SkillEntry/Education.vue'
 import Comment from '~/components/SkillEntry/Comment.vue'
-import User from '~/components/User/Card.vue'
+import User from '~/components/SkillEntry/Card.vue'
 
 export default {
   components: {
-    User,
     Details,
     Education,
-    Comment
+    Comment,
+    User
   },
   data() {
     return {
       active: 'Uczelnie',
-      items: ['Uczelnie', '', 'Friends']
+      items: ['Uczelnie', 'Korepetycje', 'Friends']
     }
   },
   methods: {
@@ -98,4 +98,7 @@ export default {
 </script>
 
 <style scoped>
+.ui.grid {
+  margin-top: 0px !important;
+}
 </style>
