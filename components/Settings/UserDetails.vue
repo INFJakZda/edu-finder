@@ -3,39 +3,49 @@
     <h4 class="ui dividing header">Zdjęcie profilowe</h4>
     <div class="dev-container">
       <div class="ui grid container">
-        <div class="sixteen wide mobile sixteen wide tablet five wide computer column">
+        <div class="sixteen wide mobile sixteen wide tablet eight wide computer column">
           <div class="dev-center">
             <img
               :src="imgSrc"
-              class="ui middle aligned tiny circular image" >
+              class="ui middle aligned small circular image" >
           </div>
         </div>
-        <div class="dev-center sixteen wide mobile eight wide tablet six wide computer column">
-          <input 
-            id="embedpollfileinput" 
+        <div 
+          :class="{'dev-visible': selectedFile}"
+          class="dev-center sixteen wide mobile sixteen wide tablet eight wide computer column">
+          <input
+            id="embedpollfileinput"
+            :class="{'dev-visible': selectedFile}" 
             type="file" 
             class="inputfile"
             @change="onFileSelected">
-          <label 
+          <label
+            :class="{'dev-visible': selectedFile}"
             for="embedpollfileinput" 
             class="ui blue right button">
             <i class="ui file image icon"/> 
             Zmień zdjęcie
           </label>
         </div>
-        <div class="dev-center sixteen wide mobile eight wide tablet five wide computer column">
-          <button 
-            :class="{disabled: !selectedFile}"
-            class="ui green right button"
-            @click="onUpload">Załaduj obrazek</button>
-          <div 
-            v-if="selectedFile" 
-            style="display: block">{{ selectedFile.name }}</div>
+        <div 
+          :class="{'dev-visible': !selectedFile}"
+          class="dev-center sixteen wide mobile sixteen wide tablet eight wide computer column">
+          <div class="dev-center">
+            <button
+              :class="{'dev-visible': !selectedFile}"
+              class="ui green right button"
+              style="min-height: 38px !important"
+              @click="onUpload">Załaduj obrazek</button>
+            <div
+              v-if="selectedFile"
+              :class="{'dev-visible': !selectedFile}" 
+              style="flex-basis: 100%">{{ selectedFile.name }}</div>
+          </div>
         </div>
       </div>
     </div>
     <form 
-      class="ui form" 
+      class="ui form dev-top-margin" 
       @submit.prevent="submitForm">
       <h4 class="ui dividing header">Podstawowe dane</h4>
       <div class="field">
@@ -60,7 +70,7 @@
         <label>Opis</label>
         <textarea
           v-model="user.bioText"
-          rows="4"
+          rows="2"
           placeholder="Opowiedz kilka słów o sobie"
         />
       </div>
@@ -184,7 +194,14 @@ export default {
 
 .dev-center {
   display: flex !important;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
+}
+.dev-visible {
+  display: none !important;
+}
+.dev-top-margin {
+  margin-top: 20px;
 }
 </style>

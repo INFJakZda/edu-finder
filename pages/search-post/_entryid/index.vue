@@ -9,34 +9,21 @@
         to="/search-post" 
         class="section">Studenci</nuxt-link>
       <i class="right angle icon divider"/>
-      <div class="active section">{{ entry.user.username }}</div>
+      <div class="active section">{{ entry.author.username }}</div>
     </div>
-    <div class="ui items">
-      <Details 
-        :entry="entry"
-        :data="{}"/>
-    </div>
-    
-    <div class="ui large comments">
-      <h4 class="ui dividing header">Rekomendacje:</h4>
-      <Comment 
-        v-for="rec in entry.recommendations"
-        :key="rec.id" 
-        :data="rec"/>
-    </div>
-
-    <Education
-      :list="entry.user.educationEntries"/>
+    <User
+      :user="entry.author" 
+      :entry="entry"/>
     
   </div>
 </template>
 
 <script>
-import Details from '~/components/SkillEntry/Details.vue'
+import User from '~/components/User/Card.vue'
 
 export default {
   components: {
-    Details
+    User
   },
   asyncData(context) {
     return context.app.$axios

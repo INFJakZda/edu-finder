@@ -11,36 +11,74 @@
       <i class="right angle icon divider"/>
       <div class="active section">{{ entry.user.username }}</div>
     </div>
-    <div class="ui items">
-      <Details 
-        :entry="entry"
-        :data="{}"/>
-    </div>
-    
-    <div class="ui large comments">
-      <h4 class="ui dividing header">Rekomendacje:</h4>
-      <Comment 
-        v-for="rec in entry.recommendations"
-        :key="rec.id" 
-        :data="rec"/>
+
+    <div class="ui grid">
+      <div class="sixteen wide mobile ten wide tablet ten wide computer column">
+        <User
+          :user="entry.user"
+          :entry="entry"
+          @refreshdev="update"/>
+      </div>
+      <div 
+        class="dev-center sixteen wide mobile six wide tablet six wide computer column">
+        <h3 class="ui dividing header">Informacje o {{ entry.user.username }}:</h3>
+
+        <sui-segment>
+          <Education
+            :list="entry.user.educationEntries"/>
+        </sui-segment>
+
+        <sui-segment>
+          <Contact
+            :user="entry.user" />
+        </sui-segment>
+
+        <button 
+          class="ui button right floated"
+          @click="sendMessage">
+          Napisz do {{ entry.user.username }}
+        </button>
+      </div>
     </div>
 
-    <Education
-      :list="entry.user.educationEntries"/>
-    
   </div>
 </template>
 
 <script>
-import Details from '~/components/SkillEntry/Details.vue'
 import Education from '~/components/SkillEntry/Education.vue'
-import Comment from '~/components/SkillEntry/Comment.vue'
+import User from '~/components/SkillEntry/Card.vue'
+import Contact from '~/components/SkillEntry/Contact.vue'
 
 export default {
   components: {
-    Details,
     Education,
-    Comment
+    User,
+    Contact
+  },
+  data() {
+    return {
+      active: 'Uczelnie',
+      items: ['Uczelnie', 'Korepetycje', 'Friends']
+    }
+  },
+  methods: {
+    isActive(name) {
+      return this.active === name
+    },
+    select(name) {
+      this.active = name
+    },
+    update() {
+      this.$axios
+        .$get(`/api/skillentry/${this.entry.id}`)
+        .then(data => {
+          this.entry = data
+        })
+        .catch(e => console.log(e))
+    },
+    sendMessage() {
+      this.$router.push(`/messages/conversations/${this.entry.user.id}`)
+    }
   },
   asyncData(context) {
     return context.app.$axios
@@ -56,4 +94,7 @@ export default {
 </script>
 
 <style scoped>
+.ui.grid {
+  margin-top: 0px !important;
+}
 </style>

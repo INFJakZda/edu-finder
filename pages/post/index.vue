@@ -25,7 +25,6 @@
           <button 
             class="positive ui button"
             @click="$router.push('/post/add')">
-            <i class="add icon"/>
             Dodaj post
           </button>
         </div>

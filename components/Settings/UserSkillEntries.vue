@@ -3,6 +3,29 @@
     <form 
       class="ui form" 
       @submit.prevent="addSkillEntry">
+
+      <div 
+        :class="{ 'dev-hide': !showInfo }"
+        class="ui info message dev-padding">
+        <i 
+          class="close icon"
+          @click="showInfo = !showInfo"/>
+        <div class="header">
+          Dane w w tej sekcji posłużą do: 
+        </div>
+        <ul class="list">
+          <li>ogłoszeń o korepetycje,</li>
+          <li>informacji o twoich umięjętnościach w profilu,</li>
+          <li>dzięki nim będziesz widoczny dla studentów szukających pomocy.</li>
+        </ul>
+      </div>
+
+      <h4 
+        :class="{ 
+          'dev-margin-top': !showInfo,
+          'dev-margin': showInfo
+        }"
+        class="ui dividing header">Informacje o udzielaniu korepetycji</h4>
       <div class="two fields">
         <div class="field">
           <label>Wybierz Kategorię</label>
@@ -50,7 +73,7 @@
         <label>Dodatkowe informacje</label>
         <textarea
           v-model="skillDetails"
-          rows="3"
+          rows="2"
           placeholder="Napisz więcej o swoich umiejętnościach..."
         />
       </div>
@@ -103,7 +126,8 @@ export default {
       availableSkillLevels: [],
       skillDetails: '',
       skillTitle: '',
-      price: null
+      price: null,
+      showInfo: true
     }
   },
   methods: {
@@ -134,4 +158,16 @@ export default {
 </script>
 
 <style scoped>
+.dev-padding {
+  padding: 8px 10px;
+}
+.dev-hide {
+  display: none;
+}
+.dev-margin-top {
+  margin-top: 0px;
+}
+.dev-margin {
+  margin-top: 14px;
+}
 </style>

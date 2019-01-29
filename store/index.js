@@ -3,14 +3,16 @@ import Vuex from 'vuex'
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      imgSrc: 'http://simpleicon.com/wp-content/uploads/add-user.png'
+      imgSrc:
+        'https://cdn4.iconfinder.com/data/icons/network-and-security/63/add-user-512.png'
     },
     mutations: {
       setUserImg(state, imgSrc) {
         state.imgSrc = imgSrc
       },
       rmUserImg(state) {
-        state.imgSrc = 'http://simpleicon.com/wp-content/uploads/add-user.png'
+        state.imgSrc =
+          'https://cdn4.iconfinder.com/data/icons/network-and-security/63/add-user-512.png'
       }
     },
     actions: {

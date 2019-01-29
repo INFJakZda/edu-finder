@@ -17,10 +17,19 @@
       <div class="meta">
         <span class="dev-inline"><i class="graduation cap icon"/> {{ entry.skillLevel.name }} </span>
         <span class="dev-inline"><i class="globe icon"/> {{ entry.category.name }} </span>
+        <span 
+          v-if="entry.price"
+          class="dev-inline"><i class="balance scale icon"/> {{ entry.price }} zł/godz </span>
       </div>
 
-      <div class="description">
-        <p>{{ entry.details }}</p>
+      <div 
+        class="description"
+        @click.stop>
+        <truncate
+          :length="150"
+          :text="entry.details"
+          clamp="..." 
+          less=" Zwiń"/>
       </div>
     </div>
   </div>
@@ -28,11 +37,13 @@
 
 <script>
 import Add from '~/components/Post/Add'
+import truncate from 'vue-truncate-collapsed'
 
 export default {
   name: 'ItemGroupExample',
   components: {
-    Add
+    Add,
+    truncate
   },
   props: {
     entry: {

@@ -1,5 +1,5 @@
 <template>
-  <div class="ui borderless menu">
+  <div class="ui large borderless menu">
     <div class="ui container">
       <a 
         class="header item"
@@ -39,7 +39,6 @@
           <img 
             :src="imgSrc" 
             class="ui avatar image">
-          Moje konto
           <i class="dropdown icon"/>
           <div class="menu">
             <a 

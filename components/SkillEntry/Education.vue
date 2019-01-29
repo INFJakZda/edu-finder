@@ -16,6 +16,8 @@
           <sui-list-description>
             <span v-if="education.yearEnd">{{ education.yearStart }} - {{ education.yearEnd }},</span>
             <span v-else>Rozpoczęcie: {{ education.yearStart }},</span>
+          </sui-list-description>
+          <sui-list-description>
             <span>{{ education.department ? education.department.name : '' }}</span>
           </sui-list-description>
         </sui-list-content>

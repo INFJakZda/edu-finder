@@ -1,6 +1,7 @@
 <template>
   <div>
-    <sui-menu 
+    <sui-menu
+      class="dev-font"
       pointing 
       secondary>
       <a
@@ -65,3 +66,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+@media screen and (max-width: 767px) {
+  .dev-font {
+    font-size: 0.96rem;
+  }
+}
+</style>
