@@ -1,9 +1,21 @@
 <template>
   <div>
+    <div class="ui breadcrumb">
+      <nuxt-link 
+        to="/" 
+        class="section">Strona startowa</nuxt-link>
+      <i class="right angle icon divider"/>
+      <nuxt-link 
+        to="/messages" 
+        class="section">Wiadomości</nuxt-link>
+      <i class="right angle icon divider"/>
+      <div class="active section">Konwersacja</div>
+    </div>
     <div 
       v-for="(message, key) in messages" 
       :key="key">
       <Message
+        :avatar_id="avatarId(message)"
         :date="message.timestamp"
         :message="message.text" />
     </div>
@@ -36,8 +48,12 @@ export default {
     this.fetchConversation()
   },
   methods: {
-    sendMessage() {
-      return null
+    avatarId(message) {
+      if (message.receiver === null) {
+        return null
+      }
+
+      return message.receiver.avatarId
     },
     rerender() {
       this.fetchConversation()
