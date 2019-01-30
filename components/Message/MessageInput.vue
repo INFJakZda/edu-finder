@@ -7,7 +7,7 @@
           v-model="currentMessage" />
       </div>
       <Button 
-        :modifiers="['primary']" 
+        :modifiers="['primary', 'large', 'right', 'floated']" 
         icon="edit" 
         text="Wyślij wiadomość"
         @submit.prevent

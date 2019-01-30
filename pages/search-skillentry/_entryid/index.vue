@@ -36,7 +36,7 @@
         <button 
           class="ui button right floated"
           @click="sendMessage">
-          Napisz do {{ entry.user.username }}
+          <icon :icon="['fas', 'envelope']"/> Wyślij wiadomość 
         </button>
       </div>
     </div>

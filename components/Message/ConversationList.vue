@@ -59,7 +59,11 @@ export default {
       return moment(ts).fromNow()
     },
     messagePreview(text) {
-      return text.slice(0, 140) + ' ...'
+      if (text >= 140) {
+        return text.slice(0, 140) + ' ...'
+      }
+
+      return text
     }
   }
 }
