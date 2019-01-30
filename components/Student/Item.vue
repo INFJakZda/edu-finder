@@ -19,10 +19,17 @@
       <div class="meta">
         <span class="dev-inline"><i class="graduation cap icon"/> {{ post.skillLevel.name }} </span>
         <span class="dev-inline"><i class="globe icon"/> {{ post.category.name }} </span>
+        <span class="dev-inline"><i class="map marker alternate icon"/> {{ post.city.name }} </span>
       </div>
 
-      <div class="description">
-        <p>{{ post.text }}</p>
+      <div
+        class="description"
+        @click.stop>
+        <truncate
+          :length="150"
+          :text="post.text"
+          clamp=" ..." 
+          less=" Zwiń"/>
       </div>
 
       <div class="extra">
@@ -36,7 +43,12 @@
 </template>
 
 <script>
+import truncate from 'vue-truncate-collapsed'
+
 export default {
+  components: {
+    truncate
+  },
   props: {
     post: {
       type: Object,

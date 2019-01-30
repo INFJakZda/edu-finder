@@ -1,47 +1,41 @@
 <template>
-  <div class="ui card">
+  <div class="ui card dev-margin-top">
     <div class="content">
-      <div class="right floated meta">14h</div>
+      <div class="right floated meta">{{ prettyPrintTimestamp }}</div>
       <img 
         :src="imgSrc" 
         class="ui avatar image"> {{ user.username }}
     </div>
     <div class="content">
       <a class="header">{{ entry.title }}</a>
-      <div class="meta">
-        <span class="date">{{ prettyPrintTimestamp }}</span>
+      <div class="extra">
+        <div class="dev-inline"><i class="map marker alternate icon"/> Miasto: {{ entry.city.name }}, </div>
+        <div class="dev-inline"><i class="graduation cap icon"/> Poziom: {{ entry.skillLevel.name }}, </div>
+        <div class="dev-inline"><i class="globe icon"/> Kategoria: {{ entry.category.name }} </div>
       </div>
       <div class="description">
-        {{ entry.text }}.
+        <truncate
+          :length="90"
+          :text="entry.text"
+          clamp=" ..." 
+          less=" Zwiń"/>
       </div>
       <div 
         v-for="(tag, idx) in entry.tags"
         :key="idx"
         class="ui label">{{ tag }}</div>
     </div>
-    <div class="content">
-      <span class="right floated">
-        <i class="heart outline like icon"/>
-        17 likes
-      </span>
-      <i class="comment icon"/>
-      3 rekomendacje
-    </div>
-    <div class="extra content">
-      <div class="ui large transparent left icon input">
-        <i class="heart outline icon"/>
-        <input 
-          type="text" 
-          placeholder="Add Comment...">
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
 import moment from 'moment'
+import truncate from 'vue-truncate-collapsed'
 
 export default {
+  components: {
+    truncate
+  },
   props: {
     user: {
       type: Object,
@@ -69,5 +63,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.dev-margin-top {
+  margin-top: 10px !important;
+}
+.ui.cards > .card,
+.ui.card {
+  width: 100% !important;
+}
 </style>

@@ -28,7 +28,7 @@
         <truncate
           :length="150"
           :text="entry.details"
-          clamp="..." 
+          clamp=" ..." 
           less=" Zwiń"/>
       </div>
     </div>

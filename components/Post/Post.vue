@@ -15,7 +15,7 @@
         <truncate 
           :length="90" 
           :text="post.text" 
-          clamp="..." 
+          clamp=" ..." 
           less=" Zwiń"/>
       </div>
 

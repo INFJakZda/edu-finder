@@ -18,7 +18,7 @@
 
     <sui-segment v-if="user.contactEntries.length === 0">
       <h5 
-        class="ui header">Nie ma zdefiniowanych kontaktów</h5>
+        class="ui header">Brak kontaktów</h5>
     </sui-segment>
     
   </div>

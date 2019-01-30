@@ -23,6 +23,10 @@
         </sui-list-content>
       </sui-list-item>
     </sui-list>
+    <sui-segment v-if="list.length === 0">
+      <h5 
+        class="ui header">Nie dodano uczelni</h5>
+    </sui-segment>
   </div>
 </template>
 

@@ -28,7 +28,7 @@
         <truncate 
           :length="90" 
           :text="skillEntry.details" 
-          clamp="..." 
+          clamp=" ..." 
           less=" Zwiń"/>
       </sui-list-description>
     </sui-list-content>

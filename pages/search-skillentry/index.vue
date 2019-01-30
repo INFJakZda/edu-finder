@@ -1,5 +1,51 @@
 <template>
   <div>
+
+    <table class="ui celled table">
+      <tbody>
+        <tr>
+          <td>
+            <div class="dev-center">
+              <sui-dropdown
+                v-model="selectedCategory"
+                :menu-header="menuHeader"
+                :search-in-menu="searchInMenu"
+                :options="entryData.availableCategories"
+                text="Wybierz kategorię"
+                icon="globe"
+                floating
+                labeled
+                button
+                class="icon"
+              />
+            </div>
+          </td>
+          <td>
+            <div class="dev-center">
+              <sui-dropdown
+                v-model="selectedLevel"
+                :menu-header="menuHeader"
+                :search-in-menu="searchInMenu"
+                :options="entryData.availableSkillLevels"
+                text="Wybierz poziom"
+                icon="graduation cap"
+                floating
+                labeled
+                button
+                class="icon"
+              />
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div 
+      class="ui right floated small primary button"
+      @click="update">
+      Aplikuj filtry
+    </div>
+
     <div class="ui breadcrumb">
       <nuxt-link 
         to="/" 
@@ -25,6 +71,21 @@ export default {
   components: {
     Item
   },
+  data() {
+    return {
+      menuHeader: {
+        icon: '',
+        content: 'Header'
+      },
+      searchInMenu: {
+        icon: 'search',
+        iconPosition: 'left'
+      },
+      selectedCategory: null,
+      selectedCity: null,
+      selectedLevel: null
+    }
+  },
   asyncData(context) {
     return context.app.$axios
       .$get(`/api/skillentry`)
@@ -39,6 +100,20 @@ export default {
     refreshdev() {
       this.$axios
         .$get(`/api/skillentry`)
+        .then(data => {
+          this.entryData = data
+        })
+        .catch(e => console.log(e))
+    },
+    update() {
+      this.$axios
+        .$get(`/api/skillentry/`, {
+          params: {
+            categoryId: this.selectedCategory,
+            cityId: this.selectedCity,
+            skillLevelId: this.selectedLevel
+          }
+        })
         .then(data => {
           this.entryData = data
         })

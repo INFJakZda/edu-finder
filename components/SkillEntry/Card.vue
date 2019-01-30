@@ -12,7 +12,7 @@
         <truncate
           :length="90"
           :text="entry.details"
-          clamp="..." 
+          clamp=" ..." 
           less=" Zwiń"/>
       </div>
       <div class="extra">
@@ -104,7 +104,7 @@ export default {
       }
     },
     prettyPrintTimestamp() {
-      return moment(this.user.lastactive).fromNow()
+      return moment(this.user.creationDate).fromNow()
     }
   },
   methods: {
