@@ -2,7 +2,7 @@
   <div>
     <div class="ui breadcrumb">
       <nuxt-link 
-        to="/" 
+        to="/"
         class="section">Strona główna</nuxt-link>
       <i class="right angle icon divider"/>
       <nuxt-link 
