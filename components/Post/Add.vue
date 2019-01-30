@@ -3,14 +3,14 @@
     <div 
       v-if="!postinfo" 
       class="ui top attached tabular menu">
-      <div class="active item">Dodaj nowy post</div>
+      <div class="active item">Dodaj nowe ogłoszenie</div>
     </div>
     <div class="ui bottom attached active tab segment">
       <div class="ui equal width form">
         
         <div class="fields">
           <div class="field">
-            <label>Tytuł postu</label>
+            <label>Tytuł ogłoszenia</label>
             <input
               v-model="post.title"
               type="text"
@@ -32,12 +32,12 @@
         </div>
         
         <div class="field">
-          <label>Opis postu</label>
+          <label>Opis</label>
           <textarea
             v-model="post.text"
             rows="2"
             name="Opis postu"
-            placeholder="Dodaj opis do postu..."
+            placeholder="Dodaj opis do ogłoszenia..."
           />
         </div>
 
@@ -84,7 +84,7 @@
           class="ui blue button"
           @click="addPost">
           <i class="add icon"/>
-          Dodaj nowy post
+          Dodaj nowe ogłoszenie
         </button>
 
         <button

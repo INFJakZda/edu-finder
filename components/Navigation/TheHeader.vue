@@ -21,7 +21,11 @@
             <a 
               class="ui item"
               @click="$router.push('/post')">
-            <i class="pencil icon"/>Posty</a>
+            <i class="pencil icon"/>Ogłoszenia</a>
+            <a 
+              class="ui item"
+              @click="$router.push('/messages')">
+            <i class="envelope icon"/>Wiadomości</a>
             <a 
               class="ui item"
               @click="$router.push('/settings/details')">

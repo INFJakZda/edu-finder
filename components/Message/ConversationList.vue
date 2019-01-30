@@ -1,6 +1,13 @@
 <template>
   <div>
-    <h2>Skrzynka odbiorcza</h2>
+    <h2>Wiadomości</h2>
+    <div class="ui breadcrumb">
+      <nuxt-link 
+        to="/" 
+        class="section">Strona główna</nuxt-link>
+      <i class="right angle icon divider"/>
+      <div class="active section">Wiadomości</div>
+    </div>
     <div 
       v-for="(conversation, key) in conversations" 
       :key="key" 

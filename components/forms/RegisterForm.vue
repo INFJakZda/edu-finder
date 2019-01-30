@@ -5,7 +5,7 @@
       <Message
         :list="errorMessages"
         :visible="errorApiResponse"
-        header="Errors occured!"
+        header="Wystąpiły błędy"
         type="error"
         icon="exclamation"
         closeable />
@@ -14,10 +14,10 @@
         :model.sync="input.username"
         :error="isPropertyInErrorState('Username')"
         :change="() => setPropertyDirty('Username')"
-        label="Username"
+        label="Nazwa użytkownika"
         name="Username"
         type="text"
-        placeholder="Username"
+        placeholder="Nazwa użytkownika"
         required />
 
       <FormInput
@@ -34,7 +34,7 @@
         :model.sync="input.confirmEmail"
         :error="isPropertyInErrorState('ConfirmEmail')"
         :change="() => setPropertyDirty('ConfirmEmail')"
-        label="Confirm Email"
+        label="Potwierdź email"
         name="ConfirmEmail"
         type="text"
         placeholder="Email"
@@ -44,26 +44,26 @@
         :model.sync="input.password"
         :error="isPropertyInErrorState('Password')"
         :change="() => setPropertyDirty('Password')"
-        label="Password"
+        label="Hasło"
         name="Password"
         type="password"
-        placeholder="Password"
+        placeholder="Hasło"
         required />
 
       <FormInput
         :model.sync="input.confirmPassword"
         :error="isPropertyInErrorState('ConfirmPassword')"
         :change="() => setPropertyDirty('ConfirmPassword')"
-        label="Confirm Password"
+        label="Potwierdź hasło"
         name="ConfirmPassword"
         type="password"
-        placeholder="Password"
+        placeholder="Hasło"
         required />
 
       <button
         class="ui button primary"
         @submit.prevent
-        @click.prevent="register()">Register</button>
+        @click.prevent="register()">Zarejestruj</button>
     </form>
   </section>
 </template>
