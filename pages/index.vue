@@ -76,7 +76,7 @@
             v-if="loggedIn" 
             class="column">
             <h2 class="ui header">
-              Dodaj nowy post
+              Dodaj ogłoszenie
             </h2>
             <p>
               Aby umożliwić innym znalezienie twoich potrzeb poinformuj o tym. Wprowadź pełne informacje na temat tego czego potrzebujesz. Daj się znaleźć!
@@ -84,7 +84,7 @@
             <nuxt-link 
               to="/post"
               class="ui small primary button">
-              Dodaj post &raquo;
+              Dodaj ogłoszenie &raquo;
             </nuxt-link>
           </div>
         </div>

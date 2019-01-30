@@ -4,20 +4,20 @@
       v-if="errorStatus !== 404"
       :list="errorMessages"
       :visible="errorApiResponse"
-      header="Errors occured!"
+      header="Wystąpiły błędy"
       type="error"
       icon="exclamation"
       closeable />
 
     <Message
       v-if="errorStatus === 404"
-      header="User not found"
-      message="Please check your email and password and try again."
+      header="Nie znaleziono użytkownika"
+      message="Sprawdź hasło oraz adres email i spróbuj ponownie."
       type="error"
       icon="exclamation"
       closeable />
 
-    <h2 class="ui top attached header">Login</h2>
+    <h2 class="ui top attached header">Logowanie</h2>
     <div class="ui attached segment">
       <form class="ui form">
         <FormInput
@@ -33,15 +33,15 @@
           :model.sync="input.password"
           :error="isPropertyInErrorState('Password')"
           :change="() => setPropertyDirty('Password')"
-          label="Password"
+          label="Hasło"
           name="Password"
           type="password"
-          placeholder="Password" />
+          placeholder="Hasło" />
 
         <button
           class="fluid ui button primary"
           @submit.prevent
-          @click.prevent="login()">Login</button>
+          @click.prevent="login()">Zaloguj</button>
       </form>
     </div>
   </section>
