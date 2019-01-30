@@ -5,27 +5,27 @@
       class="ui placeholder segment">
       <div class="ui icon header">
         <i class="address card outline icon"/>
-        Nie masz dodanego żadnego ogłoszenia.
+        Nie masz dodanego ogłoszenia.
       </div>
       <button 
         class="positive ui button"
         @click="$router.push('/post/add')">
         <i class="add icon"/>
-        Dodaj nowe ogłoszenie
+        Dodaj
       </button>
     </div>
     <div v-else>
       <div class="ui menu borderless dev-color">
         <div class="item">
           <h3 class="header">
-            Dodano nowe ogłoszenia <i class="level down alternate icon"/>
+            Twoje ogłoszenia <i class="level down alternate icon"/>
           </h3>
         </div>
         <div class="right item">
           <button 
             class="positive ui button"
             @click="$router.push('/post/add')">
-            Dodaj ogłoszenie
+            Dodaj
           </button>
         </div>
       </div>

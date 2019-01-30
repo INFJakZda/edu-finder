@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <table class="ui celled table">
+    <table class="ui celled table dev-visible">
       <tbody>
         <tr>
           <td>
@@ -57,9 +57,14 @@
     </table>
 
     <div 
-      class="ui right floated small primary button"
+      class="ui right floated small primary button dev-visible"
       @click="update">
-      Aplikuj filtry
+      Filtruj
+    </div>
+
+    <div 
+      class="ui right floated small primary button dev-mob-visible">
+      Filtry
     </div>
 
     <div class="ui breadcrumb">
@@ -151,5 +156,15 @@ export default {
 }
 .dev-color {
   background: #eeeeee90;
+}
+@media only screen and (max-width: 767px) {
+  .dev-visible {
+    display: none;
+  }
+}
+@media only screen and (min-width: 767px) {
+  .dev-mob-visible {
+    display: none;
+  }
 }
 </style>
