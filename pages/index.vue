@@ -14,7 +14,7 @@
           <p 
             v-if="loggedIn"
             class="dev-font">
-            Pamiętaj aby ułatwić znalezienie twoich potrzeb powinieneś wprowadzić jak najwięcej informacji o sobie. Pochwal się swoimi umiejętnościami oraz ukończoną edukacją ;)
+            Aby skorzystać z pełni możliwości platformy uzupełnij swoje dane i wpowadź jak najwięcej informacji o sobie. Pochwal się swoimi umiejętnościami oraz ukończoną edukacją ;)
           </p>
           <nuxt-link
             v-if="!loggedIn"
@@ -36,7 +36,7 @@
               Znajdź korepetytora
             </h2>
             <p>
-              Możesz wyszukać korepetytora z naszej bazy użytkowników. Wprowadź konkretne parametry wuszukiwania i skontaktuj się z korepetytorem. 
+              Możesz wyszukać korepetytora z naszej bazy użytkowników. Wprowadź konkretne parametry wyszukiwania i skontaktuj się z korepetytorem. 
             </p>
             <nuxt-link 
               to="/search-skillentry"
