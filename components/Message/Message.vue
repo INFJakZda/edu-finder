@@ -41,8 +41,6 @@ export default {
   },
   computed: {
     prettyDate() {
-      moment.locale('pl')
-      console.log(moment.locale())
       return moment(this.date)
         .add(1, 'hour')
         .fromNow()
