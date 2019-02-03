@@ -11,7 +11,7 @@
       </div>
     </div>
     <sui-list-icon 
-      name="star" 
+      name="address card outline" 
       size="big" 
       vertical-align="middle" />
     <sui-list-content>

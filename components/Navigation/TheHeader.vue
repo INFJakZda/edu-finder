@@ -8,6 +8,17 @@
           class="logo dev-logo" 
           src="https://images-eu.ssl-images-amazon.com/images/I/71Ie8rLruiL.png"
       >Edu Student</a>
+
+      <a 
+        class="ui item dev-visible"
+        @click="$router.push('/search-skillentry')">
+      <i class="address card outline icon"/>Szukaj korepetycje</a>
+      
+      <a 
+        class="ui item dev-visible"
+        @click="$router.push('/search-post')">
+      <i class="bullhorn icon"/>Szukaj ogłoszenia</a>
+      
       <div class="right menu">
         <div 
           v-if="loggedIn" 
@@ -18,6 +29,16 @@
           {{ userName }}
           <i class="dropdown icon"/>
           <div class="menu">
+            <a 
+              class="ui item dev-mob-visible"
+              @click="$router.push('/search-skillentry')">
+            <i class="address card outline icon"/>Szukaj korepetycje</a>
+            
+            <a 
+              class="ui item dev-mob-visible"
+              @click="$router.push('/search-post')">
+            <i class="bullhorn icon"/>Szukaj ogłoszenia</a>
+            
             <a 
               class="ui item"
               @click="$router.push('/post')">
@@ -107,5 +128,15 @@ export default {
 <style scoped>
 .dev-logo {
   padding-right: 10px;
+}
+@media only screen and (max-width: 767px) {
+  .dev-visible {
+    display: none !important;
+  }
+}
+@media only screen and (min-width: 767px) {
+  .dev-mob-visible {
+    display: none !important;
+  }
 }
 </style>

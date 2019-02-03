@@ -4,7 +4,7 @@
       v-if="!(postsData.posts.length > 0)"
       class="ui placeholder segment">
       <div class="ui icon header">
-        <i class="address card outline icon"/>
+        <i class="bullhorn icon"/>
         Nie masz dodanego ogłoszenia.
       </div>
       <button 
