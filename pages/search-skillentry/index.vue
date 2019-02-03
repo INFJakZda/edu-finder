@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <table class="ui celled table dev-visible">
+    <table class="ui celled table">
       <tbody>
         <tr>
           <td>
@@ -15,6 +15,7 @@
                 icon="globe"
                 floating
                 labeled
+                fluid
                 button
                 class="icon"
               />
@@ -31,6 +32,25 @@
                 icon="graduation cap"
                 floating
                 labeled
+                fluid
+                button
+                class="icon"
+              />
+            </div>
+          </td>
+          <td>
+            <div class="dev-center">
+              <sui-dropdown
+                v-model="priceMax"
+                :menu-header="menuHeader"
+                :search-in-menu="searchInMenu"
+                :options="price"
+                allow-additions
+                text="Cena maksymalna"
+                icon="balance scale"
+                floating
+                labeled
+                fluid
                 button
                 class="icon"
               />
@@ -41,14 +61,9 @@
     </table>
 
     <div 
-      class="ui right floated small primary button dev-visible"
+      class="ui right floated small primary button"
       @click="update">
       Filtruj
-    </div>
-
-    <div 
-      class="ui right floated small primary button dev-mob-visible">
-      Filtry
     </div>
 
     <div class="ui breadcrumb">
@@ -86,6 +101,13 @@ export default {
         icon: 'search',
         iconPosition: 'left'
       },
+      price: Array.from({ length: 14 }, (v, k) => {
+        return {
+          value: (k * 10 + 20).toString(),
+          text: (k * 10 + 20).toString() + ' zł/godz'
+        }
+      }),
+      priceMax: null,
       selectedCategory: null,
       selectedCity: null,
       selectedLevel: null
@@ -116,7 +138,8 @@ export default {
           params: {
             categoryId: this.selectedCategory,
             cityId: this.selectedCity,
-            skillLevelId: this.selectedLevel
+            skillLevelId: this.selectedLevel,
+            priceMax: this.priceMax
           }
         })
         .then(data => {
@@ -139,15 +162,5 @@ export default {
 }
 .dev-color {
   background: #eeeeee90;
-}
-@media only screen and (max-width: 767px) {
-  .dev-visible {
-    display: none;
-  }
-}
-@media only screen and (min-width: 767px) {
-  .dev-mob-visible {
-    display: none;
-  }
 }
 </style>

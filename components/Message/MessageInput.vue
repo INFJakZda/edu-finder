@@ -4,7 +4,8 @@
     <form class="ui reply form">
       <div class="field">
         <textarea
-          v-model="currentMessage" />
+          v-model="currentMessage"
+          rows="4" />
       </div>
       <Button 
         :modifiers="['primary', 'large', 'right', 'floated']" 

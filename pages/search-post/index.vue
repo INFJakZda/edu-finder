@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <table class="ui celled table dev-visible">
+    <table class="ui celled table">
       <tbody>
         <tr>
           <td>
@@ -15,6 +15,7 @@
                 icon="globe"
                 floating
                 labeled
+                fluid
                 button
                 class="icon"
               />
@@ -31,6 +32,7 @@
                 icon="map marker"
                 floating
                 labeled
+                fluid
                 button
                 class="icon"
               />
@@ -47,6 +49,7 @@
                 icon="graduation cap"
                 floating
                 labeled
+                fluid
                 button
                 class="icon"
               />
@@ -57,14 +60,9 @@
     </table>
 
     <div 
-      class="ui right floated small primary button dev-visible"
+      class="ui right floated small primary button"
       @click="update">
       Filtruj
-    </div>
-
-    <div 
-      class="ui right floated small primary button dev-mob-visible">
-      Filtry
     </div>
 
     <div class="ui breadcrumb">
@@ -156,15 +154,5 @@ export default {
 }
 .dev-color {
   background: #eeeeee90;
-}
-@media only screen and (max-width: 767px) {
-  .dev-visible {
-    display: none;
-  }
-}
-@media only screen and (min-width: 767px) {
-  .dev-mob-visible {
-    display: none;
-  }
 }
 </style>
