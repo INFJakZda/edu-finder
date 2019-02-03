@@ -7,7 +7,9 @@
       <div class="ui black ribbon label">
         <span class="dev-inline"><i class="user icon"/> {{ entry.user.username }} </span>
       </div>
-      <img :src="imgSrc">
+      <img 
+        :src="imgSrc" 
+        class="dev-image">
     </div>
         
     <div class="content">
@@ -57,9 +59,13 @@ export default {
   },
   computed: {
     imgSrc() {
-      return `https://loli-server.azurewebsites.net/api/picture/${
-        this.entry.user.avatarId
-      }`
+      if (this.entry.user.avatarId) {
+        return `https://loli-server.azurewebsites.net/api/picture/${
+          this.entry.user.avatarId
+        }`
+      } else {
+        return `http://cdn.onlinewebfonts.com/svg/img_210318.png`
+      }
     }
   },
   methods: {

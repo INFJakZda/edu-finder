@@ -45,9 +45,13 @@ export default {
   },
   computed: {
     imgSrc() {
-      return `https://loli-server.azurewebsites.net/api/picture/${
-        this.entry.user.avatarId
-      }`
+      if (this.entry.user.avatarId) {
+        return `https://loli-server.azurewebsites.net/api/picture/${
+          this.entry.user.avatarId
+        }`
+      } else {
+        return `http://cdn.onlinewebfonts.com/svg/img_210318.png`
+      }
     }
   }
 }
