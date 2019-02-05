@@ -9,17 +9,18 @@
           src="https://images-eu.ssl-images-amazon.com/images/I/71Ie8rLruiL.png"
       >Edu Student</a>
 
-      <a 
-        class="ui item dev-visible"
-        @click="$router.push('/search-skillentry')">
-      <i class="address card outline icon"/>Szukaj korepetycje</a>
-      
-      <a 
-        class="ui item dev-visible"
-        @click="$router.push('/search-post')">
-      <i class="bullhorn icon"/>Szukaj ogłoszenia</a>
-      
       <div class="right menu">
+      
+        <a 
+          class="ui item dev-visible"
+          @click="$router.push('/search-skillentry')">
+        <i class="address card outline icon"/>Szukaj korepetycji</a>
+        
+        <a 
+          class="ui item dev-visible"
+          @click="$router.push('/search-post')">
+        <i class="bullhorn icon"/>Szukaj ogłoszenia</a>
+      
         <div 
           v-if="loggedIn" 
           class="ui simple dropdown item">
@@ -32,7 +33,7 @@
             <a 
               class="ui item dev-mob-visible"
               @click="$router.push('/search-skillentry')">
-            <i class="address card outline icon"/>Szukaj korepetycje</a>
+            <i class="address card outline icon"/>Szukaj korepetycji</a>
             
             <a 
               class="ui item dev-mob-visible"
@@ -66,6 +67,14 @@
             class="ui avatar image">
           <i class="dropdown icon"/>
           <div class="menu">
+            <a 
+              class="ui item dev-mob-visible"
+              @click="$router.push('/search-skillentry')">
+            <i class="address card outline icon"/>Szukaj korepetycji</a>
+            <a 
+              class="ui item dev-mob-visible"
+              @click="$router.push('/search-post')">
+            <i class="bullhorn icon"/>Szukaj ogłoszenia</a>
             <a 
               class="ui item"
               @click="$router.push('/register-form')">
