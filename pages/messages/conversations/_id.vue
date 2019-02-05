@@ -59,11 +59,11 @@ export default {
   },
   methods: {
     avatarId(message) {
-      if (message.receiver === null) {
+      if (message.sender === null) {
         return null
       }
 
-      return message.receiver.avatarId
+      return message.sender.avatarId
     },
     rerender() {
       this.fetchConversation()

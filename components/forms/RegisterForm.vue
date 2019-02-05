@@ -103,10 +103,12 @@ export default {
       this.$axios
         .$post('/api/account/register', this.input)
         .then(response => response.json())
-        .then(response => {
-          console.log(JSON.stringify(response))
-        })
         .catch(this.errorHandler)
+        .finally(() => {
+          if (!this.errorApiResponse) {
+            this.$router.push('/')
+          }
+        })
     }
   }
 }
