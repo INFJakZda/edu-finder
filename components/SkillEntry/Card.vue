@@ -10,12 +10,12 @@
       <a class="header">{{ entry.title }}</a>
       <div class="description">
         <truncate
-          :length="90"
+          :length="250"
           :text="entry.details"
           clamp=" ..." 
           less=" Zwiń"/>
       </div>
-      <div class="extra">
+      <div class="extra dev-margin-top-bottom">
         <div class="dev-inline"><i class="balance scale icon"/> Cena: {{ entry.price }} zł/godz, </div>
         <div class="dev-inline"><i class="graduation cap icon"/> Poziom: {{ entry.skillLevel.name }}, </div>
         <div class="dev-inline"><i class="globe icon"/> Kategoria: {{ entry.category.name }} </div>
@@ -127,6 +127,11 @@ export default {
           this.$emit('refreshdev')
         })
         .catch(e => console.log(e))
+        .finally(() => {
+          this.value = 1
+          this.comment = ''
+          this.open = true
+        })
     }
   }
 }
@@ -139,5 +144,9 @@ export default {
 .ui.cards > .card,
 .ui.card {
   width: 100% !important;
+}
+.dev-margin-top-bottom {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
 </style>

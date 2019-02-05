@@ -6,20 +6,24 @@
         :src="imgSrc" 
         class="ui avatar image"> {{ user.username }}
     </div>
+    
     <div class="content">
       <a class="header">{{ entry.title }}</a>
-      <div class="extra">
-        <div class="dev-inline"><i class="map marker alternate icon"/> Miasto: {{ entry.city.name }}, </div>
-        <div class="dev-inline"><i class="graduation cap icon"/> Poziom: {{ entry.skillLevel.name }}, </div>
-        <div class="dev-inline"><i class="globe icon"/> Kategoria: {{ entry.category.name }} </div>
-      </div>
+      
       <div class="description">
         <truncate
-          :length="90"
+          :length="250"
           :text="entry.text"
           clamp=" ..." 
           less=" Zwiń"/>
       </div>
+      
+      <div class="extra dev-margin-top-bottom">
+        <div class="dev-inline"><i class="map marker alternate icon"/> Miasto: {{ entry.city.name }}, </div>
+        <div class="dev-inline"><i class="graduation cap icon"/> Poziom: {{ entry.skillLevel.name }}, </div>
+        <div class="dev-inline"><i class="globe icon"/> Kategoria: {{ entry.category.name }} </div>
+      </div>
+      
       <div 
         v-for="(tag, idx) in entry.tags"
         :key="idx"
@@ -70,5 +74,9 @@ export default {
 .ui.cards > .card,
 .ui.card {
   width: 100% !important;
+}
+.dev-margin-top-bottom {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
 </style>
